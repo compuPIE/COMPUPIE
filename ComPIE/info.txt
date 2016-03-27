@@ -1,0 +1,113 @@
+
+FOOD_PROBLEMS 
+Lack of Regular Food Supply
+Lack of Food/Water Supply
+Nutritionally Inadequate Food Supply
+Other Food/Nutrition Problems
+Food/Nutrition Discrimination
+No Food or Nutrition Problems
+
+SHELTER_PROBLEM
+Absence of Shelter
+Substandard or Inadequate Shelter
+Other Shelter Problems
+Shelter Discrimination
+No Shelter Problems
+
+
+
+
+WORK_PROBLEM
+No Work Available
+Insufficient Employment
+Inappropriate Employment
+Other Employment Problem
+Work/Employment Discrimination
+No Work/Employment Problems
+
+ECONOMIC_PROBLEM
+Insufficient Resources for Basic Sustenance
+Insufficient Resources to Provide Services
+Regulatory Barriers
+Other Economic Resource Problems
+Economic Resources Discrimination
+No Economic Resource Problems
+
+TRANSPORTATION_PROBLEM
+No Transportation to Job/Needed Services
+Inadequate Transportation
+Other Transportation Problems
+Transportation Discrimination
+No Transportation Problems
+
+
+
+EDUCATION_PROBLEM
+Lack of Education or Training Facilities
+Lack of Adequate or Appropriate Facilities
+Lack of Culturally Relevant Facilities
+Regulatory Barriers to Services & Programs
+Absence of Support Services
+Other Education & Training Problem
+
+JUDICIAL_PROBLEM
+Lack of Police Services
+Lack of Relevant Police Services
+Lack of Confidence in Police Services
+Lack of Adequate Prosecution/Defense
+Lack of Adequate Probation/Parole Services
+Other Judicial and Legal Problem
+Judicial and Legal Discrimination
+
+HEALTH_PROBLEM
+Absence of Adequate Health Services
+Regulatory Barriers to Health Services
+Inaccessibility of Health Services
+Absence of Support Services/Health Services
+Absence of Adequate Mental Health Services
+Regulatory Barriers to Mental Health Services
+Inaccessibility of Mental Health Services
+Absence of Support Services/Mental Health
+Other Health/Mental Health Problem
+
+SAFETY_PROBLEM
+Violence or Crime in Neighborhood
+Unsafe Working Conditions
+Unsafe Conditions in Home
+Absence of Adequate Safety Services
+Natural Disaster
+Human-Created Disaster
+Other Safety Problem
+
+SOCIAL_SERVICE_PROBLEM
+Lack of Adequate Social Services
+Regulatory Barriers to Social Services
+Inaccessibility of Social Services
+Absence of Support Services/Social Services
+Other Social Service Problem
+Health/Mental Health Discrimination
+Safety Discrimination
+Social Services Discrimination
+
+
+
+
+VOLUNTARY_ASSOCIATION_PROBLEM
+Lack of Religious Group of Choice
+Lack of Acceptance of Religious Values
+Other Religious Group Problem
+
+COMMUNITY_GROUP_PROBLEM
+Lack of Comm. Support Group of Choice
+Lack of Comm. Acceptance of Support Group
+Other Community Group Problem
+Religious Discrimination
+Community Group Discrimination
+
+AFFECTIONAL_SUPPORT_PROBLEM
+Absence of Affectional Support Systems
+Support System Inadequate for Affect. Reqs.
+Excessively Involved Support System
+Other Affectional Support Problem
+Affectional Support Discrimination
+

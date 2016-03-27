@@ -1,0 +1,553 @@
+--01-DISEASES OF THE NERVOUS SYSTEM	
+Abscess, intracranial	324
+Alzheimer's disease	331
+Atherosclerosis, cerebral	437
+Carpal tunnel syndrome	354
+Causalgia	354.4
+Cerebellar ataxia	334.3
+Concussion	850.9
+Contusion, cerebral	851.8
+Dystrophy, Duchenne's muscular	359.1
+Edema, cerebral	348.5
+Encephalitis, viral	49.9
+Encephalopathy, hepatic	572.2
+Encephalopathy, hypertensive	437.2
+Encephalopathy, unspecified	348.39
+Epilepsy, grand mal	345.1
+Epilepsy, partial, with impairment of consciousness (temporal lobe)	345.4
+Epilepsy, partial, without impairment of consciousness (Jacksonian)	345.5
+Epilepsy, petit mal (absences)	345
+Headache, cluster	346.2
+Hemorrhage, extradural, nontraumatic	432
+Hemorrhage, extradural, traumatic	852.4
+Hemorrhage, intracerebral, nontraumatic	431
+Hemorrhage, subarachnoid, nontraumatic	430
+Hemorrhage, subarachnoid, traumatic	852
+Hemorrhage, subdural, nontraumatic	432.1
+Hemorrhage, subdural, traumatic	852.2
+Huntington's chorea	333.4
+Hydrocephalus, communicating	331.3
+Hydrocephalus, obstructive	331.4
+Ischemic attack, transient	435.9
+Jakob-Creutzfeldt disease	46.1
+Kuru	46
+Leukoencephalopathy, progressive multifocal	46.3
+Lipidosis, cerebral	330.1
+Meningitis, bacterial (due to unspecified bacterium)	320.9
+Meningitis, cryptococcal	321
+Meningitis, herpes simplex virus 053.0 Meningitis, herpes zoster	54.72
+Meningitis, other fungal	321.1
+Meningitis, syphilitic	94.2
+Meningitis, viral (due to unspecified virus)	47.9
+Migraine, classical (with aura)	346
+Migraine, common	346.1
+Migraine, unspecified	346.9
+Myasthenia gravis	358
+Neuralgia, trigeminal	350.1
+Neuropathy, peripheral autonomic	337.1
+Occlusion, cerebral artery	434.9
+Pain, face, atypical	350.2
+Palsy, Bell's	351
+Palsy, cerebral	343.9
+Palsy, pseudobulbar	335.23
+Panencephalitis, subacute sclerosing	46.2
+Paresis, general	94.1
+Parkinson's disease, primary	332
+Pick's disease	331.11
+Polyneuropathy	357.9
+Pseudotumor cerebri (benign intracranial hypertension)	348.2
+Sclerosis, amyotrophic lateral	335.2
+Sclerosis, multiple (MS)	340
+Status, grand mal	345.3
+Status, petit mal	345.2
+Status, temporal lobe	345.7
+Stenosis, carotid artery, without cerebral infarction	433.1
+Stroke (CV A)	436
+Tay-Sachs disease	330.1
+Tremor, benign essential	333.1
+--02-DISEASES OF THE CIRCULATORY SYSTEM	
+Angina pectoris	413.9*
+Aortic valve disorder	424.1
+Atherosclerosis	440.9*
+Block, atrioventricular	426.10*
+Block, left bundle branch	426.3 *
+Block, right bundle branch	426.4
+Cardiac arrest	427.5
+Cardiomyopathy, alcoholic	425.5
+Cardiomyopathy, idiopathic	425.4*
+Chronic pulmonary heart disease	416.9*
+Coronary atherosclerosis	414.00*
+Dysrhythmia, cardiac, unspecified	427.9*
+Embolism, pulmonary	415.19*
+Endocarditis, bacterial	421.9*
+Failure, congestive heart	428.0*
+Fibrillation, atrial	427.31
+Fibrillation, ventricular	427 41
+Flutter, atrial	427.32
+Flutter, ventricular	427042
+Hemorrhoids	455.6*
+Hypertension, essential	401.9
+Hypertensive heart disease with congestive heart failure	402.91
+Hypertensive heart disease without congestive heart failure	402.9
+Hypertensive renal disease with failure	403.91
+Hypertensive renal disease without failure	403.9
+Hypotension, orthostatic	458
+Infarction, myocardial, acute	410.9
+Mitral valve insufficiency (nonrheumatic)	424
+Mitral valve prolapse	424
+Mitral valve stenosis (rheumatic)	394
+Pericarditis	423.9
+Peripheral vascular disease	443.9
+Phlebitis / thrombophlebitis	451.9
+Polyarteritis nodosa	446
+Premature beats	427.6
+Pulmonary valve disease (nonrheumatic)	424.3
+Pulmonary valve disease, rheumatic	397.1
+Tachycardia, paroxysmal supraventricular	427
+Tachycardia, paroxysmal, unspecified	427.2
+Tachycardia, ventricular (paroxysmal)	427.1
+Tricuspid valve disease (nonrheumatic)	424.2
+Tricuspid valve disease, rheumatic	397
+Varices, esophageal, with bleeding	456
+Varices, esophageal, without bleeding	456.1
+Varicose veins, lower extremities	454.9
+--03-DISEASES OF THE RESPIRATORY SYSTEM	
+Abscess of lung	513
+Asthma, chronic obstructive	493.2
+Asthma, unspecified	493.9
+Atelectasis	518
+Bronchiectasis, acute	494.1
+Bronchitis, acute	466
+Bronchitis, obstructive chronic (COPD), with acute exacerbation	491.21
+Bronchitis, obstructive chronic (COPD), without acute exacerbation	491.2
+Cystic fibrosis	277
+Effusion, pleural	511.9
+Emphysema	492.8
+Failure, respiratory	518.81
+Pneumoconiosis	505
+Pneumohemothorax, traumatic	860.4
+Pneumonia, mycoplasma	483
+Pneumonia, pneumococcal	481
+Pneumonia, pneumocystis	136.3
+Pneumonia, streptococcus	482.3
+Pneumonia, unspecified bacterial	482.9
+Pneumonia, unspecified organism	486
+Pneumonia, viral	480.9
+Pneumothorax, spontaneous	512.8
+Pneumothorax, traumatic	860
+Tuberculosis, pulmonary	11.9
+--04-NEOPLASMS	
+Hemangioma of brain	228.02
+Hodgkin's disease	201.9
+Kaposi's sarcoma	176.9
+Leukemia, acute	208
+Leukemia, acute, in remission	208.01
+Leukemia, chronic	208.1
+Leukemia, chronic, in remission	208.11
+Lymphosarcoma	200.1
+Meningioma (cerebral)	225.2
+Multiple myeloma	203
+Multiple myeloma, in remission	203.01
+Neoplasm, benign, of brain	225
+Neoplasm, benign, of colon	211.4
+Neoplasm, malignant, abdominal cavity, primary	195.2
+Neoplasm, malignant, adrenal gland, primary	194
+Neoplasm, malignant, bladder, primary	188.9
+Neoplasm, malignant, bone, primary	170.9
+Neoplasm, malignant, bone, secondary	198.5
+Neoplasm, malignant, brain, primary	191.9
+Neoplasm, malignant, brain, secondary	198.3
+Neoplasm, malignant, breast, female, primary	174.9
+Neoplasm, malignant, breast, male, primary	175.9
+Neoplasm, malignant, bronchus, primary	162.9
+Neoplasm, malignant, cervix, primary	180.9
+Neoplasm, malignant, colon, primary	153.9
+Neoplasm, malignant, colon, secondary	197.5
+Neoplasm, malignant, connective tissue, primary	171.9
+Neoplasm, malignant, esophagus, primary	150.9
+Neoplasm, malignant, intestine, small, primary	152.9
+Neoplasm, malignant, kidney, primary	189
+Neoplasm, malignant, liver, primary	155
+Neoplasm, malignant, liver, secondary	197.7
+Neoplasm, malignant, lung, primary	162.9
+Neoplasm, malignant, lung, secondary	197
+Neoplasm, malignant, lymph nodes, secondary	196.9
+Neoplasm, malignant, melanoma, primary	172.9
+Neoplasm, malignant, ovary, primary	183
+Neoplasm, malignant, pancreas, primary	157.9
+Neoplasm, malignant, prostate, primary	185
+Neoplasm, malignant, rectum, primary	154.1
+Neoplasm, malignant, skin, primary	173.9
+Neoplasm, malignant, stomach, site unspecified, primary	151.9
+Neoplasm, malignant, testis, primary	186.9
+Neoplasm, malignant, thyroid, primary	193
+Neoplasm, malignant, uterus, primary	179
+Neurofibromatosis	237.7
+Pheochromocytoma, benign	227
+Pheochromocytoma, malignant	194
+Polycythemia vera	238.4
+--05-ENDOCRINE DISEASES	
+Acromegaly	253
+Adrenogenital disorder	255.2
+Carcinoid syndrome	259.2
+Corticoadrenal insufficiency	255.4
+Cushing's syndrome	255
+Diabetes insipidus	253.5
+Diabetes mellitus, type I/insulin-dependent	250.01
+Diabetes mellitus, type Wnon-insulin-dependent	250
+Dwarfism, pituitary	253.3
+Goiter, nontoxic nodular	241.9
+Goiter, simple	240.9
+Hyperaldosteronism	255.1
+Hyperparathyroidism	252
+Hypoparathyroidism	252.1
+Hypothyroidism, acquired	244.9
+Hypothyroidism, congenital	243
+Ovarian dysfunction	259.9
+Panhypopituitarism	253.2
+Sexual development and puberty, delayed	259
+Sexual development and puberty, precocious	259.1
+Testicular dysfunction	257.9
+Thyroiditis	245.9
+Thyrotoxicosis	242.9
+--06-NUTRITIONAL DISEASES	
+Beriberi	265
+Calcium deficiency	269.3
+Folic acid deficiency	266.2
+Iodine deficiency	269.3
+Kwashiorkor	260
+Malnutrition, protein-caloric, severe	262
+Nutritional marasmus	261
+Obesity	278
+Pellagra (niacin deficiency)	265.2
+Riboflavin deficiency	266
+Vitamin A deficiency	264.9
+Vitamin B12 deficiency	266.2
+Vitamin B6 deficiency	266.1
+Vitamin C deficiency	267
+Vitamin D deficiency	268.9
+Vitamin E deficiency	269.1
+Vitamin K deficiency	269
+--07-METABOLIC DISEASES	
+Acidosis	276.2
+Alkalosis	276.3
+Amyloidosis	277.3
+Depletion, volume (dehydration)	276.5
+Disaccharide malabsorption (lactose intolerance)	271.3
+Electrolyte imbalance	276.9
+Fluid overload/retention	276.6
+Gout	274.9
+Hemochromatosis	275
+Hypematremia	276
+Hypercalcemia	275.42
+Hyperkalemia	276.7
+Hypocalcemia	275.41
+Hypokalemia	276.8
+Hyponatremia	276.1
+Lesch-Nyhan syndrome	277.2
+Phenylketonuria (PKU)	270.1
+Porphyria	277.1
+Wilson's disease	275.1
+--08-DISEASES OF THE DIGESTIVE SYSTEM	
+Appendicitis, acute	540.9
+Bleeding, gastrointestinal	578.9
+Cholecystitis, acute	575
+Cholecystitis, chronic	575.11
+Cirrhosis, alcoholic	571.2
+Colitis, ulcerative	556.9
+Constipation	564
+Crohn's disease	555.9
+Diarrhea, infectious	9.2
+Diarrhea, unspecified	558.9
+Diverticulitis of colon, unspecified	562.11
+Diverticulitis of colon, with hemorrhage	562.13
+Diverticulosis of colon, unspecified	562.1
+Diverticulosis of colon, with hemorrhage	562.12
+Duodenitis and gastritis	535.5
+Enteritis, regional	555.9
+Esophagitis	530.1
+Gastritis and duodenitis	535.5
+Gastroenteritis	558.9
+Hepatitis, alcoholic, acute	571.1
+Hepatitis, chronic	571.4
+Hepatitis, toxic (includes drug induced)	573.3
+Hepatitis, viral A	70.1
+Hepatitis, viral B	70.3
+Hepatitis, viral C	70.51
+Impaction, fecal	560.39
+Inguinal hernia	550.9
+Irritable bowel syndrome	564.1
+Obstruction, bile duct	576.2
+Obstruction, intestinal	560.9
+Pancreatitis, acute	577
+Pancreatitis, chronic	577.1
+Peritonitis	567.9
+Reflux, esophageal	530.1
+Rupture, esophageal	530.4
+Stricture, esophageal	530.3
+Ulcer, duodenal, acute	532.3
+Ulcer, duodenal, chronic	532.7
+Ulcer, gastric, acute	531.3
+Ulcer, gastric, chronic	531.7
+--09-GENITOURINARY SYSTEM DISEASES	
+Atonic bladder	596.4
+Calculus, renal	592
+Calculus, ureter	592.1
+Calculus, urinary, unspecified	592.9
+Cystitis	595.9
+Dysmenorrhea	625.3
+Endometriosis	617.9
+Failure, renal, acute	584.9
+Failure, renal, unspecified	585.8
+Glomerulonephritis, acute	580.9
+Hypertrophy, prostatic, benign (BPH)	600
+Infertility, female	628.9
+Infertility, male	606.9
+Menopausal or postmenopausal disorder	627.9
+Menstruation, disorder of, and abnormal bleeding	626.9
+Mittelschmerz	625.2
+Ovarian cyst	620.2
+Pelvic inflammatory disease (PID)	614.9
+Priapism	607.3
+Prolapse, genital	618.9
+Prostatitis	601.9
+Renal disease, End Stage	585.6     
+Renal Disease, Stage 1	585.1
+Renal Disease, Stage 2	585.2    
+Renal Disease, Stage 3	585.3  
+Renal Disease, Stage 4	585.4   
+Renal Disease, Stage 5	585.5  
+Stricture, ureteral	593.3
+Stricture, urethral	598.9
+Urinary tract infection (UTI)	599
+--10-HEMATOLOGICAL DISEASES	
+Agranulocytosis	288
+Allergic purpura	287
+Anemia, aplastic	284.9
+Anemia, folate-deficiency	281.2
+Anemia, hemolytic, acquired	283.9
+Anemia, hemolytic-uremic syndrome	283.11
+Anemia, iron-deficiency	280.9*
+Anemia, nonautoimmune hemolytic, unspecified	283.1
+Anemia, other autoimmune hemolytic	283.19
+Anemia, pernicious	281
+Anemia, sickle-cell	282.6
+Coagulation defects	286.9
+Eosinophilia	288.3
+Thalassemia	282.49
+Thrombocytopenia	287.5
+--11-DISEASES OF THE EYE	
+Cataract	366.9
+Conjunctiva disorder	372.9
+Detachment, retinal	361.9
+Glaucoma	365.9
+Neuritis, optic	377.3
+Nystagmus	379.5
+Papilledema	377
+Visual loss	369.9
+--12-DISEASES OF THE EAR, NOSE AND THROAT	
+Common cold	460
+Hearing loss	389.9
+Laryngitis, acute	464
+Meniere's disease	386
+Otitis media	382.9
+Pharyngitis, acute	462
+Rhinitis, allergic	477.9
+Sinusitis, acute	461.9
+Sinusitis, chronic	473.9
+Tinnitus, unspecified	388.3
+Tonsillitis, acute	463
+--13-MUSCULOSKELETAL SYSTEM -CONNECTIVE TISSUE	
+Arthritis, allergic	716.2
+Arthritis, infective	711.9
+Arthritis, rheumatoid	714
+Aseptic necrosis of bone	733.4
+Dermatomyositis	710.3
+Disc disorder, intervertebral, cervical	722.91
+Disc disorder, intervertebral, lumbar	722.93
+Disc disorder, intervertebral, thoracic	722.92
+Fracture, pathological	733.1
+Osteoarthrosis (osteoarthritis)	715.9
+Osteomyelitis	730.2
+Osteoporosis	733
+Scleroderma (systemic sclerosis)	710.1
+Scoliosis	737.3
+Sjogreri s disease	710.2
+Spondylitis, ankylosing	720
+Systemic lupus erythematosus	710
+--14-DISEASES OF THE SKIN	
+Alopecia	704
+Cellulitis, unspecified site	682.9
+Dermatitis, contact	692.9
+Dermatitis, due to substance (taken internally)	693
+Erythema muitiforme	695.1
+Ingrowing nail	703
+Keloid scar	701.4
+Psoriasis	696.1
+Ulcer, decubitus	707
+Urticaria, allergic	708.0     
+--15-CONGENITAL MALFORMATIONS, DEFORMATIONS	
+Cleft lip	749.1
+Cleft palate	749
+Cri-du-chat syndrome (antimongolism)	758.3
+Down's syndrome	758
+Fetal alcohol syndrome	760.71
+Hirschsprung's disease (congenital colon dysfunction)	751.3
+Hydrocephalus, congenital	742.3
+Indeterminate sex and pseudohermaphroditism	752.7
+Klinefelter's syndrome	758.7
+Marfan's syndrome	759.82
+Microcephalus	742.1
+Spina bifida	741.9
+Stenosis, congenital hypertrophic pyloric	750.5
+Toxic effects of alcohol	760.71
+Toxic effects of cocaine	760.75
+Toxic effects of hallucinogens	760.73
+Toxic effects of narcotics	760.72
+Toxic effects of other substances (including medications)	760.7
+Tuberous sclerosis	759.5
+Turner's syndrome	758.6
+Undescended testicle	752.51
+--16-DISEASES OF PREGNANCY, CHILDBIRTH	
+Eclampsia	642
+Hyperemesis gravidarum, mild	643
+Hyperemesis gravidarum, with metabolic disturbance	643
+Pre-eclampsia, mild	642
+Pre-eclampsia, severe	642
+--17-INFECTIOUS DISEASES	
+Amebiasis	6.9
+Candidiasis, disseminated	112.5
+Candidiasis, lung	112.4
+Candidiasis, mouth	112
+Candidiasis, other urogenital sites	112.2
+Candidiasis, skin and nails	112.3
+Candidiasis, unspecified site	112.9
+Candidiasis, vulva and vagina	112.1
+Chlamydia trachomatis	99.41
+Cholera	1.9
+Clostridium perfrigens	41.83
+Coccidioidomycosis	114.9
+Condyloma acuminatum (viral warts)	78.1
+Coxsackie virus	79.2
+Cryptococcosis	117.5
+Escherichia coli (E. coli)	41.4
+Giardiasis	7.1
+Gonorrhea	98.2
+Hemophilus influenzae (H. influenzae)	41.5
+Hepatitis, viral A	70.1
+Hepatitis, viral B	70
+Hepatitis, viral C	70.51
+Herpes simplex	54.9
+Herpes zoster	53.9
+Histoplasmosis	115.9
+HIV infection (symptomatic)	42
+Infection, meningococcal	36.9
+Infection, viral, unspecified	79.99
+Influenza, unspecified	487.1
+Influenza, with pneumonia	487
+Klebsiella pneumoniae	41.3
+Lyme disease	88.81
+Malaria	84.6
+Mononucleosis	75
+Mumps	72.9
+Mycoplasma	41.81
+Pneumococcus	41.2
+Proteus	41.6
+Pseudomonas	41.7
+Rabies	71
+richomoniasis	131.9
+Rubella	56.9
+Salmonella	3.9
+Sarcoidosis	135
+Shigellosis	4.9
+Staphylococcus	41.1
+Streptococcus	41
+Syphilis	97.9
+Tick-borne riketlsiosis	82.9
+Toxoplasmosis	130.9
+Trichinosis	124
+Typhoid fever	2
+Typhus	81.9
+--18-OVERDOSE	
+Acetaminophen, overdose	965.4
+Adrenal cortical steroids, overdose	962
+Amyl/butyl/nitrite, overdose	972.4
+Androgens and anabolic steroids, overdose	962.1
+Anticholinergics, overdose	971.1
+Antidepressants, overdose	969
+Barbiturates, overdose	967
+Benzodiazepine-based tranquilizers, overdose	969.4
+Butyrophenone-based tranquilizers, overdose	969.2
+Chloral hydrate, overdose	967.1
+Cocaine, overdose	968.5
+Glutethimide, overdose	967.5
+Hallucinogens/cannabis, overdose	969.6
+Insulin and antidiabetic agents, overdose	962.3
+Methaqualone, overdose	967.4
+Nitrous oxide, overdose	968.2
+Opioid antagonists, overdose	970.1
+Opioids, overdose	965
+Paraldehyde, overdose	967.2
+Phencyclidine, overdose	968.3
+Phenothiazine-based tranquilizers, overdose	969.1
+Salicylates, overdose	965.1
+Stimulants, overdose	970.9
+Thyroid and thyroid derivatives, overdose	962.7
+--19-ADDITIONAL CODES FOR MEDICATION INDUCED DISORDERS	
+Acetaminophen/phenacetin	E935.4
+Adrenal cortical steroids	E932.0
+Amantadine	E936.4
+Anabolic steroids and androgens	E932.1
+Antiallergic and antiemetic agent (excluding phenothiazines & hydroxyzine)	E933.0
+Antiarrhythmic medication (includes propranolol)	E942.0
+Antiasthmatics (aminophylline)	E945.7
+Anticholinergics (e.g., atropine) and spasmolytics	E941.l
+Anticoagulants	E934.2
+Antidepressants	E939.0
+Antilipemic and cholesterol-lowering medication	E942.2
+Antineoplastic and immunosuppressive drugs	E933.l
+Antithyroid agents	E932.8
+Antitussives (e.g., dextromethorphan)	E945.4
+Barbiturates	E937.0
+Benzodiazepine-based medications	E939.4
+Benztropine	E941.1
+Butyrophenone-based neuroleptics (e.g., haloperidol)	E939.2
+Cannabis	E939.6
+Carbamazepine	E936.3
+Carbonic acid anhydrase inhibitors	E944.2
+Cardiac glycosides (e.g., digitalis)	E942.1
+Chloral hydrate	E937.1
+Chlorthiazides	E944.3
+Cholinergics	E941.0
+Coronary vasodilators (e.g., nitrates)	E942.4
+Diphenhydramine	E933.0
+Ethosuximide	E936.2
+Ganglion-blocking agents (pentamethonium)	E942.3
+Hydroxyzine	E939.5
+L-Dopa	E936.4
+Mercurial diuretics	E944.0
+Methadone	E935.1
+Nonsteroidal anti-inflammatory agents	E935.6
+Opiod antagonists	E940.l
+Other antihypertensive agents (e.g., clonidine, guanethidine, reserpine)	E942.6
+Other diuretics (furosemide, ethacrynic acid)	E944.4
+Other narcotics (e.g., codeine, meperidine)	E935.2
+Other neuroleptics	E939.3
+Other respiratory drugs	E945.8
+Other vasodilators (e.g., hydralazine)	E942.5
+Ovarian hormones (includes oral contraceptives)	E932.2
+Oxytocic agents (ergot alkaloids, prostaglandins)	E945.0
+Paraldehyde	E937.2
+Phenobarbital	E937.0
+Phenothiazine-based neuroleptics (e.g., chlorpromazine)	E939.1
+Phenytoin	E936.1
+Purine derivative diuretics	E944.1
+Salicylates (e.g., aspirin)	E935.3
+Skeletal muscle relaxants	E945.2
+Smooth muscle relaxants	E945.l
+Stimulants (excluding central appetite depressants)	E939.7
+Sympathomimetics (adrenergics)	E941.2
+Thyroid replacements	E932.7
+Uric acid metabolism drugs (probenecid)	E944.7
+Valproic Acid	E936.3
+Vitamins (excluding vitamin K)	E933.5

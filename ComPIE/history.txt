@@ -1,0 +1,23 @@
+1,Childhood,Physical abuse
+2,Childhood,Neglect
+3,Childhood,Sexual abuse
+4,Childhood,Emotional abuse
+5,Childhood,Witness family violence
+6,Childhood,Witness community/school violence
+7,Childhood,Immigration displacement
+8,Childhood,Natural or manmade disasters:
+9,Childhood,Serious Accident or Illness/Medical Procedure
+10,Childhood,Other
+11,Adulthood,Physical abuse
+12,Adulthood,Sexual abuse
+13,Adulthood,Emotional abuse
+14,Adulthood,Assault
+15,Adulthood,Domestic violence
+16,Adulthood,Witness family violence
+17,Adulthood,Witness community
+18,Adulthood,Military combat
+19,Adulthood,Torture
+20,Adulthood,Immigration displacement
+21,Adulthood,Natural or manmade disasters:
+22,Adulthood,Serious Accident or Illness/Medical Procedure
+23,Adulthood,Other
