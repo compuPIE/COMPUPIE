@@ -27,7 +27,7 @@ public class Factor2 extends JPanel {
 		lblFactorIiEnvironmental.setBounds(271, 11, 394, 25);
 		add(lblFactorIiEnvironmental);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 		tabbedPane.setBounds(10, 44, 943, 554);
 		add(tabbedPane);
 		
