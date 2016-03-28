@@ -22,6 +22,8 @@ import javax.swing.border.MatteBorder;
 
 public class Home extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	private JPanel contentPane;
 
 	private JPanel pages;

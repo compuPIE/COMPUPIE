@@ -18,7 +18,60 @@ public class ClientBean {
 	private String phone;
 	private String ethnicity;
 	private String referredBy;
-	
+	private int noOfChildrenInCare;
+	private String highestLevelOfEducation;
+	private String employmentStatus;
+	private String livingArrangement;
+	private String assessedBy;
+
+	/**
+	 * @return the noOfChildrenInCare
+	 */
+	public int getNoOfChildrenInCare() {
+		return noOfChildrenInCare;
+	}
+	/**
+	 * @param noOfChildrenInCare the noOfChildrenInCare to set
+	 */
+	public void setNoOfChildrenInCare(int noOfChildrenInCare) {
+		this.noOfChildrenInCare = noOfChildrenInCare;
+	}
+	/**
+	 * @return the highestLevelOfEducation
+	 */
+	public String getHighestLevelOfEducation() {
+		return highestLevelOfEducation;
+	}
+	/**
+	 * @param highestLevelOfEducation the highestLevelOfEducation to set
+	 */
+	public void setHighestLevelOfEducation(String highestLevelOfEducation) {
+		this.highestLevelOfEducation = highestLevelOfEducation;
+	}
+	/**
+	 * @return the employmentStatus
+	 */
+	public String getEmploymentStatus() {
+		return employmentStatus;
+	}
+	/**
+	 * @param employmentStatus the employmentStatus to set
+	 */
+	public void setEmploymentStatus(String employmentStatus) {
+		this.employmentStatus = employmentStatus;
+	}
+	/**
+	 * @return the livingArrangement
+	 */
+	public String getLivingArrangement() {
+		return livingArrangement;
+	}
+	/**
+	 * @param livingArrangement the livingArrangement to set
+	 */
+	public void setLivingArrangement(String livingArrangement) {
+		this.livingArrangement = livingArrangement;
+	}
 	/**
 	 * @return the id
 	 */
@@ -210,6 +263,18 @@ public class ClientBean {
 	 */
 	public void setAdditional(String additional) {
 		this.additional = additional;
+	}
+	/**
+	 * @return the assessedBy
+	 */
+	public String getAssessedBy() {
+		return assessedBy;
+	}
+	/**
+	 * @param assessedBy the assessedBy to set
+	 */
+	public void setAssessedBy(String assessedBy) {
+		this.assessedBy = assessedBy;
 	}
 	private String additional;
 

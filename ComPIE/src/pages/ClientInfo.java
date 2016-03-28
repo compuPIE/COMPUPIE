@@ -25,6 +25,9 @@ public class ClientInfo extends JPanel {
 		JPanel panel = new ClientPage();
 		tabbedPane.addTab("Client Info", null, panel, null);
 		
+		JPanel panel6 = new CHDC();
+		tabbedPane.addTab("Case History", null, panel6, null);
+		
 		JPanel panel1 = new Factor1();
 		tabbedPane.addTab("Factor 1", null, panel1, null);
 		
@@ -40,8 +43,6 @@ public class ClientInfo extends JPanel {
 		JPanel panel5 = new JPanel();
 		tabbedPane.addTab("Factor 5", null, panel5, null);
 		
-		JPanel panel6 = new CHDC();
-		tabbedPane.addTab("CHDC", null, panel6, null);
 		
 		JPanel panel7 = new StrengthAndResources();
 		tabbedPane.addTab("Strength and Resources", null, panel7, null);

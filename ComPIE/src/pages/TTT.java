@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import javax.swing.JMenuItem;
+import javax.swing.JTree;
 
 public class TTT extends JFrame {
 
@@ -45,6 +47,9 @@ public class TTT extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JTree tree = new JTree();
+		contentPane.add(tree);
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		contentPane.add(btnNewButton_1);

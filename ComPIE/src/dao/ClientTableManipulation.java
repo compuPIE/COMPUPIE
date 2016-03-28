@@ -48,6 +48,11 @@ public class ClientTableManipulation {
 				info.setEthnicity(rs.getString("ethnicity"));
 				info.setReferredBy(rs.getString("referredBy"));
 				info.setAdditional(rs.getString("additional"));
+				info.setNoOfChildrenInCare(rs.getInt("noOfChildrenInCare"));
+				info.setEmploymentStatus(rs.getString("employmentStatus"));
+				info.setHighestLevelOfEducation(rs.getString("highestLevelOfEducation"));
+				info.setLivingArrangement(rs.getString("livingArrangement"));
+				info.setAssessedBy(rs.getString("assessedBy"));
 			}
 			rs.close();
 			stmt.close();
@@ -105,7 +110,8 @@ public class ClientTableManipulation {
 	private String createStringTOSave(ClientBean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
-				"insert into CLIENT_INFO (id,lastname,firstname,clientId,gender,maritalStatus,dob,occupatiion,street,city,stateName,zipcode,phone,ethnicity,referredBy,additional) ");
+				"insert into CLIENT_INFO (id,lastname,firstname,clientId,gender,maritalStatus,dob,occupatiion,street,city,stateName,zipcode,phone,ethnicity,referredBy,additional,"
+				+ "noOfChildrenInCare,highestLevelOfEducation,employmentStatus,livingArrangement,assessedBy) ");
 		buffer.append("(" + getmaxId() + 1);
 		buffer.append(",\"" + info.getLastname() + "\"");
 		buffer.append(",\"" + info.getFirstname() + "\"");
@@ -120,7 +126,12 @@ public class ClientTableManipulation {
 		buffer.append(",\"" + info.getPhone() + "\"");
 		buffer.append(",\"" + info.getEthnicity() + "\"");
 		buffer.append(",\"" + info.getReferredBy() + "\"");
-		buffer.append(",\"" + info.getAdditional() + "\" );");
+		buffer.append(",\"" + info.getAdditional() + "\" ");
+		buffer.append("," + info.getNoOfChildrenInCare() );
+		buffer.append(",\"" + info.getHighestLevelOfEducation() + "\"");
+		buffer.append(",\"" + info.getEmploymentStatus() + "\"");
+		buffer.append(",\"" + info.getLivingArrangement() + "\"");
+		buffer.append(",\"" + info.getAssessedBy() + "\");");
 		return buffer.toString();
 	}
 
@@ -142,7 +153,12 @@ public class ClientTableManipulation {
 		buffer.append(",ethnicity=\"" + info.getEthnicity() + "\"");
 		buffer.append(",referredBy=\"" + info.getReferredBy() + "\"");
 		buffer.append(",additional=\"" + info.getAdditional() + "\" ");
-		buffer.append(" where id =" + info.getId());
+		buffer.append(",noOfChildrenInCare=" + info.getNoOfChildrenInCare() );
+		buffer.append(",highestLevelOfEducation=\"" + info.getHighestLevelOfEducation() + "\"");
+		buffer.append(",employmentStatus=\"" + info.getEmploymentStatus() + "\"");
+		buffer.append(",livingArrangement=\"" + info.getLivingArrangement() + "\"");
+		buffer.append(",assessedBy=\"" + info.getAssessedBy() + "\";");
+		buffer.append(" where id =" + info.getId()+";");
 		return buffer.toString();
 	}
 

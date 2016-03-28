@@ -28,14 +28,14 @@ public class CaseHistoryTableManipulation {
 		ResultSet rs;
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM CLIENT_INFO where id =" + id + ";");
+			rs = stmt.executeQuery("SELECT * FROM CASE_HISTORY where clientId =" + id + ";");
 			while (rs.next()) {
 				info.setId(rs.getInt("id"));
-				info.setCurrentSituation(rs.getString("city"));
-				info.setClientId(rs.getString("lastname"));
-				info.setReasonForRefer(rs.getString("firstname"));
-				info.setRelevantHistory(rs.getString("clientId"));
-				info.setTraumaHistory(rs.getString("clientId"));
+				info.setCurrentSituation(rs.getString("currentSituation"));
+				info.setClientId(rs.getString("clientId"));
+				info.setReasonForRefer(rs.getString("reasonForRefer"));
+				info.setRelevantHistory(rs.getString("relevantHistory"));
+				info.setTraumaHistory(rs.getString("traumaHistory"));
 			}
 			rs.close();
 			stmt.close();
@@ -95,7 +95,7 @@ public class CaseHistoryTableManipulation {
 		buffer.append(
 				"insert into CASE_HISTORY (id,clientId,reasonForRefer,currentSituation,relevantHistory,traumaHistory) ");
 		buffer.append("(" + getmaxId() + 1);
-		buffer.append(",\"" + info.getClientId() + "\"");
+		buffer.append("," + info.getClientId());
 		buffer.append(",\"" + info.getReasonForRefer() + "\"");
 		buffer.append(",\"" + info.getCurrentSituation()+ "\"");
 		buffer.append(",\"" + info.getRelevantHistory() + "\"");
@@ -106,12 +106,12 @@ public class CaseHistoryTableManipulation {
 	private String createStringToUpdate(CaseHistoryBean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("update CASE_HISTORY set ");
-		buffer.append(",clientId=\"" + info.getClientId() + "\"");
+		buffer.append(",clientId=" + info.getClientId());
 		buffer.append(",reasonForRefer=\"" + info.getReasonForRefer() + "\"");
 		buffer.append(",currentSituation=\"" + info.getCurrentSituation()+ "\"");
 		buffer.append(",relevantHistory=\"" + info.getRelevantHistory() + "\"");
-		buffer.append(",traumaHistory=\"" + info.getTraumaHistory() + "\");");
-		buffer.append(" where id =" + info.getId());
+		buffer.append(",traumaHistory=\"" + info.getTraumaHistory() + "\"");
+		buffer.append(" where id =" + info.getId()+";");
 		return buffer.toString();
 	}
 
