@@ -20,6 +20,11 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import dao.CaseHistoryTableManipulation;
+import dao.Factor1TableManipulation;
+import daoBean.CaseHistoryBean;
+import daoBean.Factor1Bean;
+
 public class Home extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -27,9 +32,15 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 
 	private JPanel pages;
+	
+	private int clientId=1;
+	
+	private int followUp=1;
 
 	JButton btnSave = new JButton("Save");
 	JButton btnGoHome = new JButton("Go Back");
+
+	private ClientInfo pages_1;
 
 	/**
 	 * Launch the application.
@@ -68,7 +79,7 @@ public class Home extends JFrame {
 		gbl_contentPane.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-		JPanel pages_1 = new ClientInfo();
+		pages_1 = new ClientInfo();
 		pages_1.setBounds(0, 24, 982, 658);
 
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -149,6 +160,7 @@ public class Home extends JFrame {
 		lblLogoGoesHere.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblLogoGoesHere.setBounds(57, 174, 367, 124);
 		panel.add(lblLogoGoesHere);
+		saveListener();
 		btnSave.setBounds(781, 0, 89, 23);
 		layeredPane.add(btnSave);
 		btnGoHome.setBounds(887, 0, 89, 23);
@@ -164,5 +176,41 @@ public class Home extends JFrame {
 		btnGoHome.setVisible(false);
 		btnSave.setVisible(false);
 		pages_1.setVisible(false);
+	}
+
+	/**
+	 * 
+	 */
+	private void saveListener() {
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				saveCaseHistory();
+				saveFactor1();
+			}
+
+			private void saveCaseHistory() {
+				if(pages_1.getPanel6().isHasToUpdate()){
+					CaseHistoryBean bean = pages_1.getPanel6().getCurrentValues();
+					CaseHistoryTableManipulation dao = new CaseHistoryTableManipulation();
+					if(pages_1.getPanel6().isHasToUpdate() && pages_1.getPanel6().getCaseHistoryId() != -1){
+						dao.updateNewHIstory(bean);	
+					}else if(pages_1.getPanel6().isHasToUpdate()){
+						dao.saveNewHistory(bean);	
+					}
+				}
+			}
+
+			private void saveFactor1() {
+				if(pages_1.getPanel1().isHasToUpdate()){
+					Factor1Bean bean = pages_1.getPanel1().getCurrentValues();
+					Factor1TableManipulation dao = new Factor1TableManipulation();
+					bean.setClientId(clientId);
+					bean.setFollowup(followUp);
+					dao.saveNewFactory(bean);
+					pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
+					pages_1.repaint();
+				}
+			}
+		});
 	}
 }

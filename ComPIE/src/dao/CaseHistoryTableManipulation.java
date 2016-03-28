@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import daoBean.CaseHistoryBean;
 
@@ -21,21 +23,23 @@ public class CaseHistoryTableManipulation {
 		}
 	}
 
-	public CaseHistoryBean getClientInfo(String id) {
+	public List<CaseHistoryBean> getCaseHistory(int id) {
 
-		CaseHistoryBean info = new CaseHistoryBean();
+		List<CaseHistoryBean> list = new ArrayList<CaseHistoryBean>();
 		Statement stmt = null;
 		ResultSet rs;
 		try {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM CASE_HISTORY where clientId =" + id + ";");
 			while (rs.next()) {
+				CaseHistoryBean info = new CaseHistoryBean();
 				info.setId(rs.getInt("id"));
 				info.setCurrentSituation(rs.getString("currentSituation"));
-				info.setClientId(rs.getString("clientId"));
+				info.setClientId(rs.getInt("clientId"));
 				info.setReasonForRefer(rs.getString("reasonForRefer"));
 				info.setRelevantHistory(rs.getString("relevantHistory"));
 				info.setTraumaHistory(rs.getString("traumaHistory"));
+				list.add(info);
 			}
 			rs.close();
 			stmt.close();
@@ -43,16 +47,16 @@ public class CaseHistoryTableManipulation {
 			e.printStackTrace();
 		}
 
-		return info;
+		return list;
 	}
 
-	public int getmaxId() {
+	public int getmaxId(int clientID) {
 		int id = 0;
 		Statement stmt = null;
 		ResultSet rs;
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery("SELECT max(id) FROM CASE_HISTORY;");
+			rs = stmt.executeQuery("SELECT max(id) FROM CASE_HISTORY where clientId = "+clientID+";");
 			while (rs.next()) {
 				id = rs.getInt(1);
 			}
@@ -64,7 +68,7 @@ public class CaseHistoryTableManipulation {
 		return id;
 	}
 
-	public boolean saveNewClient(CaseHistoryBean info) {
+	public boolean saveNewHistory(CaseHistoryBean info) {
 		Statement stmt = null;
 		int update = 0;
 		try {
@@ -77,7 +81,7 @@ public class CaseHistoryTableManipulation {
 		return (update > 0);
 	}
 
-	public boolean updateNewClient(CaseHistoryBean info) {
+	public boolean updateNewHIstory(CaseHistoryBean info) {
 		Statement stmt = null;
 		int update = 0;
 		try {
@@ -93,8 +97,8 @@ public class CaseHistoryTableManipulation {
 	private String createStringTOSave(CaseHistoryBean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
-				"insert into CASE_HISTORY (id,clientId,reasonForRefer,currentSituation,relevantHistory,traumaHistory) ");
-		buffer.append("(" + getmaxId() + 1);
+				"insert into CASE_HISTORY (id,clientId,reasonForRefer,currentSituation,relevantHistory,traumaHistory) values");
+		buffer.append("(" + (getmaxId(info.getClientId()) + 1));
 		buffer.append("," + info.getClientId());
 		buffer.append(",\"" + info.getReasonForRefer() + "\"");
 		buffer.append(",\"" + info.getCurrentSituation()+ "\"");
@@ -106,12 +110,12 @@ public class CaseHistoryTableManipulation {
 	private String createStringToUpdate(CaseHistoryBean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("update CASE_HISTORY set ");
-		buffer.append(",clientId=" + info.getClientId());
+		buffer.append("clientId=" + info.getClientId());
 		buffer.append(",reasonForRefer=\"" + info.getReasonForRefer() + "\"");
 		buffer.append(",currentSituation=\"" + info.getCurrentSituation()+ "\"");
 		buffer.append(",relevantHistory=\"" + info.getRelevantHistory() + "\"");
 		buffer.append(",traumaHistory=\"" + info.getTraumaHistory() + "\"");
-		buffer.append(" where id =" + info.getId()+";");
+		buffer.append(" where id =" + info.getId()+" and clientId="+info.getClientId()+";");
 		return buffer.toString();
 	}
 

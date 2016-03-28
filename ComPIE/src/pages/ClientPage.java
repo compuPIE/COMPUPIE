@@ -90,6 +90,7 @@ public class ClientPage extends JPanel {
 		LoadGender gender = new LoadGender();
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(21, 112, 129, 20);
+		comboBox.addItem("Select");
 		for (GenderBean item : gender.getAllGenders()) {
 			comboBox.addItem(item.getItems());
 		}
@@ -97,6 +98,7 @@ public class ClientPage extends JPanel {
 
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(173, 112, 129, 20);
+		comboBox_1.addItem("Select");
 		LoadMaritalStatus load = new LoadMaritalStatus();
 		for (MaritaStatusBean item : load.getAllMaritalStatus()) {
 			comboBox_1.addItem(item.getItems());
@@ -160,6 +162,7 @@ public class ClientPage extends JPanel {
 
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setBounds(740, 185, 187, 20);
+		comboBox_2.addItem("Select");
 		LoadEthinicity loadethin = new LoadEthinicity();
 		for (EthinicityBean item : loadethin.getAllEthinicity()) {
 			comboBox_2.addItem(item.getItems());
@@ -192,12 +195,13 @@ public class ClientPage extends JPanel {
 		textArea.setBounds(21, 393, 909, 205);
 		add(textArea);
 
-		JDateChooser dateChooser = new JDateChooser(new Date(), "mm/dd/YYYY");
+		JDateChooser dateChooser = new JDateChooser(new Date(), "MM/dd/YYYY");
 		dateChooser.setBounds(329, 112, 129, 20);
 		add(dateChooser);
 
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setBounds(21, 249, 263, 26);
+		comboBox_3.addItem("Select");
 		LoadEducationLevel loadEducation = new LoadEducationLevel();
 		for (EducationLevelBean item : loadEducation.getAllEducationLevels()) {
 			comboBox_3.addItem(item.getItems());
@@ -206,6 +210,7 @@ public class ClientPage extends JPanel {
 
 		JComboBox comboBox_4 = new JComboBox();
 		comboBox_4.setBounds(305, 249, 263, 26);
+		comboBox_4.addItem("Select");
 		LoadEmploymentStatus loadEmployment = new LoadEmploymentStatus();
 		for (EmploymentStatusBean item : loadEmployment.getAllEmploymentStatus()) {
 			comboBox_4.addItem(item.getItems());
@@ -214,6 +219,7 @@ public class ClientPage extends JPanel {
 
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setBounds(588, 249, 263, 26);
+		comboBox_5.addItem("Select");
 		LoadLivingArrangement loadLiving = new LoadLivingArrangement();
 		for (LivingArrangementBean item : loadLiving.getAllLivingArrangement()) {
 			comboBox_5.addItem(item.getItems());

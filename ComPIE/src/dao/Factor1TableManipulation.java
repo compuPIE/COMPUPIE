@@ -13,7 +13,7 @@ import daoBean.Factor1Bean;
 public class Factor1TableManipulation {
 	Connection c = null;
 
-	public Factor1TableManipulation() {
+	public void Factor1TableManipulationcreate() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
@@ -23,9 +23,9 @@ public class Factor1TableManipulation {
 		}
 	}
 
-	public List<Factor1Bean> getClientInfo(String id) {
+	public List<Factor1Bean> getFactorInfo(int id) {
+		Factor1TableManipulationcreate();
 		List<Factor1Bean> list = new ArrayList<Factor1Bean>();
-
 		Statement stmt = null;
 		ResultSet rs;
 		try {
@@ -49,50 +49,89 @@ public class Factor1TableManipulation {
 			}
 			rs.close();
 			stmt.close();
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<Factor1Bean> getFactorInfo(int id,int clientId) {
+		List<Factor1Bean> list = new ArrayList<Factor1Bean>();
+		Factor1TableManipulationcreate();
+		Statement stmt = null;
+		ResultSet rs;
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM FACTOR1 where clientId =" + clientId + " and id ="+id+";");
+			while (rs.next()) {
+				Factor1Bean info = new Factor1Bean();
+				info.setId(rs.getInt("id"));
+				info.setSocialRoleDescription(rs.getString("socialRoleDescription"));
+				info.setProblemType(rs.getString("problemType"));
+				info.setServerity(rs.getString("serverity"));
+				info.setDuration(rs.getString("duration"));
+				info.setCopingAbitity(rs.getString("copingAbitity"));
+				info.setPriority(rs.getString("priority"));
+				info.setGoal(rs.getString("goal"));
+				info.setRecommendedInter(rs.getString("recommendedInter"));
+				info.setExpectedOutcome(rs.getString("expectedOutcome"));
+				info.setClientId(rs.getInt("clientId"));
+				info.setFollowup(rs.getInt("followUp"));
+				list.add(info);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
 
-	public int getmaxId() {
+	public int getmaxId(int clientID) {
+		Factor1TableManipulationcreate();
 		int id = 0;
 		Statement stmt = null;
 		ResultSet rs;
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery("SELECT max(id) FROM FACTOR1;");
+			rs = stmt.executeQuery("SELECT max(id) FROM FACTOR1 where clientId="+clientID+";");
 			while (rs.next()) {
 				id = rs.getInt(1);
 			}
 			rs.close();
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return id;
 	}
 
-	public boolean saveNewClient(Factor1Bean info) {
+	public boolean saveNewFactory(Factor1Bean info) {
+		Factor1TableManipulationcreate();
 		Statement stmt = null;
 		int update = 0;
 		try {
 			stmt = c.createStatement();
 			update = stmt.executeUpdate(createStringTOSave(info));
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return (update > 0);
 	}
 
-	public boolean updateNewClient(Factor1Bean info) {
+	public boolean updateNewFactory(Factor1Bean info) {
 		Statement stmt = null;
 		int update = 0;
 		try {
 			stmt = c.createStatement();
 			update = stmt.executeUpdate(createStringToUpdate(info));
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -103,8 +142,8 @@ public class Factor1TableManipulation {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
 				"insert into FACTOR1 (id,socialRoleDescription,problemType,serverity,duration,copingAbitity,"
-				+ "priority,goal,recommendedInter,expectedOutcome,clientId,followUp) ");
-		buffer.append("(" + getmaxId() + 1);
+				+ "priority,goal,recommendedInter,expectedOutcome,clientId,followUp) values");
+		buffer.append("(" + (getmaxId(info.getClientId()) + 1));
 		buffer.append(",\"" + info.getSocialRoleDescription() + "\"");
 		buffer.append(",\"" + info.getProblemType() + "\"");
 		buffer.append(",\"" + info.getServerity() + "\"");

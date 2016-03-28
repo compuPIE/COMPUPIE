@@ -11,6 +11,15 @@ import java.awt.event.ActionEvent;
 
 public class ClientInfo extends JPanel {
 
+	private ClientPage panel;
+	private CHDC panel6;
+	private Factor1 panel1;
+	private Factor2 panel2;
+	private Factor3 panel3;
+	private Factor4 panel4;
+	private JPanel panel5;
+	private StrengthAndResources panel7;
+
 	/**
 	 * Create the panel.
 	 */
@@ -22,29 +31,29 @@ public class ClientInfo extends JPanel {
 		tabbedPane.setBounds(10, 22, 961, 641);
 		add(tabbedPane);
 		
-		JPanel panel = new ClientPage();
+		 panel = new ClientPage();
 		tabbedPane.addTab("Client Info", null, panel, null);
 		
-		JPanel panel6 = new CHDC();
+		 panel6 = new CHDC(1);
 		tabbedPane.addTab("Case History", null, panel6, null);
 		
-		JPanel panel1 = new Factor1();
+		 panel1 = new Factor1(1);
 		tabbedPane.addTab("Factor 1", null, panel1, null);
 		
-		JPanel panel2 = new Factor2();
+		 panel2 = new Factor2();
 		tabbedPane.addTab("Factor 2", null, panel2, null);
 		
-		JPanel panel3 = new Factor3();
+		 panel3 = new Factor3();
 		tabbedPane.addTab("Factor 3", null, panel3, null);
 		
-		JPanel panel4 = new Factor4();
+		 panel4 = new Factor4();
 		tabbedPane.addTab("Factor 4", null, panel4, null);
 		
-		JPanel panel5 = new JPanel();
+		 panel5 = new JPanel();
 		tabbedPane.addTab("Factor 5", null, panel5, null);
 		
 		
-		JPanel panel7 = new StrengthAndResources();
+		 panel7 = new StrengthAndResources();
 		tabbedPane.addTab("Strength and Resources", null, panel7, null);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -71,7 +80,117 @@ public class ClientInfo extends JPanel {
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Generate a PIE Assessment Summary");
 		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		
+	}
+
+	/**
+	 * @return the panel
+	 */
+	public ClientPage getPanel() {
+		return panel;
+	}
+
+	/**
+	 * @param panel the panel to set
+	 */
+	public void setPanel(ClientPage panel) {
+		this.panel = panel;
+	}
+
+	/**
+	 * @return the panel6
+	 */
+	public CHDC getPanel6() {
+		return panel6;
+	}
+
+	/**
+	 * @param panel6 the panel6 to set
+	 */
+	public void setPanel6(CHDC panel6) {
+		this.panel6 = panel6;
+	}
+
+	/**
+	 * @return the panel1
+	 */
+	public Factor1 getPanel1() {
+		return panel1;
+	}
+
+	/**
+	 * @param panel1 the panel1 to set
+	 */
+	public void setPanel1(Factor1 panel1) {
+		this.panel1 = panel1;
+	}
+
+	/**
+	 * @return the panel2
+	 */
+	public Factor2 getPanel2() {
+		return panel2;
+	}
+
+	/**
+	 * @param panel2 the panel2 to set
+	 */
+	public void setPanel2(Factor2 panel2) {
+		this.panel2 = panel2;
+	}
+
+	/**
+	 * @return the panel3
+	 */
+	public Factor3 getPanel3() {
+		return panel3;
+	}
+
+	/**
+	 * @param panel3 the panel3 to set
+	 */
+	public void setPanel3(Factor3 panel3) {
+		this.panel3 = panel3;
+	}
+
+	/**
+	 * @return the panel4
+	 */
+	public Factor4 getPanel4() {
+		return panel4;
+	}
+
+	/**
+	 * @param panel4 the panel4 to set
+	 */
+	public void setPanel4(Factor4 panel4) {
+		this.panel4 = panel4;
+	}
+
+	/**
+	 * @return the panel5
+	 */
+	public JPanel getPanel5() {
+		return panel5;
+	}
+
+	/**
+	 * @param panel5 the panel5 to set
+	 */
+	public void setPanel5(JPanel panel5) {
+		this.panel5 = panel5;
+	}
+
+	/**
+	 * @return the panel7
+	 */
+	public StrengthAndResources getPanel7() {
+		return panel7;
+	}
+
+	/**
+	 * @param panel7 the panel7 to set
+	 */
+	public void setPanel7(StrengthAndResources panel7) {
+		this.panel7 = panel7;
 	}
 }

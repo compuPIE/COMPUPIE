@@ -42,6 +42,7 @@ public class LoadEthinicity {
 			}
 			rs.close();
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

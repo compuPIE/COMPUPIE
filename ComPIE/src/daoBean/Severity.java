@@ -1,6 +1,4 @@
 package daoBean;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Severity {
 
@@ -8,7 +6,6 @@ public class Severity {
 	
 	private String S_Category;
 	
-	private List<Severity> items = new ArrayList<Severity>();
 	
 	public int getId(){
 		return id;
@@ -16,10 +13,6 @@ public class Severity {
 	
 	public String getCategory(){
 		return S_Category;
-	}
-	
-	public List<Severity> getItems() {
-		return items;
 	}
 	
 	public void setId(int id){
@@ -30,8 +23,5 @@ public class Severity {
 		return this.S_Category = S_Category;
 	}
 	
-	public void setItems(List<Severity> items){
-		this.items = items;
-	}
 	
 }

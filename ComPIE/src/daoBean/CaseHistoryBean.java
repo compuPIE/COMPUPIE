@@ -3,7 +3,7 @@ package daoBean;
 public class CaseHistoryBean {
 
 	private int id;
-	private String clientId;
+	private int clientId;
 	private String reasonForRefer;
 	private String currentSituation;
 	private String relevantHistory;
@@ -24,14 +24,14 @@ public class CaseHistoryBean {
 	/**
 	 * @return the clientId
 	 */
-	public String getClientId() {
+	public int getClientId() {
 		return clientId;
 	}
 	/**
-	 * @param clientId the clientId to set
+	 * @param clientId2 the clientId to set
 	 */
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+	public void setClientId(int clientId2) {
+		this.clientId = clientId2;
 	}
 	/**
 	 * @return the reasonForRefer

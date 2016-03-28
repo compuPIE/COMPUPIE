@@ -12,7 +12,7 @@ public class ClientTableManipulation {
 
 	Connection c = null;
 
-	public ClientTableManipulation() {
+	public void ClientTableManipulation() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
@@ -23,7 +23,7 @@ public class ClientTableManipulation {
 	}
 
 	public ClientBean getClientInfo(String id) {
-
+		ClientTableManipulation();
 		ClientBean info = new ClientBean();
 		Statement stmt = null;
 		ResultSet rs;
@@ -56,6 +56,7 @@ public class ClientTableManipulation {
 			}
 			rs.close();
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -64,6 +65,7 @@ public class ClientTableManipulation {
 	}
 
 	public int getmaxId() {
+		ClientTableManipulation();
 		int id = 0;
 		Statement stmt = null;
 		ResultSet rs;
@@ -75,6 +77,7 @@ public class ClientTableManipulation {
 			}
 			rs.close();
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,12 +85,14 @@ public class ClientTableManipulation {
 	}
 
 	public boolean saveNewClient(ClientBean info) {
+		ClientTableManipulation();
 		Statement stmt = null;
 		int update = 0;
 		try {
 			stmt = c.createStatement();
 			update = stmt.executeUpdate(createStringTOSave(info));
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -95,12 +100,14 @@ public class ClientTableManipulation {
 	}
 
 	public boolean updateNewClient(ClientBean info) {
+		ClientTableManipulation();
 		Statement stmt = null;
 		int update = 0;
 		try {
 			stmt = c.createStatement();
 			update = stmt.executeUpdate(createStringToUpdate(info));
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
