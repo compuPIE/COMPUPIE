@@ -210,6 +210,7 @@ public class Factor1 extends JPanel {
 
 		label_8 = new JLabel("Expected Outcome");
 		label_8.setBounds(484, 190, 285, 14);
+		desktopPane.setVisible(false);
 		desktopPane.add(label_8);
 
 		label_9 = new JLabel("Priority");
@@ -231,6 +232,7 @@ public class Factor1 extends JPanel {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				setHasToUpdate(true);
+				resetValues();
 			}
 		});
 		add(btnAddNewProblem);
@@ -261,6 +263,19 @@ public class Factor1 extends JPanel {
 		btnEditProblem.setBounds(711, 262, 107, 23);
 		add(btnEditProblem);
 	}
+	
+	private void resetValues(){
+		enableDisableValues(true);
+		comboBox.setSelectedItem("Select");
+		comboBox_1.setSelectedItem("");
+		comboBox_2.setSelectedItem("Select");
+		comboBox_3.setSelectedItem("Select");
+		comboBox_4.setSelectedItem("Select");
+		comboBox_6.setSelectedItem("Select");
+		textArea.setText("");
+		textArea_1.setText("");
+		textArea_2.setText("");
+	}
 
 	/**
 	 * @param clientID
@@ -277,6 +292,8 @@ public class Factor1 extends JPanel {
 	 */
 	private void addTableListener(int clientID) {
 		setHasToUpdate(false);
+		desktopPane.setVisible(true);
+		enableDisableValues(false);
 		Factor1TableManipulation fac1Dao = new Factor1TableManipulation();
 		List<Factor1Bean> list = fac1Dao
 				.getFactorInfo(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()), clientID);
@@ -289,6 +306,18 @@ public class Factor1 extends JPanel {
 		textArea.setText(list.get(0).getGoal());
 		textArea_1.setText(list.get(0).getRecommendedInter());
 		textArea_2.setText(list.get(0).getExpectedOutcome());
+	}
+	
+	private void enableDisableValues(boolean value){
+		comboBox.setEnabled(value);
+		comboBox_1.setEnabled(value);
+		comboBox_2.setEnabled(value);
+		comboBox_3.setEnabled(value);
+		comboBox_4.setEnabled(value);
+		comboBox_6.setEnabled(value);
+		textArea.setEnabled(value);
+		textArea_1.setEnabled(value);
+		textArea_2.setEnabled(value);
 	}
 
 	/**
