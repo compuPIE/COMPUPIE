@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import daoBean.MentalStatus_Category;
-import daoBean.MentalStatus_Problems;
+import daoBean.MentalStatusProblemsBean;
 
 public class Load_MentalStatus{
 	
@@ -52,13 +52,13 @@ public class Load_MentalStatus{
 		return items;
 	}
 
-	public List<MentalStatus_Problems> getAllProblems(int categoryID) throws SQLException {
+	public List<MentalStatusProblemsBean> getAllProblems(int categoryID) throws SQLException {
 		Statement stmt = null;
-		List<MentalStatus_Problems> items = new ArrayList<MentalStatus_Problems>();
+		List<MentalStatusProblemsBean> items = new ArrayList<MentalStatusProblemsBean>();
 		stmt = c.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM MENTAL_STATUS_PROBLEMS where sr_id = " + categoryID + ";");
 		while (rs.next()) {
-			MentalStatus_Problems item = new MentalStatus_Problems();
+			MentalStatusProblemsBean item = new MentalStatusProblemsBean();
 			item.setId(rs.getInt("id"));
 			item.set_sr_Id(rs.getString("sr_id"));
 			item.setItem(rs.getString("items"));

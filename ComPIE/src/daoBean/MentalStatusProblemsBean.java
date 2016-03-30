@@ -1,6 +1,6 @@
 package daoBean;
 
-public class MentalStatus_Problems {
+public class MentalStatusProblemsBean {
 	
 	private int id;
 	

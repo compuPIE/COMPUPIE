@@ -9,7 +9,7 @@ public class MentalStatus_Category {
 	
 	private String category;
 	
-	private List<MentalStatus_Problems> items = new ArrayList<MentalStatus_Problems>();
+	private List<MentalStatusProblemsBean> items = new ArrayList<MentalStatusProblemsBean>();
 
 	public int getId() {
 		return id;
@@ -19,7 +19,7 @@ public class MentalStatus_Category {
 		return category;
 	}
 	
-	public List<MentalStatus_Problems> getItems() {
+	public List<MentalStatusProblemsBean> getItems() {
 		return items;
 	}
 	
@@ -31,7 +31,7 @@ public class MentalStatus_Category {
 		this.category = category;
 	}
 
-	public void setItems(List<MentalStatus_Problems> items) {
+	public void setItems(List<MentalStatusProblemsBean> items) {
 		this.items = items;
 	}
 }
