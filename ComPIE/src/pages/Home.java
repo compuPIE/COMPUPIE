@@ -11,10 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -32,15 +34,16 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 
 	private JPanel pages;
-	
-	private int clientId=1;
-	
-	private int followUp=1;
+
+	private int clientId = 1;
+
+	private int followUp = 1;
 
 	JButton btnSave = new JButton("Save");
 	JButton btnGoHome = new JButton("Go Back");
 
 	private ClientInfo pages_1;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -79,6 +82,7 @@ public class Home extends JFrame {
 		gbl_contentPane.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
+		saveListener();
 		pages_1 = new ClientInfo();
 		pages_1.setBounds(0, 24, 982, 658);
 
@@ -91,7 +95,7 @@ public class Home extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		panel.setBackground(new Color(173, 255, 47));
+		panel.setBackground(Color.PINK);
 		panel.setBounds(0, 11, 982, 658);
 		JLabel lblCompupie = new JLabel("CompuPIE");
 		lblCompupie.setBounds(450, 11, 91, 25);
@@ -160,7 +164,36 @@ public class Home extends JFrame {
 		lblLogoGoesHere.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblLogoGoesHere.setBounds(57, 174, 367, 124);
 		panel.add(lblLogoGoesHere);
-		saveListener();
+		
+		JButton btnColorPalette = new JButton("color palette");
+		btnColorPalette.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Color c = new JColorChooser().showDialog(null, "Choose a Color", panel.getForeground());
+				if(c!=null){
+					panel.setBackground(c);
+				}
+			}
+		});
+		btnColorPalette.setBounds(801, 94, 110, 23);
+		panel.add(btnColorPalette);
+		
+				textField = new JTextField();
+				textField.setBounds(594, 95, 86, 20);
+				panel.add(textField);
+				textField.setText("red,green,blue");
+				textField.setColumns(10);
+				
+						JButton btnChangeColor = new JButton("change color");
+						btnChangeColor.setBounds(693, 94, 110, 23);
+						panel.add(btnChangeColor);
+						btnChangeColor.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								int red = Integer.parseInt(textField.getText().split(",")[0]);
+								int green = Integer.parseInt(textField.getText().split(",")[1]);
+								int blue = Integer.parseInt(textField.getText().split(",")[2]);
+								panel.setBackground(new Color(red, green, blue));
+							}
+						});
 		btnSave.setBounds(781, 0, 89, 23);
 		layeredPane.add(btnSave);
 		btnGoHome.setBounds(887, 0, 89, 23);
@@ -189,19 +222,19 @@ public class Home extends JFrame {
 			}
 
 			private void saveCaseHistory() {
-				if(pages_1.getPanel6().isHasToUpdate()){
+				if (pages_1.getPanel6().isHasToUpdate()) {
 					CaseHistoryBean bean = pages_1.getPanel6().getCurrentValues();
 					CaseHistoryTableManipulation dao = new CaseHistoryTableManipulation();
-					if(pages_1.getPanel6().isHasToUpdate() && pages_1.getPanel6().getCaseHistoryId() != -1){
-						dao.updateNewHIstory(bean);	
-					}else if(pages_1.getPanel6().isHasToUpdate()){
-						dao.saveNewHistory(bean);	
+					if (pages_1.getPanel6().isHasToUpdate() && pages_1.getPanel6().getCaseHistoryId() != -1) {
+						dao.updateNewHIstory(bean);
+					} else if (pages_1.getPanel6().isHasToUpdate()) {
+						dao.saveNewHistory(bean);
 					}
 				}
 			}
 
 			private void saveFactor1() {
-				if(pages_1.getPanel1().isHasToUpdate()){
+				if (pages_1.getPanel1().isHasToUpdate()) {
 					Factor1Bean bean = pages_1.getPanel1().getCurrentValues();
 					Factor1TableManipulation dao = new Factor1TableManipulation();
 					bean.setClientId(clientId);
