@@ -43,7 +43,6 @@ public class Home extends JFrame {
 	JButton btnGoHome = new JButton("Go Back");
 
 	private ClientInfo pages_1;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -164,36 +163,6 @@ public class Home extends JFrame {
 		lblLogoGoesHere.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblLogoGoesHere.setBounds(57, 174, 367, 124);
 		panel.add(lblLogoGoesHere);
-		
-		JButton btnColorPalette = new JButton("color palette");
-		btnColorPalette.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Color c = new JColorChooser().showDialog(null, "Choose a Color", panel.getForeground());
-				if(c!=null){
-					panel.setBackground(c);
-				}
-			}
-		});
-		btnColorPalette.setBounds(801, 94, 110, 23);
-		panel.add(btnColorPalette);
-		
-				textField = new JTextField();
-				textField.setBounds(594, 95, 86, 20);
-				panel.add(textField);
-				textField.setText("red,green,blue");
-				textField.setColumns(10);
-				
-						JButton btnChangeColor = new JButton("change color");
-						btnChangeColor.setBounds(693, 94, 110, 23);
-						panel.add(btnChangeColor);
-						btnChangeColor.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent arg0) {
-								int red = Integer.parseInt(textField.getText().split(",")[0]);
-								int green = Integer.parseInt(textField.getText().split(",")[1]);
-								int blue = Integer.parseInt(textField.getText().split(",")[2]);
-								panel.setBackground(new Color(red, green, blue));
-							}
-						});
 		btnSave.setBounds(781, 0, 89, 23);
 		layeredPane.add(btnSave);
 		btnGoHome.setBounds(887, 0, 89, 23);

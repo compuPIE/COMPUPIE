@@ -57,7 +57,7 @@ public class ClientPage extends JPanel {
 		add(lblClientId);
 
 		textField = new JTextField();
-		textField.setBounds(21, 48, 247, 20);
+		textField.setBounds(21, 48, 176, 20);
 		add(textField);
 		textField.setColumns(10);
 

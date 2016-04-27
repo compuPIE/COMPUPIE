@@ -1,20 +1,21 @@
 package pages;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ClientInfo extends JPanel {
 
 	private ClientPage panel;
 	private CHDC panel6;
 	private Factor1 panel1;
-	private Factor2 panel2;
+	private FactorII panel2;
 	private Factor3 panel3;
 	private Factor4 panel4;
 	private JPanel panel5;
@@ -25,40 +26,20 @@ public class ClientInfo extends JPanel {
 	 */
 	public ClientInfo() {
 		setBounds(0, 11, 982, 671);
-		setLayout(null);
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 22, 961, 641);
-		add(tabbedPane);
-		
-		 panel = new ClientPage();
-		tabbedPane.addTab("Client Info", null, panel, null);
-		
-		 panel6 = new CHDC(1);
-		tabbedPane.addTab("Case History", null, panel6, null);
-		
-		 panel1 = new Factor1(1);
-		tabbedPane.addTab("Factor 1", null, panel1, null);
-		
-		 panel2 = new Factor2();
-		tabbedPane.addTab("Factor 2", null, panel2, null);
-		
-		 panel3 = new Factor3();
-		tabbedPane.addTab("Factor 3", null, panel3, null);
-		
-		 panel4 = new Factor4();
-		tabbedPane.addTab("Factor 4", null, panel4, null);
-		
-		 panel5 = new JPanel();
-		tabbedPane.addTab("Factor 5", null, panel5, null);
-		
-		
-		 panel7 = new StrengthAndResources();
-		tabbedPane.addTab("Strength and Resources", null, panel7, null);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{961, 0};
+		gridBagLayout.rowHeights = new int[]{21, 641, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(10, 0, 97, 21);
-		add(menuBar);
+		GridBagConstraints gbc_menuBar = new GridBagConstraints();
+		gbc_menuBar.anchor = GridBagConstraints.NORTHWEST;
+		gbc_menuBar.insets = new Insets(0, 0, 5, 0);
+		gbc_menuBar.gridx = 0;
+		gbc_menuBar.gridy = 0;
+		add(menuBar, gbc_menuBar);
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
@@ -80,6 +61,38 @@ public class ClientInfo extends JPanel {
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Generate a PIE Assessment Summary");
 		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
+		gbc_tabbedPane.fill = GridBagConstraints.BOTH;
+		gbc_tabbedPane.gridx = 0;
+		gbc_tabbedPane.gridy = 1;
+		add(tabbedPane, gbc_tabbedPane);
+		
+		 panel = new ClientPage();
+		 tabbedPane.addTab("Client Info", null, panel, null);
+		 
+		  panel6 = new CHDC(1);
+		  tabbedPane.addTab("Case History", null, panel6, null);
+		  
+		   panel1 = new Factor1(1);
+		   tabbedPane.addTab("Factor 1", null, panel1, null);
+		   
+		    panel2 = new FactorII(1);
+		    tabbedPane.addTab("Factor 2", null, panel2, null);
+		    
+		     panel3 = new Factor3();
+		     tabbedPane.addTab("Factor 3", null, panel3, null);
+		     
+		      panel4 = new Factor4();
+		      tabbedPane.addTab("Factor 4", null, panel4, null);
+		      
+		       panel5 = new JPanel();
+		       tabbedPane.addTab("Factor 5", null, panel5, null);
+		       
+		       
+		        panel7 = new StrengthAndResources();
+		        tabbedPane.addTab("Strength and Resources", null, panel7, null);
 	}
 
 	/**
@@ -127,14 +140,14 @@ public class ClientInfo extends JPanel {
 	/**
 	 * @return the panel2
 	 */
-	public Factor2 getPanel2() {
+	public FactorII getPanel2() {
 		return panel2;
 	}
 
 	/**
 	 * @param panel2 the panel2 to set
 	 */
-	public void setPanel2(Factor2 panel2) {
+	public void setPanelII(FactorII panel2) {
 		this.panel2 = panel2;
 	}
 
