@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.sql.Date;
 import java.util.List;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -20,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import dao.Factor1TableManipulation;
@@ -89,6 +93,8 @@ public class Factor1 extends JPanel {
 	private Component label_9;
 	
 	private boolean hasToUpdate;
+	
+	private int currentId;
 
 	/**
 	 * 
@@ -101,29 +107,18 @@ public class Factor1 extends JPanel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Factor1(int clientID) {
 		setBounds(0, 11, 963, 609);
-		setLayout(null);
 
-		lblFactorISocial = new JLabel("Factor I: Social Role and Relationship Functioning");
+		lblFactorISocial = new JLabel("Factor I: Social Role and Relationship Functioning", SwingConstants.CENTER);
 		lblFactorISocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblFactorISocial.setBounds(239, 24, 440, 35);
-		add(lblFactorISocial);
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
-		desktopPane.setBounds(22, 296, 914, 302);
-		add(desktopPane);
 
 		label = new JLabel("Social Role Description");
-		label.setBounds(23, 11, 261, 14);
-		desktopPane.add(label);
 
 		label_1 = new JLabel("Problem Type");
-		label_1.setBounds(310, 11, 254, 14);
-		desktopPane.add(label_1);
 
 		label_2 = new JLabel("Severity");
-		label_2.setBounds(588, 11, 226, 14);
-		desktopPane.add(label_2);
 
 		Load_SocialRoles roles = new Load_SocialRoles();
 		List<SocialRoleCategory> categ = roles.getAllProblemsByCategory();
@@ -142,92 +137,60 @@ public class Factor1 extends JPanel {
 				}
 			}
 		});
-		comboBox.setBounds(24, 26, 261, 20);
 		comboBox.addItem("Select");
 		for (SocialRoleCategory category : categ) {
 			comboBox.addItem(category.getCategory());
 		}
-		desktopPane.add(comboBox);
-
-		comboBox_1.setBounds(312, 26, 252, 20);
-		desktopPane.add(comboBox_1);
 
 		Load_Severity severity = new Load_Severity();
 
 		comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(588, 26, 304, 20);
 		comboBox_2.addItem("Select");
 		for (Severity sev : severity.getAllSeverity()) {
 			comboBox_2.addItem(sev.getCategory());
 		}
-		desktopPane.add(comboBox_2);
 
 		label_3 = new JLabel("Duration");
-		label_3.setBounds(23, 67, 237, 14);
-		desktopPane.add(label_3);
 
 		label_4 = new JLabel("Coping Ability");
-		label_4.setBounds(310, 67, 237, 14);
-		desktopPane.add(label_4);
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(24, 82, 261, 20);
 		comboBox_3.addItem("Select");
 		for (Duration sev : duration.getAllDuration()) {
 			comboBox_3.addItem(sev.getCategory());
 		}
-		desktopPane.add(comboBox_3);
 
 		Load_Coping_Ability coping = new Load_Coping_Ability();
 		comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(312, 82, 252, 20);
 		comboBox_4.addItem("Select");
 		for (Coping_Ability sev : coping.getAllCoping_Ability()) {
 			comboBox_4.addItem(sev.getCategory());
 		}
-		desktopPane.add(comboBox_4);
 
 		textArea = new JTextArea();
-		textArea.setBounds(23, 126, 861, 53);
-		desktopPane.add(textArea);
 
 		textArea_1 = new JTextArea();
-		textArea_1.setBounds(23, 205, 400, 79);
-		desktopPane.add(textArea_1);
 
 		textArea_2 = new JTextArea();
-		textArea_2.setBounds(484, 205, 400, 79);
-		desktopPane.add(textArea_2);
 
 		label_6 = new JLabel("Goal");
-		label_6.setBounds(23, 113, 129, 14);
-		desktopPane.add(label_6);
 
 		label_7 = new JLabel("Recommended Intervention");
-		label_7.setBounds(23, 190, 285, 14);
-		desktopPane.add(label_7);
 
 		label_8 = new JLabel("Expected Outcome");
-		label_8.setBounds(484, 190, 285, 14);
 		desktopPane.setVisible(false);
-		desktopPane.add(label_8);
 
 		label_9 = new JLabel("Priority");
-		label_9.setBounds(588, 67, 200, 14);
-		desktopPane.add(label_9);
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
-		comboBox_6.setBounds(588, 82, 160, 20);
 		comboBox_6.addItem("Select");
 		for (Priority sev : priority.getAllPriority()) {
 			comboBox_6.addItem(sev.getCategory());
 		}
-		desktopPane.add(comboBox_6);
 
 		btnAddNewProblem = new JButton("Add new Problem");
-		btnAddNewProblem.setBounds(586, 262, 115, 23);
 		btnAddNewProblem.addActionListener(new java.awt.event.ActionListener() { 
 			
 			public void actionPerformed(ActionEvent arg0) {
@@ -235,11 +198,8 @@ public class Factor1 extends JPanel {
 				resetValues();
 			}
 		});
-		add(btnAddNewProblem);
 
 		btnDeleteProblem = new JButton("Delete Problem");
-		btnDeleteProblem.setBounds(828, 262, 108, 23);
-		add(btnDeleteProblem);
 
 		DefaultTableModel model = tablePopulate(clientID);
 		table = new JTable(model);
@@ -256,12 +216,153 @@ public class Factor1 extends JPanel {
 			}
 		});
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(24, 65, 912, 186);
-		add(scrollPane);
 
 		btnEditProblem = new JButton("Edit Problem");
-		btnEditProblem.setBounds(711, 262, 107, 23);
-		add(btnEditProblem);
+		btnEditProblem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				enableDisableValues(true);
+				setHasToUpdate(true);
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(586)
+					.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(btnDeleteProblem, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+					.addGap(27))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(22)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
+					.addGap(27))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(248)
+							.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 219, Short.MAX_VALUE)
+							.addGap(241))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
+							.addGap(27))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnAddNewProblem)
+						.addComponent(btnEditProblem)
+						.addComponent(btnDeleteProblem))
+					.addGap(11)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+					.addGap(11))
+		);
+		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
+		gl_desktopPane.setHorizontalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addComponent(label, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+					.addGap(26)
+					.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+					.addGap(24)
+					.addComponent(label_2, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+					.addGap(100))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(24)
+					.addComponent(comboBox, 0, 261, Short.MAX_VALUE)
+					.addGap(27)
+					.addComponent(comboBox_1, 0, 252, Short.MAX_VALUE)
+					.addGap(24)
+					.addComponent(comboBox_2, 0, 304, Short.MAX_VALUE)
+					.addGap(22))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addComponent(label_3, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+					.addGap(50)
+					.addComponent(label_4, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+					.addGap(41)
+					.addComponent(label_9, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+					.addGap(126))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(24)
+					.addComponent(comboBox_3, 0, 261, Short.MAX_VALUE)
+					.addGap(27)
+					.addComponent(comboBox_4, 0, 252, Short.MAX_VALUE)
+					.addGap(24)
+					.addComponent(comboBox_6, 0, 160, Short.MAX_VALUE)
+					.addGap(166))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+							.addGap(732)))
+					.addGap(30))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+					.addGap(176)
+					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+					.addGap(145))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+					.addGap(61)
+					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+					.addGap(30))
+		);
+		gl_desktopPane.setVerticalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(label)
+						.addComponent(label_1)
+						.addComponent(label_2))
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(21)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_3)
+						.addComponent(label_4)
+						.addComponent(label_9))
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(13)
+							.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
+						.addComponent(label_6))
+					.addGap(11)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_7)
+						.addComponent(label_8))
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+						.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+					.addGap(18))
+		);
+		desktopPane.setLayout(gl_desktopPane);
+		setLayout(groupLayout);
 	}
 	
 	private void resetValues(){
@@ -297,6 +398,7 @@ public class Factor1 extends JPanel {
 		Factor1TableManipulation fac1Dao = new Factor1TableManipulation();
 		List<Factor1Bean> list = fac1Dao
 				.getFactorInfo(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()), clientID);
+		setCurrentId(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
 		comboBox.setSelectedItem(list.get(0).getSocialRoleDescription());
 		comboBox_1.setSelectedItem(list.get(0).getProblemType());
 		comboBox_2.setSelectedItem(list.get(0).getServerity());
@@ -325,6 +427,8 @@ public class Factor1 extends JPanel {
 	 * @return
 	 */
 	public DefaultTableModel tablePopulate(int clientID) {
+		enableDisableValues(false);
+		setCurrentId(0);
 		String[] columns = new String[] { "Id", "Assessed Date", "Social Role Category", "Problem", "Severity",
 				"Duration", "Coping Ability", "Priority" };
 
@@ -344,6 +448,15 @@ public class Factor1 extends JPanel {
 			data[i][6] = bean.getCopingAbitity();
 			data[i][7] = bean.getPriority();
 			i++;
+		}
+		if (list.size() == 0) {
+			data = new Object[1][7];
+			data[i][0] = "No Problems.";
+			data[i][2] = "";
+			data[i][3] = "";
+			data[i][4] = "";
+			data[i][5] = "";
+			data[i][6] = "";
 		}
 
 		final Class[] columnClass = new Class[] { Integer.class, Date.class, String.class, String.class, String.class,
@@ -390,6 +503,7 @@ public class Factor1 extends JPanel {
 		bean.setGoal(textArea.getText());
 		bean.setRecommendedInter(textArea_1.getText());
 		bean.setExpectedOutcome(textArea_2.getText());
+		bean.setId(currentId);
 		return bean;
 	}
 
@@ -405,5 +519,19 @@ public class Factor1 extends JPanel {
 	 */
 	public void setHasToUpdate(boolean hasToUpdate) {
 		this.hasToUpdate = hasToUpdate;
+	}
+
+	/**
+	 * @return the currentId
+	 */
+	public int getCurrentId() {
+		return currentId;
+	}
+
+	/**
+	 * @param currentId the currentId to set
+	 */
+	public void setCurrentId(int currentId) {
+		this.currentId = currentId;
 	}
 }

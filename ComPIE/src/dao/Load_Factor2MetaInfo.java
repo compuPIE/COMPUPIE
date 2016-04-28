@@ -31,7 +31,7 @@ public class Load_Factor2MetaInfo {
 		Statement stmt = null;
 		ResultSet rs;
 		String tablename = getTableName(category);
-		if(!category.equalsIgnoreCase("")){
+		if(!tablename.equalsIgnoreCase("")){
 		try {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM "+tablename +" ;");

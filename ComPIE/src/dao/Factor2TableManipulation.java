@@ -68,7 +68,7 @@ public class Factor2TableManipulation {
 			while (rs.next()) {
 				Factor2Bean info = new Factor2Bean();
 				info.setId(rs.getInt("id"));
-				info.setproblemCategory(rs.getString("socialRoleDescription"));
+				info.setproblemCategory(rs.getString("problemCategory"));
 				info.setProblemType(rs.getString("problemType"));
 				info.setServerity(rs.getString("serverity"));
 				info.setDuration(rs.getString("duration"));
@@ -158,6 +158,7 @@ public class Factor2TableManipulation {
 	}
 
 	public boolean updateNewFactory(Factor2Bean info) {
+		Factor2TableManipulationcreate();
 		Statement stmt = null;
 		int update = 0;
 		try {
@@ -193,7 +194,7 @@ public class Factor2TableManipulation {
 	private String createStringToUpdate(Factor2Bean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("update FACTOR2 set ");
-		buffer.append(",problemCategory=\"" + info.getProblemCategory() + "\"");
+		buffer.append("problemCategory=\"" + info.getProblemCategory() + "\"");
 		buffer.append(",problemType=\"" + info.getProblemType() + "\"");
 		buffer.append(",serverity=\"" + info.getServerity() + "\"");
 		buffer.append(",duration=\"" + info.getDuration() + "\"");

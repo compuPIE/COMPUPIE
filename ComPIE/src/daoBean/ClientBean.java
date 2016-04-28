@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ClientBean {
 	private int id;
 	private String lastname;
+	private String middleName;
 	private String firstname;
 	private String clientId;
 	private String gender;
@@ -275,6 +276,18 @@ public class ClientBean {
 	 */
 	public void setAssessedBy(String assessedBy) {
 		this.assessedBy = assessedBy;
+	}
+	/**
+	 * @return the middleName
+	 */
+	public String getMiddleName() {
+		return middleName;
+	}
+	/**
+	 * @param middleName the middleName to set
+	 */
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
 	}
 	private String additional;
 

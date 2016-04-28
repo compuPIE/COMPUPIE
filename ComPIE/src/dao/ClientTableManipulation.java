@@ -1,10 +1,13 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import daoBean.ClientBean;
 
@@ -34,12 +37,15 @@ public class ClientTableManipulation {
 				info.setId(rs.getInt("id"));
 				info.setCity(rs.getString("city"));
 				info.setLastname(rs.getString("lastname"));
+				info.setMiddleName(rs.getString("middlename"));
 				info.setFirstname(rs.getString("firstname"));
 				info.setClientId(rs.getString("clientId"));
 				info.setGender(rs.getString("gender"));
 				info.setMaritalStatus(rs.getString("maritalStatus"));
 				info.setOccupatiion(rs.getString("occupatiion"));
-				info.setDob(rs.getDate("dob"));
+				SimpleDateFormat sdf1 = new SimpleDateFormat("yyy-MM-dd");
+				java.util.Date date = sdf1.parse(rs.getString("dob"));
+				info.setDob(new Date(date.getTime()));
 				info.setStreet(rs.getString("street"));
 				info.setCity(rs.getString("city"));
 				info.setStateName(rs.getString("stateName"));
@@ -57,7 +63,7 @@ public class ClientTableManipulation {
 			rs.close();
 			stmt.close();
 			c.close();
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			e.printStackTrace();
 		}
 
@@ -117,16 +123,18 @@ public class ClientTableManipulation {
 	private String createStringTOSave(ClientBean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
-				"insert into CLIENT_INFO (id,lastname,firstname,clientId,gender,maritalStatus,dob,occupatiion,street,city,stateName,zipcode,phone,ethnicity,referredBy,additional,"
-				+ "noOfChildrenInCare,highestLevelOfEducation,employmentStatus,livingArrangement,assessedBy) ");
-		buffer.append("(" + getmaxId() + 1);
+				"insert into CLIENT_INFO (id,lastname,middlename,firstname,clientId,gender,maritalStatus,dob,occupatiion,street,city,stateName,zipcode,phone,ethnicity,referredBy,additional,"
+						+ "noOfChildrenInCare,highestLevelOfEducation,employmentStatus,livingArrangement,assessedBy) values");
+		buffer.append("(" + (getmaxId() + 1));
 		buffer.append(",\"" + info.getLastname() + "\"");
+		buffer.append(",\"" + info.getMiddleName() + "\"");
 		buffer.append(",\"" + info.getFirstname() + "\"");
 		buffer.append(",\"" + info.getClientId() + "\"");
 		buffer.append(",\"" + info.getGender() + "\"");
 		buffer.append(",\"" + info.getMaritalStatus() + "\"");
 		buffer.append(",\"" + info.getDob() + "\"");
 		buffer.append(",\"" + info.getOccupatiion() + "\"");
+		buffer.append(",\"" + info.getStreet() + "\"");
 		buffer.append(",\"" + info.getCity() + "\"");
 		buffer.append(",\"" + info.getStateName() + "\"");
 		buffer.append(",\"" + info.getZipcode() + "\"");
@@ -134,7 +142,7 @@ public class ClientTableManipulation {
 		buffer.append(",\"" + info.getEthnicity() + "\"");
 		buffer.append(",\"" + info.getReferredBy() + "\"");
 		buffer.append(",\"" + info.getAdditional() + "\" ");
-		buffer.append("," + info.getNoOfChildrenInCare() );
+		buffer.append("," + info.getNoOfChildrenInCare());
 		buffer.append(",\"" + info.getHighestLevelOfEducation() + "\"");
 		buffer.append(",\"" + info.getEmploymentStatus() + "\"");
 		buffer.append(",\"" + info.getLivingArrangement() + "\"");
@@ -147,12 +155,14 @@ public class ClientTableManipulation {
 		buffer.append("update CLIENT_INFO set ");
 		buffer.append("id=" + info.getId());
 		buffer.append(",lastname=\"" + info.getLastname() + "\"");
+		buffer.append(",middlename=\"" + info.getMiddleName() + "\"");
 		buffer.append(",firstname=\"" + info.getFirstname() + "\"");
 		buffer.append(",clientId=\"" + info.getClientId() + "\"");
 		buffer.append(",gender=\"" + info.getGender() + "\"");
 		buffer.append(",maritalStatus=\"" + info.getMaritalStatus() + "\"");
 		buffer.append(",dob=\"" + info.getDob() + "\"");
 		buffer.append(",occupatiion=\"" + info.getOccupatiion() + "\"");
+		buffer.append(",street=\"" + info.getStreet() + "\"");
 		buffer.append(",city=\"" + info.getCity() + "\"");
 		buffer.append(",stateName=\"" + info.getStateName() + "\"");
 		buffer.append(",zipcode=\"" + info.getZipcode() + "\"");
@@ -160,12 +170,12 @@ public class ClientTableManipulation {
 		buffer.append(",ethnicity=\"" + info.getEthnicity() + "\"");
 		buffer.append(",referredBy=\"" + info.getReferredBy() + "\"");
 		buffer.append(",additional=\"" + info.getAdditional() + "\" ");
-		buffer.append(",noOfChildrenInCare=" + info.getNoOfChildrenInCare() );
+		buffer.append(",noOfChildrenInCare=" + info.getNoOfChildrenInCare());
 		buffer.append(",highestLevelOfEducation=\"" + info.getHighestLevelOfEducation() + "\"");
 		buffer.append(",employmentStatus=\"" + info.getEmploymentStatus() + "\"");
 		buffer.append(",livingArrangement=\"" + info.getLivingArrangement() + "\"");
-		buffer.append(",assessedBy=\"" + info.getAssessedBy() + "\";");
-		buffer.append(" where id =" + info.getId()+";");
+		buffer.append(",assessedBy=\"" + info.getAssessedBy() + "\"");
+		buffer.append(" where id =" + info.getId() + ";");
 		return buffer.toString();
 	}
 

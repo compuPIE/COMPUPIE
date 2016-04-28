@@ -37,6 +37,10 @@ import daoBean.Factor2Category;
 import daoBean.Priority;
 import daoBean.Severity;
 import daoBean.SocialRoleCategory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
 
 public class FactorII extends JPanel {
 
@@ -92,11 +96,18 @@ public class FactorII extends JPanel {
 
 	private JLabel lblNewLabel;
 
+	private int currentProbId = 0;
+
+	private String currentMenu = "";
+	
+	private boolean hasRecords =false;
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTree tree;
+	private JTree tr;
 
 	/**
 	 * Create the panel.
@@ -105,101 +116,53 @@ public class FactorII extends JPanel {
 	public FactorII(int clientID) {
 		setClientId(clientID);
 		setBounds(0, 11, 963, 609);
-		setLayout(null);
 
 		lblFactorISocial = new JLabel("FACTOR II: Environmental Situations");
 		lblFactorISocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblFactorISocial.setBounds(325, 11, 440, 35);
-		add(lblFactorISocial);
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
-		desktopPane.setBounds(179, 296, 757, 302);
-		add(desktopPane);
 
 		label = new JLabel("");
-		label.setBounds(23, 11, 261, 14);
-		desktopPane.add(label);
 
 		label_2 = new JLabel("Severity");
-		label_2.setBounds(310, 11, 226, 14);
-		desktopPane.add(label_2);
 
 		comboBox = new JComboBox<String>();
-
-		comboBox.setBounds(24, 26, 261, 20);
 		comboBox.addItem("Select");
 
-		desktopPane.add(comboBox);
-
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setBounds(310, 26, 254, 20);
 		comboBox_2.addItem("Select");
 
-		desktopPane.add(comboBox_2);
-
 		label_3 = new JLabel("Duration");
-		label_3.setBounds(23, 67, 237, 14);
-		desktopPane.add(label_3);
 
 		label_4 = new JLabel("Coping Ability");
-		label_4.setBounds(310, 67, 237, 14);
-		desktopPane.add(label_4);
 
 		comboBox_3 = new JComboBox<String>();
-		comboBox_3.setBounds(24, 82, 261, 20);
-
-		desktopPane.add(comboBox_3);
 
 		comboBox_4 = new JComboBox<String>();
-		comboBox_4.setBounds(312, 82, 252, 20);
-
-		desktopPane.add(comboBox_4);
 
 		textArea = new JTextArea();
-		textArea.setBounds(23, 126, 724, 53);
-		desktopPane.add(textArea);
 
 		textArea_1 = new JTextArea();
-		textArea_1.setBounds(23, 205, 326, 79);
-		desktopPane.add(textArea_1);
 
 		textArea_2 = new JTextArea();
-		textArea_2.setBounds(412, 205, 335, 79);
-		desktopPane.add(textArea_2);
 
 		label_6 = new JLabel("Goal");
-		label_6.setBounds(23, 113, 129, 14);
-		desktopPane.add(label_6);
 
 		label_7 = new JLabel("Recommended Intervention");
-		label_7.setBounds(23, 190, 285, 14);
-		desktopPane.add(label_7);
 
 		label_8 = new JLabel("Expected Outcome");
-		label_8.setBounds(412, 190, 285, 14);
 		desktopPane.setVisible(false);
-		desktopPane.add(label_8);
 
 		label_9 = new JLabel("Priority");
-		label_9.setBounds(588, 67, 200, 14);
-		desktopPane.add(label_9);
 
 		comboBox_6 = new JComboBox<String>();
-		comboBox_6.setBounds(588, 82, 160, 20);
 		comboBox_6.addItem("Select");
-		desktopPane.add(comboBox_6);
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(396, 45, 219, 14);
-		add(lblNewLabel);
 
 		btnAddNewProblem = new JButton("Add new Problem");
-		btnAddNewProblem.setBounds(586, 262, 115, 23);
-		add(btnAddNewProblem);
 
 		btnDeleteProblem = new JButton("Delete Problem");
-		btnDeleteProblem.setBounds(828, 262, 108, 23);
-		add(btnDeleteProblem);
 
 		DefaultTableModel model = tablePopulate(clientID, "Food/Nutrition");
 		table = new JTable(model);
@@ -216,12 +179,14 @@ public class FactorII extends JPanel {
 			}
 		});
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(179, 69, 774, 186);
-		add(scrollPane);
 
 		btnEditProblem = new JButton("Edit Problem");
-		btnEditProblem.setBounds(711, 262, 107, 23);
-		add(btnEditProblem);
+		btnEditProblem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				enableDisableValues(true);
+				setHasToUpdate(true);
+			}
+		});
 		changeMenuWhenClicked("Food/Nutrition");
 		populateValues();
 		tree = setMenu();
@@ -230,11 +195,154 @@ public class FactorII extends JPanel {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.expandRow(i);
 		}
-		// tree.setSelectionPath(tree.get);
-		tree.setBounds(10, 65, 159, 422);
-		add(tree);
-
-		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout
+				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup().addGap(396)
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE).addGap(348))
+						.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+								.addComponent(tr, GroupLayout.PREFERRED_SIZE, 191,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+										.addGroup(groupLayout.createSequentialGroup().addGap(407)
+												.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE,
+														115, Short.MAX_VALUE)
+												.addGap(10)
+												.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addGap(10).addComponent(btnDeleteProblem, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+								.addGap(27))
+						.addGroup(groupLayout.createSequentialGroup().addGap(373)
+								.addComponent(lblFactorISocial, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+								.addGap(263)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addContainerGap()
+				.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE).addGap(10)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(tr, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE).addGap(111))
+						.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE).addGap(7)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnAddNewProblem).addComponent(btnEditProblem)
+										.addComponent(btnDeleteProblem))
+								.addGap(11).addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)))
+				.addGap(11)));
+		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
+		gl_desktopPane
+				.setHorizontalGroup(
+						gl_desktopPane
+								.createParallelGroup(
+										Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
+										.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+										.addGap(104)
+										.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+										.addGap(60))
+								.addGroup(gl_desktopPane.createSequentialGroup()
+										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
+														.addComponent(comboBox_3, 0, 254, Short.MAX_VALUE).addGap(39))
+												.addGroup(gl_desktopPane.createSequentialGroup().addGap(33)
+														.addComponent(label_3, GroupLayout.DEFAULT_SIZE, 278,
+																Short.MAX_VALUE)
+														.addPreferredGap(ComponentPlacement.RELATED)))
+										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_desktopPane.createSequentialGroup()
+														.addComponent(comboBox_4, 0, 216, Short.MAX_VALUE).addGap(18))
+												.addGroup(gl_desktopPane.createSequentialGroup()
+														.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 0,
+																Short.MAX_VALUE)
+														.addGap(161)))
+										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_desktopPane.createSequentialGroup()
+														.addComponent(comboBox_6, 0, 137, Short.MAX_VALUE).addGap(50))
+												.addGroup(gl_desktopPane.createSequentialGroup()
+														.addComponent(label_9, GroupLayout.DEFAULT_SIZE, 62,
+																Short.MAX_VALUE)
+														.addContainerGap())))
+								.addGroup(gl_desktopPane.createSequentialGroup()
+										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
+														.addComponent(comboBox, 0, 261, Short.MAX_VALUE).addGap(25))
+												.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
+														.addComponent(label, GroupLayout.DEFAULT_SIZE, 246,
+																Short.MAX_VALUE)
+														.addGap(41)))
+										.addGap(10)
+										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(comboBox_2, 0, 254, Short.MAX_VALUE)
+												.addGroup(gl_desktopPane.createSequentialGroup()
+														.addComponent(label_2, GroupLayout.DEFAULT_SIZE, 55,
+																Short.MAX_VALUE)
+														.addGap(199)))
+										.addGap(164))
+								.addGroup(
+										gl_desktopPane.createSequentialGroup().addGap(23)
+												.addGroup(gl_desktopPane
+														.createParallelGroup(Alignment.TRAILING)
+														.addGroup(
+																gl_desktopPane
+																		.createSequentialGroup().addGroup(gl_desktopPane
+																				.createParallelGroup(Alignment.LEADING)
+																				.addComponent(
+																						textArea,
+																						GroupLayout.DEFAULT_SIZE, 680,
+																						Short.MAX_VALUE)
+																				.addGroup(gl_desktopPane
+																						.createSequentialGroup()
+																						.addComponent(textArea_1,
+																								GroupLayout.DEFAULT_SIZE,
+																								307, Short.MAX_VALUE)
+																						.addGap(63)
+																						.addComponent(textArea_2,
+																								GroupLayout.DEFAULT_SIZE,
+																								310, Short.MAX_VALUE)))
+																		.addGap(35))
+														.addGroup(gl_desktopPane
+																.createSequentialGroup().addComponent(label_6,
+																		GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+																.addGap(605)))));
+		gl_desktopPane.setVerticalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup().addGap(11)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(label)
+								.addComponent(label_2))
+						.addGap(1)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(21)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(label_4)
+								.addComponent(label_3).addComponent(label_9))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)))
+						.addGap(11).addComponent(label_6).addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(label_7)
+								.addComponent(label_8))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+								.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+						.addGap(13)));
+		desktopPane.setLayout(gl_desktopPane);
+		setLayout(groupLayout);
 
 	}
 
@@ -271,6 +379,7 @@ public class FactorII extends JPanel {
 				setHasToUpdate(true);
 				desktopPane.setVisible(true);
 				resetValues();
+				setCurrentProbId(0);
 			}
 		});
 	}
@@ -332,11 +441,11 @@ public class FactorII extends JPanel {
 			break;
 
 		}
-		if (menu.equalsIgnoreCase("Food/Nutrition")) {
-			table.setModel(tablePopulate(getClientId(), "FoodNutrition"));
-		} else {
-			table.setModel(tablePopulate(getClientId(), menu));
-		}
+		setCurrentMenu(menu);
+		desktopPane.setVisible(false);
+
+		table.setModel(tablePopulate(getClientId(), menu));
+
 		label.setText(menu + " Problem");
 		populateProblem(menu);
 		repaint();
@@ -404,7 +513,7 @@ public class FactorII extends JPanel {
 		root.add(voluntaryAsso);
 		root.add(affectionalSupport);
 
-		JTree tr = new JTree(root);
+		tr = new JTree(root);
 
 		// tr.setSelectionPath(new TreePath(foodNutrition));
 		DefaultMutableTreeNode[] defaultPath = { root, basicNeeds, foodNutrition };
@@ -440,12 +549,14 @@ public class FactorII extends JPanel {
 	 */
 	private void addTableListener(int clientID) {
 		setHasToUpdate(false);
+		if(isHasRecords()){
 		desktopPane.setVisible(true);
 		enableDisableValues(false);
 		Factor2TableManipulation fac1Dao = new Factor2TableManipulation();
 		List<Factor2Bean> list = fac1Dao
 				.getFactorInfo(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()), clientID);
-		comboBox.setSelectedItem(list.get(0).getProblemCategory());
+		setCurrentProbId(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
+		comboBox.setSelectedItem(list.get(0).getProblemType());
 		comboBox_2.setSelectedItem(list.get(0).getServerity());
 		comboBox_3.setSelectedItem(list.get(0).getDuration());
 		comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
@@ -453,6 +564,7 @@ public class FactorII extends JPanel {
 		textArea.setText(list.get(0).getGoal());
 		textArea_1.setText(list.get(0).getRecommendedInter());
 		textArea_2.setText(list.get(0).getExpectedOutcome());
+		}
 	}
 
 	private void enableDisableValues(boolean value) {
@@ -471,29 +583,40 @@ public class FactorII extends JPanel {
 	 * @return
 	 */
 	public DefaultTableModel tablePopulate(int clientID, String problem) {
-		String[] columns = new String[] { "Id", "Assessed Date", "Problem Category", "Problem", "Severity", "Duration",
-				"Coping Ability", "Priority" };
+		enableDisableValues(false);
+		String[] columns = new String[] { "Id", "Assessed Date", "Problem", "Severity", "Duration", "Coping Ability",
+				"Priority" };
 
 		Factor2TableManipulation fac1Dao = new Factor2TableManipulation();
 		List<Factor2Bean> list = fac1Dao.getFactorInfo(clientID, problem);
 
 		// actual data for the table in a 2d array
-		Object[][] data = new Object[list.size()][8];
+		Object[][] data = new Object[list.size()][7];
 		int i = 0;
 		for (Factor2Bean bean : list) {
 			data[i][0] = bean.getId();
 			data[i][1] = bean.getId();
-			data[i][2] = bean.getProblemCategory();
-			data[i][3] = bean.getProblemType();
-			data[i][4] = bean.getServerity();
-			data[i][5] = bean.getDuration();
-			data[i][6] = bean.getCopingAbitity();
-			data[i][7] = bean.getPriority();
+			data[i][2] = bean.getProblemType();
+			data[i][3] = bean.getServerity();
+			data[i][4] = bean.getDuration();
+			data[i][5] = bean.getCopingAbitity();
+			data[i][6] = bean.getPriority();
 			i++;
 		}
-
+		if (list.size() == 0) {
+			setHasRecords(false);
+			data = new Object[1][7];
+			data[i][0] = "No Problems.";
+			data[i][2] = "";
+			data[i][3] = "";
+			data[i][4] = "";
+			data[i][5] = "";
+			data[i][6] = "";
+		}else{
+			setHasRecords(true);
+		}
 		final Class[] columnClass = new Class[] { Integer.class, Date.class, String.class, String.class, String.class,
-				String.class, String.class, String.class };
+				String.class, String.class };
 
 		// create table model with data
 		DefaultTableModel model = new DefaultTableModel(data, columns) {
@@ -528,12 +651,14 @@ public class FactorII extends JPanel {
 
 	public Factor2Bean getCurrentValues() {
 		Factor2Bean bean = new Factor2Bean();
-		bean.setproblemCategory(comboBox.getSelectedItem().toString());
+		bean.setproblemCategory(getCurrentMenu());
+		bean.setProblemType(comboBox.getSelectedItem().toString());
 		bean.setServerity(comboBox_2.getSelectedItem().toString());
 		bean.setDuration(comboBox_3.getSelectedItem().toString());
 		bean.setCopingAbitity(comboBox_4.getSelectedItem().toString());
 		bean.setPriority(comboBox_6.getSelectedItem().toString());
 		bean.setGoal(textArea.getText());
+		bean.setId(getCurrentProbId());
 		bean.setRecommendedInter(textArea_1.getText());
 		bean.setExpectedOutcome(textArea_2.getText());
 		return bean;
@@ -567,5 +692,49 @@ public class FactorII extends JPanel {
 	 */
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
+	}
+
+	/**
+	 * @return the currentProbId
+	 */
+	public int getCurrentProbId() {
+		return currentProbId;
+	}
+
+	/**
+	 * @param currentProbId
+	 *            the currentProbId to set
+	 */
+	public void setCurrentProbId(int currentProbId) {
+		this.currentProbId = currentProbId;
+	}
+
+	/**
+	 * @return the currentMenu
+	 */
+	public String getCurrentMenu() {
+		return currentMenu;
+	}
+
+	/**
+	 * @param currentMenu
+	 *            the currentMenu to set
+	 */
+	public void setCurrentMenu(String currentMenu) {
+		this.currentMenu = currentMenu;
+	}
+
+	/**
+	 * @return the hasRecords
+	 */
+	public boolean isHasRecords() {
+		return hasRecords;
+	}
+
+	/**
+	 * @param hasRecords the hasRecords to set
+	 */
+	public void setHasRecords(boolean hasRecords) {
+		this.hasRecords = hasRecords;
 	}
 }

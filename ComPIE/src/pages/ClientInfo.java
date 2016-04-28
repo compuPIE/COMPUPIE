@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class ClientInfo extends JPanel {
 
@@ -26,20 +28,8 @@ public class ClientInfo extends JPanel {
 	 */
 	public ClientInfo() {
 		setBounds(0, 11, 982, 671);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{961, 0};
-		gridBagLayout.rowHeights = new int[]{21, 641, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
 		
 		JMenuBar menuBar = new JMenuBar();
-		GridBagConstraints gbc_menuBar = new GridBagConstraints();
-		gbc_menuBar.anchor = GridBagConstraints.NORTHWEST;
-		gbc_menuBar.insets = new Insets(0, 0, 5, 0);
-		gbc_menuBar.gridx = 0;
-		gbc_menuBar.gridy = 0;
-		add(menuBar, gbc_menuBar);
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
@@ -63,13 +53,8 @@ public class ClientInfo extends JPanel {
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
-		gbc_tabbedPane.fill = GridBagConstraints.BOTH;
-		gbc_tabbedPane.gridx = 0;
-		gbc_tabbedPane.gridy = 1;
-		add(tabbedPane, gbc_tabbedPane);
 		
-		 panel = new ClientPage();
+		 panel = new ClientPage(1);
 		 tabbedPane.addTab("Client Info", null, panel, null);
 		 
 		  panel6 = new CHDC(1);
@@ -93,6 +78,20 @@ public class ClientInfo extends JPanel {
 		       
 		        panel7 = new StrengthAndResources();
 		        tabbedPane.addTab("Strength and Resources", null, panel7, null);
+		        GroupLayout groupLayout = new GroupLayout(this);
+		        groupLayout.setHorizontalGroup(
+		        	groupLayout.createParallelGroup(Alignment.LEADING)
+		        		.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		        		.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		        );
+		        groupLayout.setVerticalGroup(
+		        	groupLayout.createParallelGroup(Alignment.LEADING)
+		        		.addGroup(groupLayout.createSequentialGroup()
+		        			.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		        			.addGap(5)
+		        			.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		        );
+		        setLayout(groupLayout);
 	}
 
 	/**

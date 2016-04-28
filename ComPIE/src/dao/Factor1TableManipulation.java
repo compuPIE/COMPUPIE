@@ -125,6 +125,7 @@ public class Factor1TableManipulation {
 	}
 
 	public boolean updateNewFactory(Factor1Bean info) {
+		Factor1TableManipulationcreate();
 		Statement stmt = null;
 		int update = 0;
 		try {
@@ -161,7 +162,7 @@ public class Factor1TableManipulation {
 	private String createStringToUpdate(Factor1Bean info) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("update FACTOR1 set ");
-		buffer.append(",socialRoleDescription=\"" + info.getSocialRoleDescription() + "\"");
+		buffer.append("socialRoleDescription=\"" + info.getSocialRoleDescription() + "\"");
 		buffer.append(",problemType=\"" + info.getProblemType() + "\"");
 		buffer.append(",serverity=\"" + info.getServerity() + "\"");
 		buffer.append(",duration=\"" + info.getDuration() + "\"");

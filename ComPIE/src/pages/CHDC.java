@@ -21,6 +21,9 @@ import daoBean.CaseHistoryBean;
 import daoBean.TraumaBean;
 import uiUtil.CheckboxListItem;
 import uiUtil.CheckboxListRenderer;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CHDC extends JPanel {
 
@@ -50,11 +53,8 @@ public class CHDC extends JPanel {
 		 setHasToUpdate(false);
 		this.clientId = clientId;
 		setBounds(0, 11, 963, 609);
-		setLayout(null);
 		lblFactorIiEnvironmental = new JLabel("Case History");
-		lblFactorIiEnvironmental.setBounds(406, 11, 394, 25);
 		lblFactorIiEnvironmental.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		add(lblFactorIiEnvironmental);
 
 		textArea = new JTextArea();
 		textArea.getDocument().addDocumentListener(new DocumentListener() {
@@ -72,11 +72,8 @@ public class CHDC extends JPanel {
 				  setHasToUpdate(true);
 			  }
 			});
-		textArea.setBounds(66, 80, 384, 79);
-		add(textArea);
 
 		textArea_3 = new JTextArea();
-		textArea_3.setBounds(66, 200, 813, 51);
 		textArea_3.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 			    warn();
@@ -92,26 +89,17 @@ public class CHDC extends JPanel {
 				  setHasToUpdate(true);
 			  }
 			});
-		add(textArea_3);
 
 		lblNewLabel = new JLabel("Relevant History");
-		lblNewLabel.setBounds(66, 60, 206, 14);
-		add(lblNewLabel);
 
 		lblNewLabel_1 = new JLabel("Current Situation");
-		lblNewLabel_1.setBounds(497, 60, 173, 14);
-		add(lblNewLabel_1);
 
 		lblTraumaHistory = new JLabel("Trauma History");
-		lblTraumaHistory.setBounds(442, 262, 206, 14);
-		add(lblTraumaHistory);
+		lblTraumaHistory.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		lblReasonForReferral = new JLabel("Reason for Referral");
-		lblReasonForReferral.setBounds(66, 185, 191, 14);
-		add(lblReasonForReferral);
 
 		textArea_2 = new JTextArea();
-		textArea_2.setBounds(497, 80, 384, 79);
 		textArea_2.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 			    warn();
@@ -127,25 +115,94 @@ public class CHDC extends JPanel {
 				  setHasToUpdate(true);
 			  }
 			});
-		add(textArea_2);
 
 		lblChildhood = new JLabel("Childhood");
-		lblChildhood.setBounds(254, 284, 114, 14);
-		add(lblChildhood);
 
 		lblAdulthood = new JLabel("Adulthood");
-		lblAdulthood.setBounds(664, 284, 114, 14);
-		add(lblAdulthood);
 
 		populateTraumaHistory();
 		populatePage();
 		scrollPane = new JScrollPane(listx);
-		scrollPane.setBounds(153, 309, 274, 237);
-		add(scrollPane); // add(new JScrollPane(listx));
 		
 		scrollPane_1 = new JScrollPane(listy);
-		scrollPane_1.setBounds(565, 309, 261, 237);
-		add(scrollPane_1);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(66)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+					.addGap(149)
+					.addComponent(lblFactorIiEnvironmental, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+					.addGap(293))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(66)
+					.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+					.addGap(47)
+					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+					.addGap(82))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(66)
+					.addComponent(lblReasonForReferral, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+					.addGap(706))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(80)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+						.addComponent(lblChildhood))
+					.addGap(37)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+							.addGap(88))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblAdulthood, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(66)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblTraumaHistory, GroupLayout.PREFERRED_SIZE, 856, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textArea_3, GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+							.addGap(84))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(37)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblNewLabel)
+								.addComponent(lblNewLabel_1))
+							.addGap(6))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblFactorIiEnvironmental, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+						.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+					.addGap(26)
+					.addComponent(lblReasonForReferral)
+					.addGap(1)
+					.addComponent(textArea_3, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblTraumaHistory)
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblChildhood)
+						.addComponent(lblAdulthood))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		setLayout(groupLayout);
 
 	}
 	
