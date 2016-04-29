@@ -1,43 +1,167 @@
 package pages;
 
-import javax.swing.JPanel;
-import javax.swing.ListSelectionModel;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
+import dao.Load_SocialRoles;
+import dao.Load_Strength_Factor2;
+import dao.Load_Strength_Factor3;
+import dao.Load_Strength_Factor4;
+import daoBean.SocialRoleProblems;
+import daoBean.Strength_Factor2_Category;
+import daoBean.Strength_Factor2_Problems;
+import daoBean.Strength_Factor3;
+import daoBean.Strength_Factor4;
 import uiUtil.CheckboxListItem;
 import uiUtil.CheckboxListRenderer;
 
-import javax.swing.JList;
-
 public class StrengthSmallPanel extends JPanel {
+
+	private String menu;
+	
+	private boolean hasToUpdate;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("rawtypes")
 	JList list;
 
-	public StrengthSmallPanel() {
+	@SuppressWarnings("rawtypes")
+	public StrengthSmallPanel(String menu) {
+		this.menu = menu;
 		setBounds(10, 45, 454, 264);
 
-		list = new JList();
+		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(list, GroupLayout.PREFERRED_SIZE, 429, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(15, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(list, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(12, Short.MAX_VALUE)));
+		groupLayout
+				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+								.addContainerGap()));
+		groupLayout
+				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+								.addContainerGap()));
+
+		list = new JList();
+		populateTab(menu);
+		scrollPane.setViewportView(list);
 		setLayout(groupLayout);
+
+	}
+
+	private void populateTab(String panelName) {
+
+		String factor1 = "Family,Occupational,Other,Special";
+		String factor2 = "Basic,Health,Education,Volunteer,Judicial,Affectional";
+
+		List<String> list = new ArrayList<String>();
+
+		if (factor1.contains(panelName)) {
+			Load_SocialRoles roles = new Load_SocialRoles();
+			List<SocialRoleProblems> problems = null;
+			try {
+				switch (panelName) {
+				case "Family":
+					problems = roles.getAllProblems(1);
+					break;
+				case "Occupational":
+					problems = roles.getAllProblems(2);
+					break;
+				case "Other":
+					problems = roles.getAllProblems(3);
+					break;
+				case "Special":
+					problems = roles.getAllProblems(4);
+					break;
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for (SocialRoleProblems prob : problems) {
+				list.add(prob.getItem());
+			}
+		} else if (factor2.contains(panelName)) {
+
+			Load_Strength_Factor2 factor2meta = new Load_Strength_Factor2();
+			List<Strength_Factor2_Category> problems = factor2meta.getAllProblemsByCategory();
+
+			Strength_Factor2_Category problem = null;
+
+			for (Strength_Factor2_Category probem : problems) {
+				if (probem.getCategory().contains(panelName)) {
+					problem = probem;
+					break;
+				}
+			}
+			for (Strength_Factor2_Problems prob : problem.getItems()) {
+				list.add(prob.getItem());
+			}
+		} else if (panelName.equalsIgnoreCase("factor3")) {
+			Load_Strength_Factor3 fac3 = new Load_Strength_Factor3();
+			for (Strength_Factor3 bean : fac3.getAllStrength_Factor_3()) {
+				list.add(bean.getCategory());
+			}
+
+		} else if (panelName.equalsIgnoreCase("factor4")) {
+			Load_Strength_Factor4 fac3 = new Load_Strength_Factor4();
+			for (Strength_Factor4 bean : fac3.getAllStrength_Factor4()) {
+				list.add(bean.getCategory());
+			}
+		}
+
+		int childHoodCount = 0;
+
+		for (String bean : list) {
+			childHoodCount++;
+		}
+		int i = 0;
+		int j = 0;
+		CheckboxListItem[] items = new CheckboxListItem[childHoodCount];
+
+		for (String bean : list) {
+			items[i] = new CheckboxListItem(bean);
+			i++;
+		}
+		populateitems(items);
+	}
+
+	public void populatePage(String value) {
+		if (value != null && !value.equalsIgnoreCase("")) {
+			String[] splits = value.split(",");
+			for (String split : splits) {
+				if (split != null && !split.trim().equalsIgnoreCase("")) {
+					for (int i = 0; i < list.getModel().getSize(); i++) {
+						if (((CheckboxListItem) list.getModel().getElementAt(i)).toString().equalsIgnoreCase(split)) {
+							((CheckboxListItem) list.getModel().getElementAt(i)).setSelected(true);
+							;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
-	 * @param adulthood
+	 * @param items
 	 */
-	private void populateAdulthood(CheckboxListItem[] adulthood) {
-		list = new JList(adulthood);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void populateitems(CheckboxListItem[] items) {
+		list = new JList(items);
 		list.setCellRenderer(new CheckboxListRenderer());
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -45,6 +169,7 @@ public class StrengthSmallPanel extends JPanel {
 
 		list.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
+				setHasToUpdate(true);
 				JList<CheckboxListItem> list = (JList<CheckboxListItem>) event.getSource();
 
 				// Get index of item clicked
@@ -63,20 +188,28 @@ public class StrengthSmallPanel extends JPanel {
 		});
 	}
 
-	private String generateCurrentString() {
+	public String generateCurrentString() {
 		StringBuffer buffer = new StringBuffer();
 		int size = list.getModel().getSize();
 		for (int i = 0; i < size; i++) {
 			if (((CheckboxListItem) list.getModel().getElementAt(i)).isSelected()) {
-				buffer.append("1-" + i + ",");
-			}
-		}
-		size = list.getModel().getSize();
-		for (int i = 0; i < size; i++) {
-			if (((CheckboxListItem) list.getModel().getElementAt(i)).isSelected()) {
-				buffer.append("2-" + i + ",");
+				buffer.append(((CheckboxListItem) list.getModel().getElementAt(i)).toString() + ",");
 			}
 		}
 		return buffer.toString();
+	}
+
+	/**
+	 * @return the hasToUpdate
+	 */
+	public boolean isHasToUpdate() {
+		return hasToUpdate;
+	}
+
+	/**
+	 * @param hasToUpdate the hasToUpdate to set
+	 */
+	public void setHasToUpdate(boolean hasToUpdate) {
+		this.hasToUpdate = hasToUpdate;
 	}
 }

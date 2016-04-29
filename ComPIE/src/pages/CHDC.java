@@ -224,6 +224,7 @@ public class CHDC extends JPanel {
 		}
 		setCaseHistoryId(list.get(0).getId());
 		}
+		setHasToUpdate(false);
 	}
 
 	/**

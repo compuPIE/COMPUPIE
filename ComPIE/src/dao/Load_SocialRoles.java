@@ -39,7 +39,7 @@ public class Load_SocialRoles{
 				SocialRoleCategory item = new SocialRoleCategory();
 				item.setId(rs.getInt("id"));
 				item.setCategory(rs.getString("items"));
-				item.setItems(getAllProblems(item.getId()));
+				item.setItems(getAllProblemsinbuilt(item.getId()));
 				items.add(item);
 			}
 			rs.close();
@@ -53,6 +53,24 @@ public class Load_SocialRoles{
 	}
 
 	public List<SocialRoleProblems> getAllProblems(int categoryID) throws SQLException {
+		Statement stmt = null;
+		List<SocialRoleProblems> items = new ArrayList<SocialRoleProblems>();
+		stmt = c.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM social_role_problems where sr_id = " + categoryID + ";");
+		while (rs.next()) {
+			SocialRoleProblems item = new SocialRoleProblems();
+			item.setId(rs.getInt("id"));
+			item.set_sr_Id(rs.getString("sr_id"));
+			item.setItem(rs.getString("items"));
+			items.add(item);
+		}
+		rs.close();
+		stmt.close();
+		c.close();
+		return items;
+	}
+	
+	public List<SocialRoleProblems> getAllProblemsinbuilt(int categoryID) throws SQLException {
 		Statement stmt = null;
 		List<SocialRoleProblems> items = new ArrayList<SocialRoleProblems>();
 		stmt = c.createStatement();

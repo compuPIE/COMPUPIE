@@ -34,7 +34,7 @@ public class Load_Strength_Factor4 {
 		ResultSet rs;
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Strength_Factor_3;");
+			rs = stmt.executeQuery("SELECT * FROM Strength_Factor4;");
 			while (rs.next()) {
 				Strength_Factor4 item = new Strength_Factor4();
 				item.setId(rs.getInt("id"));

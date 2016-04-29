@@ -1,26 +1,25 @@
 package pages;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
 public class ClientInfo extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ClientPage panel;
 	private CHDC panel6;
 	private Factor1 panel1;
 	private FactorII panel2;
 	private Factor3 panel3;
 	private Factor4 panel4;
-	private JPanel panel5;
 	private StrengthAndResources panel7;
 
 	/**
@@ -72,11 +71,10 @@ public class ClientInfo extends JPanel {
 		      panel4 = new Factor4();
 		      tabbedPane.addTab("Factor 4", null, panel4, null);
 		      
-		       panel5 = new JPanel();
-		       tabbedPane.addTab("Factor 5", null, panel5, null);
 		       
 		       
-		        panel7 = new StrengthAndResources();
+		       
+		        panel7 = new StrengthAndResources(1);
 		        tabbedPane.addTab("Strength and Resources", null, panel7, null);
 		        GroupLayout groupLayout = new GroupLayout(this);
 		        groupLayout.setHorizontalGroup(
@@ -176,20 +174,6 @@ public class ClientInfo extends JPanel {
 	 */
 	public void setPanel4(Factor4 panel4) {
 		this.panel4 = panel4;
-	}
-
-	/**
-	 * @return the panel5
-	 */
-	public JPanel getPanel5() {
-		return panel5;
-	}
-
-	/**
-	 * @param panel5 the panel5 to set
-	 */
-	public void setPanel5(JPanel panel5) {
-		this.panel5 = panel5;
 	}
 
 	/**

@@ -13,7 +13,7 @@ import daoBean.CaseHistoryBean;
 public class CaseHistoryTableManipulation {
 	Connection c = null;
 
-	public CaseHistoryTableManipulation() {
+	public void CaseHistoryTableManipulationConn() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
@@ -24,7 +24,7 @@ public class CaseHistoryTableManipulation {
 	}
 
 	public List<CaseHistoryBean> getCaseHistory(int id) {
-
+		CaseHistoryTableManipulationConn();
 		List<CaseHistoryBean> list = new ArrayList<CaseHistoryBean>();
 		Statement stmt = null;
 		ResultSet rs;
@@ -43,6 +43,7 @@ public class CaseHistoryTableManipulation {
 			}
 			rs.close();
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,6 +52,7 @@ public class CaseHistoryTableManipulation {
 	}
 
 	public int getmaxId(int clientID) {
+		CaseHistoryTableManipulationConn();
 		int id = 0;
 		Statement stmt = null;
 		ResultSet rs;
@@ -62,6 +64,7 @@ public class CaseHistoryTableManipulation {
 			}
 			rs.close();
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,12 +72,14 @@ public class CaseHistoryTableManipulation {
 	}
 
 	public boolean saveNewHistory(CaseHistoryBean info) {
+		CaseHistoryTableManipulationConn();
 		Statement stmt = null;
 		int update = 0;
 		try {
 			stmt = c.createStatement();
 			update = stmt.executeUpdate(createStringTOSave(info));
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,12 +87,14 @@ public class CaseHistoryTableManipulation {
 	}
 
 	public boolean updateNewHIstory(CaseHistoryBean info) {
+		CaseHistoryTableManipulationConn();
 		Statement stmt = null;
 		int update = 0;
 		try {
 			stmt = c.createStatement();
 			update = stmt.executeUpdate(createStringToUpdate(info));
 			stmt.close();
+			c.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

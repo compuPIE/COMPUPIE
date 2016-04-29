@@ -30,10 +30,12 @@ import dao.CaseHistoryTableManipulation;
 import dao.ClientTableManipulation;
 import dao.Factor1TableManipulation;
 import dao.Factor2TableManipulation;
+import dao.StrengthResourceManipulation;
 import daoBean.CaseHistoryBean;
 import daoBean.ClientBean;
 import daoBean.Factor1Bean;
 import daoBean.Factor2Bean;
+import daoBean.StrengthAndResourcesBean;
 import net.infonode.gui.laf.InfoNodeLookAndFeel;
 
 public class Home extends JFrame {
@@ -67,16 +69,16 @@ public class Home extends JFrame {
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
-					// UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+					UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-					 UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+					// UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-					 //UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
-					// UIManager.setLookAndFeel("com.jtattoo.plaf.smart.AcrylLookAndFeel");
-					 
+					// UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+					// UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+
 					// UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-					//UIManager.setLookAndFeel(new InfoNodeLookAndFeel());
+					// UIManager.setLookAndFeel(new InfoNodeLookAndFeel());
 					Home frame = new Home();
 					// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					// frame.setSize(screenSize);
@@ -184,7 +186,7 @@ public class Home extends JFrame {
 		panel.add(btnNewButton_3);
 		panel.add(btnNewButton_4);
 		panel.add(txtpnCompupieSystemCopyrightc);
-		
+
 		JButton btnNewButton_5 = new JButton("Change Theme");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -209,55 +211,59 @@ public class Home extends JFrame {
 		btnSave.setVisible(false);
 		pages_1.setVisible(false);
 	}
-	
-	
-	 public void changeLF() {
 
-	        List<String> lookAndFeelsDisplay = new ArrayList<>();
-	        List<String> lookAndFeelsRealNames = new ArrayList<>();
+	public void changeLF() {
 
-	        for (LookAndFeelInfo each : UIManager.getInstalledLookAndFeels()) {
-	            lookAndFeelsDisplay.add(each.getName());
-	            lookAndFeelsRealNames.add(each.getClassName());
-	        }
+		List<String> lookAndFeelsDisplay = new ArrayList<>();
+		List<String> lookAndFeelsRealNames = new ArrayList<>();
 
-	        String changeLook = (String) JOptionPane.showInputDialog(this, "Choose Look and Feel Here:", "Select Look and Feel", JOptionPane.QUESTION_MESSAGE, null, lookAndFeelsDisplay.toArray(), null);
+		for (LookAndFeelInfo each : UIManager.getInstalledLookAndFeels()) {
+			lookAndFeelsDisplay.add(each.getName());
+			lookAndFeelsRealNames.add(each.getClassName());
+		}
 
-	        if (changeLook != null) {
-	            for (int a = 0; a < lookAndFeelsDisplay.size(); a++) {
-	                if (changeLook.equals(lookAndFeelsDisplay.get(a))) {
-	                    try {
-	                        UIManager.setLookAndFeel(lookAndFeelsRealNames.get(a));
-	                        break;
-	                    }
-	                    catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-	                        System.err.println(ex);
-	                        ex.printStackTrace(System.err);
-	                    }
-	                }
-	            }
-	        }
-	    }
+		String changeLook = (String) JOptionPane.showInputDialog(this, "Choose Look and Feel Here:",
+				"Select Look and Feel", JOptionPane.QUESTION_MESSAGE, null, lookAndFeelsDisplay.toArray(), null);
+
+		if (changeLook != null) {
+			for (int a = 0; a < lookAndFeelsDisplay.size(); a++) {
+				if (changeLook.equals(lookAndFeelsDisplay.get(a))) {
+					try {
+						UIManager.setLookAndFeel(lookAndFeelsRealNames.get(a));
+						break;
+					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+							| UnsupportedLookAndFeelException ex) {
+						System.err.println(ex);
+						ex.printStackTrace(System.err);
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * 
 	 */
 	private void saveListener() {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				saveClientInfo();
 				saveCaseHistory();
 				saveFactor1();
-				saveClientInfo();
 				saveFactor2();
+				saveStrengthAndResources();
 			}
 
 			private void saveClientInfo() {
+				if(pages_1.getPanel().isIstoUpdate() ){
 				ClientBean cb = pages_1.getPanel().getClientInformation();
-				if (pages_1.getPanel().isIstoUpdate() && cb.getId() == 0) {
+				if ( cb.getId() == 0) {
 					ClientTableManipulation manip = new ClientTableManipulation();
 					manip.saveNewClient(cb);
-				} else if (pages_1.getPanel().isIstoUpdate() && cb.getId() != 0) {
+				} else if (cb.getId() != 0) {
 					ClientTableManipulation manip = new ClientTableManipulation();
 					manip.updateNewClient(cb);
+				}
 				}
 			}
 
@@ -274,39 +280,57 @@ public class Home extends JFrame {
 			}
 
 			private void saveFactor1() {
+				if(pages_1.getPanel1().isHasToUpdate()) {
 				Factor1Bean bean = pages_1.getPanel1().getCurrentValues();
 				Factor1TableManipulation dao = new Factor1TableManipulation();
-				if (pages_1.getPanel1().isHasToUpdate() && bean.getId() ==0) {
+				if (bean.getId() == 0) {
 					bean.setClientId(clientId);
 					bean.setFollowup(followUp);
 					dao.saveNewFactory(bean);
 					pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
 					pages_1.repaint();
-				} else if (pages_1.getPanel1().isHasToUpdate() && bean.getId() !=0) {
+				} else if (bean.getId() != 0) {
 					bean.setClientId(clientId);
 					bean.setFollowup(followUp);
 					dao.updateNewFactory(bean);
 					pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
 					pages_1.repaint();
 				}
+				}
 			}
-			
-			private void saveFactor2(){
-				Factor2Bean bean = pages_1.getPanel2().getCurrentValues();
-				if (pages_1.getPanel2().isHasToUpdate() && bean.getId() == 0) {
-					Factor2TableManipulation dao = new Factor2TableManipulation();
-					bean.setClientId(clientId);
-					bean.setFollowup(followUp);
-					dao.saveNewFactory(bean);
-					pages_1.getPanel2().getTable().setModel(pages_1.getPanel2().tablePopulate(clientId,pages_1.getPanel2().getCurrentMenu()));
-					pages_1.repaint();
-				}else if (pages_1.getPanel2().isHasToUpdate() && bean.getId() != 0){
-					Factor2TableManipulation dao = new Factor2TableManipulation();
-					bean.setClientId(clientId);
-					bean.setFollowup(followUp);
-					dao.updateNewFactory(bean);
-					pages_1.getPanel2().getTable().setModel(pages_1.getPanel2().tablePopulate(clientId,pages_1.getPanel2().getCurrentMenu()));
-					pages_1.repaint();
+
+			private void saveFactor2() {
+				if (pages_1.getPanel2().isHasToUpdate()) {
+					Factor2Bean bean = pages_1.getPanel2().getCurrentValues();
+					if (bean.getId() == 0) {
+						Factor2TableManipulation dao = new Factor2TableManipulation();
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.saveNewFactory(bean);
+						pages_1.getPanel2().getTable().setModel(
+								pages_1.getPanel2().tablePopulate(clientId, pages_1.getPanel2().getCurrentMenu()));
+						pages_1.repaint();
+					} else if (bean.getId() != 0) {
+						Factor2TableManipulation dao = new Factor2TableManipulation();
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.updateNewFactory(bean);
+						pages_1.getPanel2().getTable().setModel(
+								pages_1.getPanel2().tablePopulate(clientId, pages_1.getPanel2().getCurrentMenu()));
+						pages_1.repaint();
+					}
+				}
+			}
+
+			private void saveStrengthAndResources() {
+				if (pages_1.getPanel7().hastoUpdate()) {
+					StrengthAndResourcesBean bean = pages_1.getPanel7().getCurrentvalues();
+					StrengthResourceManipulation dao = new StrengthResourceManipulation();
+					if (bean.getId() != 0) {
+						dao.updateNewStrength(bean);
+					} else if (bean.getId() == 0) {
+						dao.saveNewStrength(bean);
+					}
 				}
 			}
 		});

@@ -15,7 +15,7 @@ public class ClientTableManipulation {
 
 	Connection c = null;
 
-	public void ClientTableManipulation() {
+	public void ClientTableManipulationConn() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
@@ -26,7 +26,7 @@ public class ClientTableManipulation {
 	}
 
 	public ClientBean getClientInfo(String id) {
-		ClientTableManipulation();
+		ClientTableManipulationConn();
 		ClientBean info = new ClientBean();
 		Statement stmt = null;
 		ResultSet rs;
@@ -71,7 +71,7 @@ public class ClientTableManipulation {
 	}
 
 	public int getmaxId() {
-		ClientTableManipulation();
+		ClientTableManipulationConn();
 		int id = 0;
 		Statement stmt = null;
 		ResultSet rs;
@@ -91,7 +91,7 @@ public class ClientTableManipulation {
 	}
 
 	public boolean saveNewClient(ClientBean info) {
-		ClientTableManipulation();
+		ClientTableManipulationConn();
 		Statement stmt = null;
 		int update = 0;
 		try {
@@ -106,7 +106,7 @@ public class ClientTableManipulation {
 	}
 
 	public boolean updateNewClient(ClientBean info) {
-		ClientTableManipulation();
+		ClientTableManipulationConn();
 		Statement stmt = null;
 		int update = 0;
 		try {
