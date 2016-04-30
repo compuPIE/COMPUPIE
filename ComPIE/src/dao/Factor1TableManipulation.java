@@ -45,6 +45,7 @@ public class Factor1TableManipulation {
 				info.setExpectedOutcome(rs.getString("expectedOutcome"));
 				info.setClientId(rs.getInt("clientId"));
 				info.setFollowup(rs.getInt("followUp"));
+				info.setSocialRoleProblemType(rs.getString("socialRoleProblemType"));
 				list.add(info);
 			}
 			rs.close();
@@ -78,6 +79,7 @@ public class Factor1TableManipulation {
 				info.setExpectedOutcome(rs.getString("expectedOutcome"));
 				info.setClientId(rs.getInt("clientId"));
 				info.setFollowup(rs.getInt("followUp"));
+				info.setSocialRoleProblemType(rs.getString("socialRoleProblemType"));
 				list.add(info);
 			}
 			rs.close();
@@ -143,7 +145,7 @@ public class Factor1TableManipulation {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
 				"insert into FACTOR1 (id,socialRoleDescription,problemType,serverity,duration,copingAbitity,"
-				+ "priority,goal,recommendedInter,expectedOutcome,clientId,followUp) values");
+				+ "priority,goal,recommendedInter,expectedOutcome,socialRoleProblemType,clientId,followUp) values");
 		buffer.append("(" + (getmaxId(info.getClientId()) + 1));
 		buffer.append(",\"" + info.getSocialRoleDescription() + "\"");
 		buffer.append(",\"" + info.getProblemType() + "\"");
@@ -154,6 +156,7 @@ public class Factor1TableManipulation {
 		buffer.append(",\"" + info.getGoal() + "\"");
 		buffer.append(",\"" + info.getRecommendedInter() + "\"");
 		buffer.append(",\"" + info.getExpectedOutcome() + "\"");
+		buffer.append(",\"" + info.getSocialRoleProblemType() + "\"");
 		buffer.append("," + info.getClientId());
 		buffer.append("," + info.getFollowup()+");");
 		return buffer.toString();
@@ -171,6 +174,7 @@ public class Factor1TableManipulation {
 		buffer.append(",goal=\"" + info.getGoal() + "\"");
 		buffer.append(",recommendedInter=\"" + info.getRecommendedInter() + "\"");
 		buffer.append(",expectedOutcome=\"" + info.getExpectedOutcome() + "\"");
+		buffer.append(",socialRoleProblemType=\"" + info.getSocialRoleProblemType() + "\"");
 		buffer.append(",clientId=" + info.getClientId());
 		buffer.append(",followUp=" + info.getFollowup());
 		buffer.append(" where id =" + info.getId()+";");

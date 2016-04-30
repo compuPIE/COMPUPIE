@@ -25,7 +25,7 @@ public class ClientInfo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ClientInfo() {
+	public ClientInfo(int id) {
 		setBounds(0, 11, 982, 671);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -53,16 +53,16 @@ public class ClientInfo extends JPanel {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
-		 panel = new ClientPage(1);
+		 panel = new ClientPage(id);
 		 tabbedPane.addTab("Client Info", null, panel, null);
 		 
-		  panel6 = new CHDC(1);
+		  panel6 = new CHDC(id);
 		  tabbedPane.addTab("Case History", null, panel6, null);
 		  
-		   panel1 = new Factor1(1);
+		   panel1 = new Factor1(id);
 		   tabbedPane.addTab("Factor 1", null, panel1, null);
 		   
-		    panel2 = new FactorII(1);
+		    panel2 = new FactorII(id);
 		    tabbedPane.addTab("Factor 2", null, panel2, null);
 		    
 		     panel3 = new Factor3();
@@ -74,7 +74,7 @@ public class ClientInfo extends JPanel {
 		       
 		       
 		       
-		        panel7 = new StrengthAndResources(1);
+		        panel7 = new StrengthAndResources(id);
 		        tabbedPane.addTab("Strength and Resources", null, panel7, null);
 		        GroupLayout groupLayout = new GroupLayout(this);
 		        groupLayout.setHorizontalGroup(

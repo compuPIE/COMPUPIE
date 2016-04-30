@@ -8,8 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import daoBean.ClientBean;
+import daoBean.SearchBean;
 
 public class ClientTableManipulation {
 
@@ -23,6 +26,39 @@ public class ClientTableManipulation {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<SearchBean> searchClient(SearchBean bean) {
+		ClientTableManipulationConn();
+		List<SearchBean> list = new ArrayList<SearchBean>();
+		Statement stmt = null;
+		ResultSet rs;
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(createSearchString(bean));
+			while (rs.next()) {
+				SearchBean info = new SearchBean();
+				info.setId(rs.getInt("id"));
+				info.setCity(rs.getString("city"));
+				info.setLastName(rs.getString("lastname"));
+				info.setMiddleName(rs.getString("middlename"));
+				info.setFirstName(rs.getString("firstname"));
+				info.setClientId(rs.getString("clientId"));
+				info.setGender(rs.getString("gender"));
+				info.setStreet(rs.getString("street"));
+				info.setState(rs.getString("stateName"));
+				info.setZipCode(rs.getString("zipcode"));
+				info.setPhone(rs.getString("phone"));
+				list.add(info);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 	public ClientBean getClientInfo(String id) {
@@ -176,6 +212,68 @@ public class ClientTableManipulation {
 		buffer.append(",livingArrangement=\"" + info.getLivingArrangement() + "\"");
 		buffer.append(",assessedBy=\"" + info.getAssessedBy() + "\"");
 		buffer.append(" where id =" + info.getId() + ";");
+		return buffer.toString();
+	}
+
+	private String createSearchString(SearchBean bean) {
+		StringBuffer buffer = new StringBuffer();
+		int i = 0;
+		buffer.append("SELECT * FROM CLIENT_INFO ");
+		if (bean.getFirstName() != null && !bean.getFirstName().trim().equalsIgnoreCase("")) {
+			if (i == 0) {
+				buffer.append(" where ");
+				i++;
+			}else{
+				buffer.append(" and ");
+			}
+			buffer.append(" firstname like '%" + bean.getFirstName() + "%'");
+		}
+		if (bean.getLastName() != null && !bean.getLastName().trim().equalsIgnoreCase("")) {
+			if (i == 0) {
+				buffer.append(" where ");
+				i++;
+			}else{
+				buffer.append(" and ");
+			}
+			buffer.append(" lastname like '%" + bean.getLastName() + "%'");
+		}
+		if (bean.getMiddleName() != null && !bean.getMiddleName().trim().equalsIgnoreCase("")) {
+			if (i == 0) {
+				buffer.append(" where ");
+				i++;
+			}else{
+				buffer.append(" and ");
+			}
+			buffer.append(" middlename like '%" + bean.getMiddleName() + "%'");
+		}
+		if (bean.getPhone() != null && !bean.getPhone().trim().equalsIgnoreCase("")) {
+			if (i == 0) {
+				buffer.append(" where ");
+				i++;
+			}else{
+				buffer.append(" and ");
+			}
+			buffer.append(" phone like '%" + bean.getPhone() + "%'");
+		}
+		if (bean.getZipCode() != null && !bean.getZipCode().trim().equalsIgnoreCase("")) {
+			if (i == 0) {
+				buffer.append(" where ");
+				i++;
+			}else{
+				buffer.append(" and ");
+			}
+			buffer.append(" zipcode like '%" + bean.getZipCode() + "%'");
+		}
+		if (bean.getClientId() != null && !bean.getClientId().trim().equalsIgnoreCase("")) {
+			if (i == 0) {
+				buffer.append(" where ");
+				i++;
+			}else{
+				buffer.append(" and ");
+			}
+			buffer.append(" clientId like '%" + bean.getClientId() + "%'");
+		}
+		buffer.append(";");
 		return buffer.toString();
 	}
 

@@ -7,8 +7,11 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -36,7 +39,6 @@ import daoBean.ClientBean;
 import daoBean.Factor1Bean;
 import daoBean.Factor2Bean;
 import daoBean.StrengthAndResourcesBean;
-import net.infonode.gui.laf.InfoNodeLookAndFeel;
 
 public class Home extends JFrame {
 
@@ -44,16 +46,20 @@ public class Home extends JFrame {
 
 	private JPanel contentPane;
 
-	private JPanel pages;
+	public JPanel pages;
+
+	public FindPatient findCase;
+	public JPanel panel;
 
 	private int clientId = 1;
 
 	private int followUp = 1;
-
+	
 	JButton btnSave = new JButton("Save");
 	JButton btnGoHome = new JButton("Go Back");
+	public JLayeredPane layeredPane;
 
-	private ClientInfo pages_1;
+	public ClientInfo pages_1;
 
 	/**
 	 * Launch the application.
@@ -69,7 +75,7 @@ public class Home extends JFrame {
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
-					UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
@@ -102,12 +108,10 @@ public class Home extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		saveListener();
-		pages_1 = new ClientInfo();
-		pages_1.setBounds(0, 24, 982, 658);
 
-		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane = new JLayeredPane();
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 11, 982, 658);
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panel.setBackground(Color.PINK);
@@ -129,14 +133,27 @@ public class Home extends JFrame {
 		btnNewButton.setBounds(651, 188, 127, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				pages_1 = new ClientInfo(0);
+				pages_1.setBounds(0, 24, 982, 658);
+				layeredPane.add(pages_1);
 				panel.setVisible(false);
 				pages_1.setVisible(true);
 				btnSave.setVisible(true);
 				btnGoHome.setVisible(true);
+				repaint();
 			}
 		});
 
 		JButton btnNewButton_1 = new JButton("Find Existing Case");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findCase = new FindPatient(getThisObject());
+				layeredPane.add(findCase);
+				panel.setVisible(false);
+				findCase.setVisible(true);
+				repaint();
+			}
+		});
 		btnNewButton_1.setBounds(651, 238, 127, 23);
 
 		JButton btnNewButton_2 = new JButton("Delete Case");
@@ -168,7 +185,7 @@ public class Home extends JFrame {
 		gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING).addComponent(layeredPane,
 				GroupLayout.PREFERRED_SIZE, 692, GroupLayout.PREFERRED_SIZE));
 		layeredPane.setLayout(null);
-		layeredPane.add(pages_1);
+
 		btnGoHome.setBounds(887, 0, 89, 23);
 		layeredPane.add(btnGoHome);
 		btnSave.setBounds(781, 0, 89, 23);
@@ -209,34 +226,38 @@ public class Home extends JFrame {
 		});
 		btnGoHome.setVisible(false);
 		btnSave.setVisible(false);
-		pages_1.setVisible(false);
+
+	}
+
+	private Home getThisObject() {
+		return this;
 	}
 
 	public void changeLF() {
+		Properties prop = new Properties();
+		InputStream input = null;
+		try {
 
-		List<String> lookAndFeelsDisplay = new ArrayList<>();
-		List<String> lookAndFeelsRealNames = new ArrayList<>();
-
-		for (LookAndFeelInfo each : UIManager.getInstalledLookAndFeels()) {
-			lookAndFeelsDisplay.add(each.getName());
-			lookAndFeelsRealNames.add(each.getClassName());
+			String filename = "themes.properties";
+			input = Home.class.getClassLoader().getResourceAsStream(filename);
+			if (input == null) {
+				System.out.println("Sorry, unable to find " + filename);
+				return;
+			}
+			prop.load(input);
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
-
 		String changeLook = (String) JOptionPane.showInputDialog(this, "Choose Look and Feel Here:",
-				"Select Look and Feel", JOptionPane.QUESTION_MESSAGE, null, lookAndFeelsDisplay.toArray(), null);
+				"Select Look and Feel", JOptionPane.QUESTION_MESSAGE, null, prop.keySet().toArray(), null);
 
 		if (changeLook != null) {
-			for (int a = 0; a < lookAndFeelsDisplay.size(); a++) {
-				if (changeLook.equals(lookAndFeelsDisplay.get(a))) {
-					try {
-						UIManager.setLookAndFeel(lookAndFeelsRealNames.get(a));
-						break;
-					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-							| UnsupportedLookAndFeelException ex) {
-						System.err.println(ex);
-						ex.printStackTrace(System.err);
-					}
-				}
+			try {
+				UIManager.setLookAndFeel(prop.getProperty(changeLook));
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+					| UnsupportedLookAndFeelException ex) {
+				System.err.println(ex);
+				ex.printStackTrace(System.err);
 			}
 		}
 	}
@@ -255,15 +276,15 @@ public class Home extends JFrame {
 			}
 
 			private void saveClientInfo() {
-				if(pages_1.getPanel().isIstoUpdate() ){
-				ClientBean cb = pages_1.getPanel().getClientInformation();
-				if ( cb.getId() == 0) {
-					ClientTableManipulation manip = new ClientTableManipulation();
-					manip.saveNewClient(cb);
-				} else if (cb.getId() != 0) {
-					ClientTableManipulation manip = new ClientTableManipulation();
-					manip.updateNewClient(cb);
-				}
+				if (pages_1.getPanel().isIstoUpdate()) {
+					ClientBean cb = pages_1.getPanel().getClientInformation();
+					if (cb.getId() == 0) {
+						ClientTableManipulation manip = new ClientTableManipulation();
+						manip.saveNewClient(cb);
+					} else if (cb.getId() != 0) {
+						ClientTableManipulation manip = new ClientTableManipulation();
+						manip.updateNewClient(cb);
+					}
 				}
 			}
 
@@ -280,22 +301,22 @@ public class Home extends JFrame {
 			}
 
 			private void saveFactor1() {
-				if(pages_1.getPanel1().isHasToUpdate()) {
-				Factor1Bean bean = pages_1.getPanel1().getCurrentValues();
-				Factor1TableManipulation dao = new Factor1TableManipulation();
-				if (bean.getId() == 0) {
-					bean.setClientId(clientId);
-					bean.setFollowup(followUp);
-					dao.saveNewFactory(bean);
-					pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
-					pages_1.repaint();
-				} else if (bean.getId() != 0) {
-					bean.setClientId(clientId);
-					bean.setFollowup(followUp);
-					dao.updateNewFactory(bean);
-					pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
-					pages_1.repaint();
-				}
+				if (pages_1.getPanel1().isHasToUpdate()) {
+					Factor1Bean bean = pages_1.getPanel1().getCurrentValues();
+					Factor1TableManipulation dao = new Factor1TableManipulation();
+					if (bean.getId() == 0) {
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.saveNewFactory(bean);
+						pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
+						pages_1.repaint();
+					} else if (bean.getId() != 0) {
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.updateNewFactory(bean);
+						pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
+						pages_1.repaint();
+					}
 				}
 			}
 

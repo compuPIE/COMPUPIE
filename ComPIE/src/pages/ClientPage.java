@@ -523,7 +523,7 @@ public class ClientPage extends JPanel {
 			textArea.setText("");
 			textField_11.setText("");
 			textField_4.setText("");
-			spinner.setValue("");
+			spinner.setValue(0);
 		}
 		
 	}

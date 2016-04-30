@@ -14,6 +14,7 @@ public class Factor1Bean {
 	private String expectedOutcome;
 	private int clientId;
 	private int followup;
+	private String socialRoleProblemType;
 	
 	/**
 	 * @return the followup
@@ -158,6 +159,18 @@ public class Factor1Bean {
 	 */
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
+	}
+	/**
+	 * @return the socialRoleProblemType
+	 */
+	public String getSocialRoleProblemType() {
+		return socialRoleProblemType;
+	}
+	/**
+	 * @param socialRoleProblemType the socialRoleProblemType to set
+	 */
+	public void setSocialRoleProblemType(String socialRoleProblemType) {
+		this.socialRoleProblemType = socialRoleProblemType;
 	}
 	
 
