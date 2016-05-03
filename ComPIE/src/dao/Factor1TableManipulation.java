@@ -57,6 +57,40 @@ public class Factor1TableManipulation {
 		return list;
 	}
 	
+	public List<Factor1Bean> getFactorInfoForFollowup(int clientID,int followup) {
+		Factor1TableManipulationcreate();
+		List<Factor1Bean> list = new ArrayList<Factor1Bean>();
+		Statement stmt = null;
+		ResultSet rs;
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM FACTOR1 where clientId =" + clientID + " and followUp = "+ followup +";");
+			while (rs.next()) {
+				Factor1Bean info = new Factor1Bean();
+				info.setId(rs.getInt("id"));
+				info.setSocialRoleDescription(rs.getString("socialRoleDescription"));
+				info.setProblemType(rs.getString("problemType"));
+				info.setServerity(rs.getString("serverity"));
+				info.setDuration(rs.getString("duration"));
+				info.setCopingAbitity(rs.getString("copingAbitity"));
+				info.setPriority(rs.getString("priority"));
+				info.setGoal(rs.getString("goal"));
+				info.setRecommendedInter(rs.getString("recommendedInter"));
+				info.setExpectedOutcome(rs.getString("expectedOutcome"));
+				info.setClientId(rs.getInt("clientId"));
+				info.setFollowup(rs.getInt("followUp"));
+				info.setSocialRoleProblemType(rs.getString("socialRoleProblemType"));
+				list.add(info);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public List<Factor1Bean> getFactorInfo(int id,int clientId) {
 		List<Factor1Bean> list = new ArrayList<Factor1Bean>();
 		Factor1TableManipulationcreate();

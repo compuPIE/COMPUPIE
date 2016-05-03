@@ -1,19 +1,22 @@
 package pages;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import java.util.List;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import dao.CaseHistoryTableManipulation;
 import dao.LoadTraumaHIstory;
@@ -21,9 +24,6 @@ import daoBean.CaseHistoryBean;
 import daoBean.TraumaBean;
 import uiUtil.CheckboxListItem;
 import uiUtil.CheckboxListRenderer;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CHDC extends JPanel {
 
@@ -35,13 +35,13 @@ public class CHDC extends JPanel {
 	private JList listx;
 	private JLabel lblAdulthood;
 	private JLabel lblChildhood;
-	private JTextArea textArea_2;
+	private TextArea textArea_2;
 	private JLabel lblReasonForReferral;
 	private JLabel lblTraumaHistory;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel;
-	private JTextArea textArea_3;
-	private JTextArea textArea;
+	private TextArea textArea_3;
+	private TextArea textArea;
 	private JLabel lblFactorIiEnvironmental;
 	private boolean hasToUpdate;
 
@@ -56,65 +56,42 @@ public class CHDC extends JPanel {
 		lblFactorIiEnvironmental = new JLabel("Case History");
 		lblFactorIiEnvironmental.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		textArea = new JTextArea();
-		textArea.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    warn();
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    warn();
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    warn();
-			  }
+		textArea = new TextArea();
+		textArea.setForeground(Color.BLACK); 
+		textArea.addTextListener(new TextListener() {
+			public void textValueChanged(TextEvent arg0) {
+				setHasToUpdate(true);
+			}
+		});
+		
 
-			  public void warn() {
-				  setHasToUpdate(true);
-			  }
-			});
+		textArea_3 = new TextArea("",20,250,TextArea.SCROLLBARS_VERTICAL_ONLY);
+		textArea_3.setColumns(10);
+		textArea_3.setForeground(Color.BLACK); 
 
-		textArea_3 = new JTextArea();
-		textArea_3.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    warn();
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    warn();
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    warn();
-			  }
+		textArea_3.addTextListener(new TextListener() {
+			public void textValueChanged(TextEvent arg0) {
+				setHasToUpdate(true);
+			}
+		});
 
-			  public void warn() {
-				  setHasToUpdate(true);
-			  }
-			});
-
-		lblNewLabel = new JLabel("Relevant History");
+		lblNewLabel = new JLabel("Reason for Referral");
 
 		lblNewLabel_1 = new JLabel("Current Situation");
 
 		lblTraumaHistory = new JLabel("Trauma History");
 		lblTraumaHistory.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-		lblReasonForReferral = new JLabel("Reason for Referral");
+		lblReasonForReferral = new JLabel("Relevant History");
 
-		textArea_2 = new JTextArea();
-		textArea_2.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    warn();
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    warn();
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    warn();
-			  }
+		textArea_2 = new TextArea();
+		textArea_2.setForeground(Color.BLACK); 
 
-			  public void warn() {
-				  setHasToUpdate(true);
-			  }
-			});
+		textArea_2.addTextListener(new TextListener() {
+			public void textValueChanged(TextEvent arg0) {
+				setHasToUpdate(true);
+			}
+		});
 
 		lblChildhood = new JLabel("Childhood");
 
@@ -127,7 +104,7 @@ public class CHDC extends JPanel {
 		scrollPane_1 = new JScrollPane(listy);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(66)
 					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
@@ -147,24 +124,22 @@ public class CHDC extends JPanel {
 					.addComponent(lblReasonForReferral, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 					.addGap(706))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(80)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-						.addComponent(lblChildhood))
-					.addGap(37)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-							.addGap(88))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblAdulthood, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(66)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addComponent(lblTraumaHistory, GroupLayout.PREFERRED_SIZE, 856, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(4)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblChildhood)
+										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblAdulthood, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+										.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE))
+									.addGap(82))
+								.addComponent(lblTraumaHistory, GroupLayout.PREFERRED_SIZE, 856, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(textArea_3, GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
@@ -183,24 +158,24 @@ public class CHDC extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblFactorIiEnvironmental, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-						.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
-					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(textArea_2, 0, 0, Short.MAX_VALUE)
+						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 124, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblReasonForReferral)
 					.addGap(1)
-					.addComponent(textArea_3, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textArea_3, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblTraumaHistory)
-					.addGap(8)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblChildhood)
 						.addComponent(lblAdulthood))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
-					.addContainerGap())
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+					.addGap(18))
 		);
 		setLayout(groupLayout);
 
@@ -211,15 +186,23 @@ public class CHDC extends JPanel {
 		List<CaseHistoryBean> list = dao.getCaseHistory(this.clientId);
 		if(!list.isEmpty()){
 		textArea_2.setText(list.get(0).getCurrentSituation());
-		textArea_3.setText(list.get(0).getReasonForRefer());
-		textArea.setText(list.get(0).getRelevantHistory());
+		textArea_3.setText(list.get(0).getRelevantHistory());
+		textArea.setText(list.get(0).getReasonForRefer());
 		String[] splits = list.get(0).getTraumaHistory().split(",");
 		for(String split : splits){
 			String[] s = split.split("-");
-			if(s[0].equalsIgnoreCase("1")){
-				((CheckboxListItem)listx.getModel().getElementAt(Integer.parseInt(s[1]))).setSelected(true);;
-			}else if(s[0].equalsIgnoreCase("2")){
-				((CheckboxListItem)listy.getModel().getElementAt(Integer.parseInt(s[1]))).setSelected(true);;
+			if(s[0].equalsIgnoreCase("childhood")){
+				for (int i = 0; i < listx.getModel().getSize(); i++) {
+					if (((CheckboxListItem) listx.getModel().getElementAt(i)).toString().equalsIgnoreCase(s[1])) {
+						((CheckboxListItem) listx.getModel().getElementAt(i)).setSelected(true);
+					}
+				}
+			}else if(s[0].equalsIgnoreCase("adulthood")){
+				for (int i = 0; i < listy.getModel().getSize(); i++) {
+					if (((CheckboxListItem) listy.getModel().getElementAt(i)).toString().equalsIgnoreCase(s[1])) {
+						((CheckboxListItem) listy.getModel().getElementAt(i)).setSelected(true);
+					}
+				}
 			}
 		}
 		setCaseHistoryId(list.get(0).getId());
@@ -325,8 +308,8 @@ public class CHDC extends JPanel {
 	public CaseHistoryBean getCurrentValues(){
 		CaseHistoryBean bean = new CaseHistoryBean();
 		bean.setCurrentSituation(textArea_2.getText());
-		bean.setReasonForRefer(textArea_3.getText());
-		bean.setRelevantHistory(textArea.getText());
+		bean.setReasonForRefer(textArea.getText());
+		bean.setRelevantHistory(textArea_3.getText());
 		bean.setTraumaHistory(generateTraumaHistoryString());
 		bean.setClientId(this.clientId);
 		bean.setId(this.caseHistoryId);
@@ -338,13 +321,13 @@ public class CHDC extends JPanel {
 		int size = listx.getModel().getSize();
 		for(int i=0; i<size;i++){
 			if(((CheckboxListItem)listx.getModel().getElementAt(i)).isSelected()){
-				buffer.append("1-"+i+",");
+				buffer.append("childhood-"+listx.getModel().getElementAt(i).toString()+",");
 			}
 		}
 		size = listx.getModel().getSize();
 		for(int i=0; i<size;i++){
-			if(((CheckboxListItem)listx.getModel().getElementAt(i)).isSelected()){
-				buffer.append("2-"+i+",");
+			if(((CheckboxListItem)listy.getModel().getElementAt(i)).isSelected()){
+				buffer.append("adulthood-"+listy.getModel().getElementAt(i).toString()+",");
 			}
 		}
 		return buffer.toString();

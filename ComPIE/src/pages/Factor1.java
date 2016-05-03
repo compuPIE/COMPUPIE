@@ -3,6 +3,7 @@ package pages;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -21,7 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -44,8 +44,6 @@ import daoBean.SocialRoleProblems;
 
 public class Factor1 extends JPanel {
 
-	private JButton btnDeleteProblem;
-
 	private JButton btnAddNewProblem;
 
 	private JTable table;
@@ -60,11 +58,11 @@ public class Factor1 extends JPanel {
 
 	private JComboBox comboBox_4;
 
-	private JTextArea textArea;
+	private TextArea textArea;
 
-	private JTextArea textArea_1;
+	private TextArea textArea_1;
 
-	private JTextArea textArea_2;
+	private TextArea textArea_2;
 
 	private JComboBox comboBox_6;
 
@@ -179,11 +177,11 @@ public class Factor1 extends JPanel {
 			comboBox_5.addItem(sev.getProblemType());
 		}
 
-		textArea = new JTextArea();
+		textArea = new TextArea();
 
-		textArea_1 = new JTextArea();
+		textArea_1 = new TextArea();
 
-		textArea_2 = new JTextArea();
+		textArea_2 = new TextArea();
 
 		label_6 = new JLabel("Goal");
 
@@ -209,8 +207,6 @@ public class Factor1 extends JPanel {
 				resetValues();
 			}
 		});
-
-		btnDeleteProblem = new JButton("Delete Problem");
 
 		DefaultTableModel model = tablePopulate(clientID);
 		table = new JTable(model);
@@ -239,27 +235,23 @@ public class Factor1 extends JPanel {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(586)
-					.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-					.addGap(10)
-					.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-					.addGap(10)
-					.addComponent(btnDeleteProblem, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-					.addGap(27))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
-					.addGap(27))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGap(272)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
+					.addGap(241))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(24)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE))))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(248)
-							.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 219, Short.MAX_VALUE)
-							.addGap(241))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
-							.addGap(27))))
+							.addGap(680)
+							.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+							.addGap(34)
+							.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
+					.addGap(27))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -267,38 +259,56 @@ public class Factor1 extends JPanel {
 					.addGap(24)
 					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnAddNewProblem)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnEditProblem)
-						.addComponent(btnDeleteProblem))
-					.addGap(11)
-					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-					.addGap(11))
+						.addComponent(btnAddNewProblem))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
+					.addGap(125))
 		);
 		
 		
 		JLabel lblSeverity = new JLabel("Severity");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
 		gl_desktopPane.setHorizontalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+			gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
 					.addGap(23)
-					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
 					.addGap(176)
-					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
 					.addGap(145))
 				.addGroup(gl_desktopPane.createSequentialGroup()
 					.addGap(23)
-					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(61)
-					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(30))
-				.addGroup(Alignment.TRAILING, gl_desktopPane.createSequentialGroup()
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(23)
+							.addComponent(label, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+							.addGap(26)
+							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(24)
+							.addComponent(comboBox, 0, 285, Short.MAX_VALUE)
+							.addGap(27)
+							.addComponent(comboBox_1, 0, 276, Short.MAX_VALUE)))
+					.addGap(24)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addComponent(lblProblem, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+							.addGap(100))
+						.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_desktopPane.createSequentialGroup()
 					.addGap(23)
 					.addGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
+						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_desktopPane.createSequentialGroup()
 							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblSeverity))
@@ -313,30 +323,11 @@ public class Factor1 extends JPanel {
 							.addGap(37)
 							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_6, 0, 160, Short.MAX_VALUE)))
-						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
+								.addComponent(comboBox_6, 0, 256, Short.MAX_VALUE)))
 						.addGroup(Alignment.LEADING, gl_desktopPane.createSequentialGroup()
-							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
 							.addGap(732)))
 					.addGap(30))
-				.addGroup(Alignment.TRAILING, gl_desktopPane.createSequentialGroup()
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(23)
-							.addComponent(label, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-							.addGap(26)
-							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(24)
-							.addComponent(comboBox, 0, 261, Short.MAX_VALUE)
-							.addGap(27)
-							.addComponent(comboBox_1, 0, 252, Short.MAX_VALUE)))
-					.addGap(24)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addComponent(lblProblem, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-							.addGap(100))
-						.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)))
 		);
 		gl_desktopPane.setVerticalGroup(
 			gl_desktopPane.createParallelGroup(Alignment.LEADING)
@@ -366,20 +357,18 @@ public class Factor1 extends JPanel {
 							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(11)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(13)
-							.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
-						.addComponent(label_6))
-					.addGap(11)
+					.addComponent(label_6)
+					.addGroup(gl_desktopPane.createSequentialGroup()
+						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED))
 					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(label_7)
 						.addComponent(label_8))
 					.addGap(1)
 					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-						.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
-					.addGap(18))
+						.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
+					.addGap(106))
 		);
 		desktopPane.setLayout(gl_desktopPane);
 		setLayout(groupLayout);
