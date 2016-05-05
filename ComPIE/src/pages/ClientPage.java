@@ -30,6 +30,7 @@ import daoBean.EthinicityBean;
 import daoBean.GenderBean;
 import daoBean.LivingArrangementBean;
 import daoBean.MaritaStatusBean;
+import uiUtil.MyComboModel;
 
 public class ClientPage extends JPanel {
 	
@@ -108,7 +109,7 @@ public class ClientPage extends JPanel {
 		JLabel lblOccupation = new JLabel("Occupation");
 
 		LoadGender gender = new LoadGender();
-		comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>(new MyComboModel());
 		comboBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -116,6 +117,7 @@ public class ClientPage extends JPanel {
 			}
 		});
 		comboBox.addItem("Select");
+		//comboBox.addItem("--haushd");
 		for (GenderBean item : gender.getAllGenders()) {
 			comboBox.addItem(item.getItems());
 		}
