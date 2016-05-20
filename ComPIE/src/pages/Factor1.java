@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import dao.Factor1TableManipulation;
+import dao.FollowUpTableManipulation;
 import dao.Load_Coping_Ability;
 import dao.Load_Duration;
 import dao.Load_Priority;
@@ -72,15 +73,15 @@ public class Factor1 extends JPanel {
 
 	private JDesktopPane desktopPane;
 
-	private Component label_4;
+	private Component lblCopingAbility;
 
-	private javax.swing.JLabel label_3;
+	private javax.swing.JLabel lblDuration;
 
 	private javax.swing.JLabel lblProblem;
 
-	private Component label_1;
+	private Component lblProblemType;
 
-	private javax.swing.JLabel label;
+	private javax.swing.JLabel lblSocialRoleDescription;
 
 	private javax.swing.JLabel lblFactorISocial;
 
@@ -90,24 +91,28 @@ public class Factor1 extends JPanel {
 
 	private Component label_8;
 
-	private Component label_9;
-	
+	private Component lblPriority;
+
 	private boolean hasToUpdate;
-	
+
 	private int currentId;
-	
+
 	private JComboBox comboBox_5;
+
+	public int clint;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Factor1(int clientID) {
+		clint = clientID;
 		setBounds(0, 11, 963, 609);
 
 		lblFactorISocial = new JLabel("Factor I: Social Role and Relationship Functioning", SwingConstants.CENTER);
@@ -116,20 +121,22 @@ public class Factor1 extends JPanel {
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
-		label = new JLabel("Social Role Description");
+		lblSocialRoleDescription = new JLabel("Social Role Description(*)");
 
-		label_1 = new JLabel("Problem Type");
+		lblProblemType = new JLabel("Problem Type(*)");
 
-		lblProblem = new JLabel("Problem");
+		lblProblem = new JLabel("Problem(*)");
 
 		Load_SocialRoles roles = new Load_SocialRoles();
 		List<SocialRoleCategory> categ = roles.getAllProblemsByCategory();
 
 		comboBox = new JComboBox();
 		comboBox_1 = new JComboBox();
+		comboBox_1.addItem("Select");
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBox_1.removeAllItems();
+				comboBox_1.addItem("Select");
 				for (SocialRoleCategory category : categ) {
 					if (category.getCategory().equalsIgnoreCase(comboBox.getSelectedItem().toString())) {
 						for (SocialRoleProblems problem : category.getItems()) {
@@ -152,9 +159,9 @@ public class Factor1 extends JPanel {
 			comboBox_2.addItem(sev.getCategory());
 		}
 
-		label_3 = new JLabel("Duration");
+		lblDuration = new JLabel("Duration(*)");
 
-		label_4 = new JLabel("Coping Ability");
+		lblCopingAbility = new JLabel("Coping Ability(*)");
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
@@ -169,7 +176,7 @@ public class Factor1 extends JPanel {
 		for (Coping_Ability sev : coping.getAllCoping_Ability()) {
 			comboBox_4.addItem(sev.getCategory());
 		}
-		
+
 		Load_SocialRoleProblemType type = new Load_SocialRoleProblemType();
 		comboBox_5 = new JComboBox();
 		comboBox_5.addItem("Select");
@@ -190,7 +197,7 @@ public class Factor1 extends JPanel {
 		label_8 = new JLabel("Expected Outcome");
 		desktopPane.setVisible(false);
 
-		label_9 = new JLabel("Priority");
+		lblPriority = new JLabel("Priority(*)");
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
@@ -200,11 +207,13 @@ public class Factor1 extends JPanel {
 		}
 
 		btnAddNewProblem = new JButton("Add new Problem");
-		btnAddNewProblem.addActionListener(new java.awt.event.ActionListener() { 
-			
+		btnAddNewProblem.addActionListener(new java.awt.event.ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				setHasToUpdate(true);
 				resetValues();
+				desktopPane.setVisible(true);
+				enableDisableValues(true);
 			}
 		});
 
@@ -231,153 +240,157 @@ public class Factor1 extends JPanel {
 				setHasToUpdate(true);
 			}
 		});
+
+		JButton btnNewButton = new JButton("Remove Problem");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setHasToUpdate(false);
+				desktopPane.setVisible(false);
+			}
+		});
+
+		lblNewLabel = new JLabel("Fields marked (*) are mandatory");
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(272)
-					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
-					.addGap(241))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addGap(24)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(680)
-							.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-							.addGap(34)
-							.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
-					.addGap(27))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEditProblem)
-						.addComponent(btnAddNewProblem))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
-					.addGap(125))
-		);
-		
-		
-		JLabel lblSeverity = new JLabel("Severity");
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(272)
+						.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE).addGap(241))
+				.addGroup(groupLayout.createSequentialGroup().addGap(24).addGroup(groupLayout
+						.createParallelGroup(
+								Alignment.LEADING)
+						.addGroup(
+								groupLayout.createSequentialGroup()
+										.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 332,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(282)
+										.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+										.addGap(18)
+										.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+										.addGap(27)
+										.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+										.addGap(10))
+						.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)).addGap(27)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addGap(24)
+				.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAddNewProblem)
+								.addComponent(btnEditProblem).addComponent(btnNewButton))
+						.addComponent(lblNewLabel))
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE).addGap(125)));
+
+		JLabel lblSeverity = new JLabel("Severity(*)");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
-		gl_desktopPane.setHorizontalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.TRAILING)
+		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(23)
-					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-					.addGap(176)
-					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-					.addGap(145))
+						.addGap(23).addComponent(label_7, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE).addGap(176)
+						.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE).addGap(145))
+				.addGroup(
+						gl_desktopPane.createSequentialGroup().addGap(23)
+								.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addGap(61)
+								.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addGap(30))
 				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(23)
-					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(61)
-					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(30))
-				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(23)
-							.addComponent(label, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-							.addGap(26)
-							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(24)
-							.addComponent(comboBox, 0, 285, Short.MAX_VALUE)
-							.addGap(27)
-							.addComponent(comboBox_1, 0, 276, Short.MAX_VALUE)))
-					.addGap(24)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addComponent(lblProblem, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-							.addGap(100))
-						.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(23)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
+										.addComponent(lblSocialRoleDescription, GroupLayout.DEFAULT_SIZE, 285,
+												Short.MAX_VALUE)
+										.addGap(26)
+										.addComponent(lblProblemType, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
+										.addComponent(comboBox, 0, 285, Short.MAX_VALUE).addGap(27)
+										.addComponent(comboBox_1, 0, 276, Short.MAX_VALUE)))
+						.addGap(24).addGroup(
+								gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_desktopPane.createSequentialGroup()
+												.addComponent(lblProblem, GroupLayout.DEFAULT_SIZE, 274,
+														Short.MAX_VALUE)
+												.addGap(100))
+										.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 296,
+												GroupLayout.PREFERRED_SIZE)))
+				.addGroup(gl_desktopPane.createSequentialGroup().addGap(23).addGroup(gl_desktopPane
+						.createParallelGroup(Alignment.TRAILING)
+						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
 						.addGroup(Alignment.LEADING, gl_desktopPane.createSequentialGroup()
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblSeverity))
-							.addGap(50)
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-							.addGap(53)
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
-							.addGap(37)
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_6, 0, 256, Short.MAX_VALUE)))
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblSeverity))
+								.addGap(50)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144,
+												GroupLayout.PREFERRED_SIZE))
+								.addGap(53)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121,
+												GroupLayout.PREFERRED_SIZE))
+								.addGap(37)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(comboBox_6, 0, 256, Short.MAX_VALUE)))
 						.addGroup(Alignment.LEADING, gl_desktopPane.createSequentialGroup()
-							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-							.addGap(732)))
-					.addGap(30))
-		);
-		gl_desktopPane.setVerticalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE).addGap(732)))
+						.addGap(30)));
+		gl_desktopPane.setVerticalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addGroup(gl_desktopPane
+				.createSequentialGroup().addGap(11)
+				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(lblSocialRoleDescription)
+						.addComponent(lblProblemType).addComponent(lblProblem))
+				.addGap(1)
+				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)))
+				.addGap(21)
+				.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(lblCopingAbility)
+						.addComponent(lblPriority).addComponent(lblDuration).addComponent(lblSeverity))
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)))
+				.addGap(11).addComponent(label_6)
 				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(label)
-						.addComponent(label_1)
-						.addComponent(lblProblem))
-					.addGap(1)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(21)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_4)
-						.addComponent(label_9)
-						.addComponent(label_3)
-						.addComponent(lblSeverity))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(11)
-					.addComponent(label_6)
-					.addGroup(gl_desktopPane.createSequentialGroup()
 						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED))
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_7)
+				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(label_7)
 						.addComponent(label_8))
-					.addGap(1)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGap(1)
+				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-					.addGap(106))
-		);
+				.addGap(106)));
 		desktopPane.setLayout(gl_desktopPane);
 		setLayout(groupLayout);
+		table.removeColumn(table.getColumnModel().getColumn(0));
 	}
-	
-	private void resetValues(){
+
+	private void resetValues() {
 		enableDisableValues(true);
 		comboBox.setSelectedItem("Select");
-		comboBox_1.setSelectedItem("");
+		comboBox_1.setSelectedItem("Select");
 		comboBox_2.setSelectedItem("Select");
 		comboBox_3.setSelectedItem("Select");
 		comboBox_4.setSelectedItem("Select");
@@ -405,9 +418,9 @@ public class Factor1 extends JPanel {
 		desktopPane.setVisible(true);
 		enableDisableValues(false);
 		Factor1TableManipulation fac1Dao = new Factor1TableManipulation();
-		List<Factor1Bean> list = fac1Dao
-				.getFactorInfo(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()), clientID);
-		setCurrentId(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
+		List<Factor1Bean> list = fac1Dao.getFactorInfo(
+				Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()), clientID);
+		setCurrentId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
 		comboBox.setSelectedItem(list.get(0).getSocialRoleDescription());
 		comboBox_1.setSelectedItem(list.get(0).getProblemType());
 		comboBox_2.setSelectedItem(list.get(0).getServerity());
@@ -419,8 +432,8 @@ public class Factor1 extends JPanel {
 		textArea_1.setText(list.get(0).getRecommendedInter());
 		textArea_2.setText(list.get(0).getExpectedOutcome());
 	}
-	
-	private void enableDisableValues(boolean value){
+
+	private void enableDisableValues(boolean value) {
 		comboBox.setEnabled(value);
 		comboBox_1.setEnabled(value);
 		comboBox_2.setEnabled(value);
@@ -439,10 +452,11 @@ public class Factor1 extends JPanel {
 	 */
 	public DefaultTableModel tablePopulate(int clientID) {
 		enableDisableValues(false);
-		setCurrentId(0);
-		String[] columns = new String[] { "Id", "Assessed Date", "Social Role Category", "Problem Type","Problem", "Severity",
-				"Duration", "Coping Ability", "Priority" };
 
+		setCurrentId(0);
+		String[] columns = new String[] { "Id", "Assessed Date", "Social Role Category", "Problem Type", "Problem",
+				"Severity", "Duration", "Coping Ability", "Priority" };
+		FollowUpTableManipulation follow = new FollowUpTableManipulation();
 		Factor1TableManipulation fac1Dao = new Factor1TableManipulation();
 		List<Factor1Bean> list = fac1Dao.getFactorInfo(clientID);
 
@@ -451,7 +465,7 @@ public class Factor1 extends JPanel {
 		int i = 0;
 		for (Factor1Bean bean : list) {
 			data[i][0] = bean.getId();
-			data[i][1] = bean.getId();
+			data[i][1] = follow.getFollowUpInfo(clientID, bean.getFollowup()).get(0).getDate();
 			data[i][2] = bean.getSocialRoleDescription();
 			data[i][3] = bean.getProblemType();
 			data[i][4] = bean.getSocialRoleProblemType();
@@ -471,8 +485,8 @@ public class Factor1 extends JPanel {
 			data[i][6] = "";
 		}
 
-		final Class[] columnClass = new Class[] { Integer.class, Date.class, String.class,String.class, String.class, String.class,
-				String.class, String.class, String.class };
+		final Class[] columnClass = new Class[] { Integer.class, String.class, String.class, String.class, String.class,
+				String.class, String.class, String.class, String.class };
 
 		// create table model with data
 		DefaultTableModel model = new DefaultTableModel(data, columns) {
@@ -498,14 +512,20 @@ public class Factor1 extends JPanel {
 	}
 
 	/**
-	 * @param table the table to set
+	 * @param table
+	 *            the table to set
 	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
 
 	public Factor1Bean getCurrentValues() {
+		Factor1TableManipulation fac1Dao = new Factor1TableManipulation();
+		List<Factor1Bean> list = fac1Dao.getFactorInfo(currentId, clint);
 		Factor1Bean bean = new Factor1Bean();
+		if (!list.isEmpty()) {
+			bean.setFollowup(list.get(0).getFollowup());
+		}
 		bean.setSocialRoleDescription(comboBox.getSelectedItem().toString());
 		bean.setProblemType(comboBox_1.getSelectedItem().toString());
 		bean.setServerity(comboBox_2.getSelectedItem().toString());
@@ -528,7 +548,8 @@ public class Factor1 extends JPanel {
 	}
 
 	/**
-	 * @param hasToUpdate the hasToUpdate to set
+	 * @param hasToUpdate
+	 *            the hasToUpdate to set
 	 */
 	public void setHasToUpdate(boolean hasToUpdate) {
 		this.hasToUpdate = hasToUpdate;
@@ -542,7 +563,8 @@ public class Factor1 extends JPanel {
 	}
 
 	/**
-	 * @param currentId the currentId to set
+	 * @param currentId
+	 *            the currentId to set
 	 */
 	public void setCurrentId(int currentId) {
 		this.currentId = currentId;

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileOutputStream;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -14,36 +16,23 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import dao.ClientTableManipulation;
+import dao.FollowUpTableManipulation;
 import daoBean.ClientBean;
 import report.helper.CHDCReport;
 import report.helper.ClientInfoReport;
 import report.helper.FactorShortReport;
 import report.helper.ReportFooter;
+import report.helper.ShortFormProblemHelper;
 import report.helper.StrengthResourcesReport;
+import uiUtil.FolderSelector;
 
 public class ShortReport {
 	static Document document = new Document();
-
-	public void addClientInformation(ClientBean bean) throws DocumentException {
-		PdfPTable table = new PdfPTable(3); // 3 columns.
-
-		PdfPCell cell1 = new PdfPCell(new Paragraph("Cell 1"));
-		PdfPCell cell2 = new PdfPCell(new Paragraph("Cell 2"));
-		PdfPCell cell3 = new PdfPCell(new Paragraph("Cell 3"));
-		table.setKeepTogether(true);
-		table.addCell(cell1);
-		table.addCell(cell2);
-		table.addCell(cell3);
-
-		document.add(table);
-
-	}
 
 	public void addHeading() throws DocumentException {
 		Font font1 = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
@@ -61,13 +50,18 @@ public class ShortReport {
 		document.add(heading);
 	}
 
-	public void createShortAssessment() {
+	public boolean createShortAssessment(int clientID, List<Integer> followUpIds) {
 		ReportFooter event = new ReportFooter();
 		ClientInfoReport cReport;
-		StrengthResourcesReport rep ;
-		CHDCReport chdc ;
+		StrengthResourcesReport rep;
+		CHDCReport chdc;
 		try {
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("short-form.pdf"));
+			FolderSelector selector = new FolderSelector();
+			String path = selector.getSelectedFolder();
+			ClientTableManipulation cli = new ClientTableManipulation();
+			ClientBean bean = cli.getClientInfo("" + clientID);
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(path + "/" + bean.getLastname()
+					+ "," + bean.getFirstname() + "_ShortReport.pdf"));
 			cReport = new ClientInfoReport(writer);
 			rep = new StrengthResourcesReport(writer);
 			chdc = new CHDCReport(writer);
@@ -80,24 +74,38 @@ public class ShortReport {
 			document.newPage();
 			addHeading();
 			addAssessmentHeading();
-			cReport.generateShortClientInfo(1, document);
-			chdc.generateClientCaseHistory(1, document);
+			cReport.generateShortClientInfo(clientID, document);
+			chdc.generateClientCaseHistory(clientID, document);
 			int availableSpace = (int) (writer.getVerticalPosition(false) - document.bottomMargin() - 2);
-			if(availableSpace <100)
+			if (availableSpace < 100)
 				document.newPage();
 			FactorShortReport fReport = new FactorShortReport(writer);
-			fReport.setFactorInfo(1, 1, document);
-			fReport.createShortForFactor1(document);
-			rep.generateStrengthAndResources(1, document);
+			FollowUpTableManipulation foll = new FollowUpTableManipulation();
+			for (int i : followUpIds) {
+				Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);
+				Paragraph heading = new Paragraph(new Phrase(" Assessed " + " on :"
+						+ foll.getFollowUpInfo(clientID, i).get(0).getDate() , fontx));
+				heading.setAlignment(0);
+				document.add(heading);
+				fReport.setFactorInfo(clientID, i, document);
+				fReport.createShortForFactor1(document);
+				fReport.createShortForFactor2(document);
+				fReport.createShortForFactor3(document);
+				fReport.createShortForFactor4(document);
+			}
+
+			rep.generateStrengthAndResources(clientID, document);
 			document.close();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
 	public static void main(String[] args) {
 		ShortReport report = new ShortReport();
-		report.createShortAssessment();
+		// report.createShortAssessment();
 		NativeInterface.open();
 
 		NativeInterface.open(); // not sure what else may be needed for this
@@ -147,7 +155,6 @@ public class ShortReport {
 					}
 
 				});
-			
 
 			}
 		});

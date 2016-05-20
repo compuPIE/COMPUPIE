@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import javax.swing.GroupLayout;
@@ -24,7 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
@@ -33,12 +30,19 @@ import dao.CaseHistoryTableManipulation;
 import dao.ClientTableManipulation;
 import dao.Factor1TableManipulation;
 import dao.Factor2TableManipulation;
+import dao.Factor3TableManipulation;
+import dao.Factor4TableManipulation;
+import dao.FollowUpTableManipulation;
 import dao.StrengthResourceManipulation;
 import daoBean.CaseHistoryBean;
 import daoBean.ClientBean;
 import daoBean.Factor1Bean;
 import daoBean.Factor2Bean;
+import daoBean.Factor3Bean;
+import daoBean.Factor4Bean;
+import daoBean.FollowUpBean;
 import daoBean.StrengthAndResourcesBean;
+import pages.helper.Validator;
 
 public class Home extends JFrame {
 
@@ -47,19 +51,28 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 
 	public JPanel pages;
+	
+	public LogIn login;
 
 	public FindPatient findCase;
 	public JPanel panel;
 
-	private int clientId = 1;
+	public int clientId = 0;
 
-	private int followUp = 1;
-	
+	public int followUp = 1;
+
+	public int stage = 0;
+
 	JButton btnSave = new JButton("Save");
 	JButton btnGoHome = new JButton("Go Back");
 	public JLayeredPane layeredPane;
 
 	public ClientInfo pages_1;
+
+	boolean createFollowUp = false;
+
+	String username;
+	JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -75,10 +88,10 @@ public class Home extends JFrame {
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
-				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+					// UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-					// UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+					UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
 					// UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
@@ -86,6 +99,7 @@ public class Home extends JFrame {
 					// UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 					// UIManager.setLookAndFeel(new InfoNodeLookAndFeel());
 					Home frame = new Home();
+					frame.setTitle("CompuPIE");
 					// frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					// frame.setSize(screenSize);
 					frame.setVisible(true); // FIRST visible = true
@@ -111,7 +125,10 @@ public class Home extends JFrame {
 
 		layeredPane = new JLayeredPane();
 
+		login = new LogIn(getThisObject());
+		login.setVisible(true);
 		panel = new JPanel();
+		panel.setVisible(false);
 		panel.setBounds(0, 11, 982, 658);
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panel.setBackground(Color.PINK);
@@ -126,13 +143,18 @@ public class Home extends JFrame {
 		JTextPane txtpnCompupieInConjunction = new JTextPane();
 		txtpnCompupieInConjunction.setBounds(76, 364, 392, 151);
 		txtpnCompupieInConjunction.setEditable(false);
-		txtpnCompupieInConjunction.setText(
-				"CompuPIE, in conjunction with the PIE Manual,produces succinct description of client's social functioning problems and strengths. Assessments can be made at the initial contact and at follow-up contacts. Data entered may be modified as needed. CompPIE generates printed statements of findings and recommendations for interventions.");
+		txtpnCompupieInConjunction
+				.setText("CompuPIE, in conjunction with the PIE Manual,produces succinct description of"
+						+ " client's social functioning problems and strengths. Assessments can be made at the"
+						+ " initial contact and at follow-up contacts. Data entered may be modified as needed."
+						+ " CompPIE generates printed statements of findings and recommendations for interventions.");
 
 		JButton btnNewButton = new JButton("Open New Case");
 		btnNewButton.setBounds(651, 188, 127, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				stage = 0;
+				createFollowUp = true;
 				pages_1 = new ClientInfo(0);
 				pages_1.setBounds(0, 24, 982, 658);
 				layeredPane.add(pages_1);
@@ -191,6 +213,7 @@ public class Home extends JFrame {
 		btnSave.setBounds(781, 0, 89, 23);
 		layeredPane.add(btnSave);
 		layeredPane.add(panel);
+		layeredPane.add(login);
 		panel.setLayout(null);
 		panel.add(lblCompupie);
 		panel.add(lblPesonInEnvironment);
@@ -215,6 +238,11 @@ public class Home extends JFrame {
 		});
 		btnNewButton_5.setBounds(651, 447, 127, 23);
 		panel.add(btnNewButton_5);
+		
+		lblNewLabel = new JLabel("Welcome "+username);
+		lblNewLabel.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 13));
+		lblNewLabel.setBounds(716, 50, 184, 14);
+		panel.add(lblNewLabel);
 		contentPane.setLayout(gl_contentPane);
 		btnGoHome.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -268,11 +296,51 @@ public class Home extends JFrame {
 	private void saveListener() {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				saveClientInfo();
-				saveCaseHistory();
-				saveFactor1();
-				saveFactor2();
-				saveStrengthAndResources();
+
+				Validator valid = new Validator(getThisObject());
+				if (valid.getMsgs().isEmpty()) {
+					saveFollowUp();
+					saveClientInfo();
+					saveCaseHistory();
+					saveFactor1();
+					saveFactor2();
+					saveFactor3();
+					saveFactor4();
+					saveStrengthAndResources();
+					JOptionPane.showMessageDialog(getThisObject(), "Details saved Successfully.");
+				} else {
+					StringBuffer sb = new StringBuffer();
+					for (String msg : valid.getMsgs()) {
+
+						sb.append(msg + "\n");
+
+					}
+					JOptionPane.showMessageDialog(getThisObject(),
+						    sb.toString(),
+						    "Details not Saved",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+			}
+
+			private void saveFollowUp() {
+				if (createFollowUp && (pages_1.getPanel().isIstoUpdate() || pages_1.getPanel6().isHasToUpdate()
+						|| pages_1.getPanel1().isHasToUpdate() || pages_1.getPanel2().isHasToUpdate()
+						|| pages_1.getPanel3().isHasToUpdate() || pages_1.getPanel4().isHasToUpdate()
+						|| pages_1.getPanel7().hastoUpdate())) {
+					FollowUpTableManipulation follow = new FollowUpTableManipulation();
+					ClientTableManipulation cli = new ClientTableManipulation();
+					if (clientId == 0) {
+						clientId = cli.getmaxId() + 1;
+					}
+					followUp = follow.getmaxId(clientId) + 1;
+					FollowUpBean bean = new FollowUpBean();
+					bean.setClientid(clientId);
+					bean.setAccessedBy(username);
+					bean.setId(followUp);
+					bean.setStage(stage);
+					follow.saveNewFollowUp(bean);
+					createFollowUp = false;
+				}
 			}
 
 			private void saveClientInfo() {
@@ -309,15 +377,19 @@ public class Home extends JFrame {
 						bean.setFollowup(followUp);
 						dao.saveNewFactory(bean);
 						pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
+						pages_1.getPanel1().getTable()
+								.removeColumn(pages_1.getPanel1().getTable().getColumnModel().getColumn(0));
 						pages_1.repaint();
 					} else if (bean.getId() != 0) {
 						bean.setClientId(clientId);
-						bean.setFollowup(followUp);
 						dao.updateNewFactory(bean);
 						pages_1.getPanel1().getTable().setModel(pages_1.getPanel1().tablePopulate(clientId));
+						pages_1.getPanel1().getTable()
+								.removeColumn(pages_1.getPanel1().getTable().getColumnModel().getColumn(0));
 						pages_1.repaint();
 					}
 				}
+				pages_1.getPanel1().setHasToUpdate(false);
 			}
 
 			private void saveFactor2() {
@@ -341,6 +413,59 @@ public class Home extends JFrame {
 						pages_1.repaint();
 					}
 				}
+				pages_1.getPanel2().setHasToUpdate(false);
+			}
+
+			private void saveFactor3() {
+				if (pages_1.getPanel3().isHasToUpdate()) {
+					Factor3Bean bean = pages_1.getPanel3().getCurrentValues();
+					if (bean.getId() == 0) {
+						Factor3TableManipulation dao = new Factor3TableManipulation();
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.saveNewFactory(bean);
+						pages_1.getPanel3().getTable().setModel(pages_1.getPanel3().tablePopulate(clientId));
+						pages_1.getPanel3().getTable()
+								.removeColumn(pages_1.getPanel3().getTable().getColumnModel().getColumn(0));
+						pages_1.repaint();
+					} else if (bean.getId() != 0) {
+						Factor3TableManipulation dao = new Factor3TableManipulation();
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.updateNewFactory(bean);
+						pages_1.getPanel3().getTable().setModel(pages_1.getPanel3().tablePopulate(clientId));
+						pages_1.getPanel3().getTable()
+								.removeColumn(pages_1.getPanel3().getTable().getColumnModel().getColumn(0));
+						pages_1.repaint();
+					}
+				}
+				pages_1.getPanel3().setHasToUpdate(false);
+			}
+
+			private void saveFactor4() {
+				if (pages_1.getPanel4().isHasToUpdate()) {
+					Factor4Bean bean = pages_1.getPanel4().getCurrentValues();
+					if (bean.getId() == 0) {
+						Factor4TableManipulation dao = new Factor4TableManipulation();
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.saveNewFactory(bean);
+						pages_1.getPanel4().getTable().setModel(pages_1.getPanel4().tablePopulate(clientId));
+						pages_1.getPanel4().getTable()
+								.removeColumn(pages_1.getPanel4().getTable().getColumnModel().getColumn(0));
+						pages_1.repaint();
+					} else if (bean.getId() != 0) {
+						Factor4TableManipulation dao = new Factor4TableManipulation();
+						bean.setClientId(clientId);
+						bean.setFollowup(followUp);
+						dao.updateNewFactory(bean);
+						pages_1.getPanel4().getTable().setModel(pages_1.getPanel4().tablePopulate(clientId));
+						pages_1.getPanel4().getTable()
+								.removeColumn(pages_1.getPanel4().getTable().getColumnModel().getColumn(0));
+						pages_1.repaint();
+					}
+				}
+				pages_1.getPanel4().setHasToUpdate(false);
 			}
 
 			private void saveStrengthAndResources() {

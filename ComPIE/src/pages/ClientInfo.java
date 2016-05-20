@@ -18,38 +18,16 @@ public class ClientInfo extends JPanel {
 	private CHDC panel6;
 	private Factor1 panel1;
 	private FactorII panel2;
-	private Factor3 panel3;
-	private Factor4 panel4;
+	private FactorIII panel3;
+	private FactorIV panel4;
 	private StrengthAndResources panel7;
+	private Report panel8;
 
 	/**
 	 * Create the panel.
 	 */
 	public ClientInfo(int id) {
 		setBounds(0, 11, 982, 671);
-		
-		JMenuBar menuBar = new JMenuBar();
-		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
-		JMenuItem mntmNew = new JMenuItem("New");
-		mnFile.add(mntmNew);
-		
-		JMenuItem mntmSearch = new JMenuItem("Search");
-		mnFile.add(mntmSearch);
-		
-		JMenuItem mntmDelete = new JMenuItem("Delete");
-		mnFile.add(mntmDelete);
-		
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnFile.add(mntmExit);
-		
-		JMenu mnNewMenu = new JMenu("Reports");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Generate a PIE Assessment Summary");
-		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
@@ -65,10 +43,10 @@ public class ClientInfo extends JPanel {
 		    panel2 = new FactorII(id);
 		    tabbedPane.addTab("Factor 2", null, panel2, null);
 		    
-		     panel3 = new Factor3();
+		     panel3 = new FactorIII(id);
 		     tabbedPane.addTab("Factor 3", null, panel3, null);
 		     
-		      panel4 = new Factor4();
+		      panel4 = new FactorIV(id);
 		      tabbedPane.addTab("Factor 4", null, panel4, null);
 		      
 		       
@@ -76,22 +54,24 @@ public class ClientInfo extends JPanel {
 		       
 		        panel7 = new StrengthAndResources(id);
 		        tabbedPane.addTab("Strength and Resources", null, panel7, null);
+		        
+		        panel8 = new Report(id);
+		        tabbedPane.addTab("Report", null, panel8, null);
 		        GroupLayout groupLayout = new GroupLayout(this);
 		        groupLayout.setHorizontalGroup(
 		        	groupLayout.createParallelGroup(Alignment.LEADING)
-		        		.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		        		.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		        );
 		        groupLayout.setVerticalGroup(
 		        	groupLayout.createParallelGroup(Alignment.LEADING)
 		        		.addGroup(groupLayout.createSequentialGroup()
-		        			.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		        			.addGap(5)
+		        			.addGap(26)
 		        			.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		        );
 		        setLayout(groupLayout);
 	}
 
+		
 	/**
 	 * @return the panel
 	 */
@@ -151,28 +131,28 @@ public class ClientInfo extends JPanel {
 	/**
 	 * @return the panel3
 	 */
-	public Factor3 getPanel3() {
+	public FactorIII getPanel3() {
 		return panel3;
 	}
 
 	/**
 	 * @param panel3 the panel3 to set
 	 */
-	public void setPanel3(Factor3 panel3) {
+	public void setPanel3(FactorIII panel3) {
 		this.panel3 = panel3;
 	}
 
 	/**
 	 * @return the panel4
 	 */
-	public Factor4 getPanel4() {
+	public FactorIV getPanel4() {
 		return panel4;
 	}
 
 	/**
 	 * @param panel4 the panel4 to set
 	 */
-	public void setPanel4(Factor4 panel4) {
+	public void setPanel4(FactorIV panel4) {
 		this.panel4 = panel4;
 	}
 
@@ -188,5 +168,19 @@ public class ClientInfo extends JPanel {
 	 */
 	public void setPanel7(StrengthAndResources panel7) {
 		this.panel7 = panel7;
+	}
+
+	/**
+	 * @return the panel8
+	 */
+	public Report getPanel8() {
+		return panel8;
+	}
+
+	/**
+	 * @param panel8 the panel8 to set
+	 */
+	public void setPanel8(Report panel8) {
+		this.panel8 = panel8;
 	}
 }

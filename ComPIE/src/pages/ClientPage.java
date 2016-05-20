@@ -30,7 +30,7 @@ import daoBean.EthinicityBean;
 import daoBean.GenderBean;
 import daoBean.LivingArrangementBean;
 import daoBean.MaritaStatusBean;
-import uiUtil.MyComboModel;
+import uiUtil.ComboBoxWithCategory;
 
 public class ClientPage extends JPanel {
 	
@@ -109,7 +109,7 @@ public class ClientPage extends JPanel {
 		JLabel lblOccupation = new JLabel("Occupation");
 
 		LoadGender gender = new LoadGender();
-		comboBox = new JComboBox<String>(new MyComboModel());
+		comboBox = new JComboBox<String>(new ComboBoxWithCategory());
 		comboBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -570,6 +570,20 @@ public class ClientPage extends JPanel {
         }
         return sqlDate;
     }
+	
+	/**
+	 * @return the clinetId
+	 */
+	public int getClinetId() {
+		return clinetId;
+	}
+
+	/**
+	 * @param clinetId the clinetId to set
+	 */
+	public void setClinetId(int clinetId) {
+		this.clinetId = clinetId;
+	}
 
 	/**
 	 * @return the istoUpdate

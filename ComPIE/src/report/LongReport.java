@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import com.itextpdf.text.Document;
@@ -20,6 +22,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import dao.ClientTableManipulation;
+import dao.FollowUpTableManipulation;
 import daoBean.ClientBean;
 import report.helper.CHDCReport;
 import report.helper.ClientInfoReport;
@@ -27,6 +31,7 @@ import report.helper.FactorLongReport;
 import report.helper.FactorShortReport;
 import report.helper.ReportFooter;
 import report.helper.StrengthResourcesReport;
+import uiUtil.FolderSelector;
 
 public class LongReport {
 	static Document document = new Document();
@@ -62,13 +67,19 @@ public class LongReport {
 		document.add(heading);
 	}
 
-	public void createShortAssessment() {
+	public boolean createlongAssessment(int clientID, List<Integer> followUpIds) {
 		ReportFooter event = new ReportFooter();
 		ClientInfoReport cReport;
-		StrengthResourcesReport rep ;
-		CHDCReport chdc ;
+		StrengthResourcesReport rep;
+		CHDCReport chdc;
 		try {
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("short-form.pdf"));
+			FolderSelector selector = new FolderSelector();
+			String path = selector.getSelectedFolder();
+			ClientTableManipulation cli = new ClientTableManipulation();
+			ClientBean bean = cli.getClientInfo("" + clientID);
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(
+					path + "/" + bean.getLastname() + "," + bean.getFirstname() + "_LongReport.pdf"));
+
 			cReport = new ClientInfoReport(writer);
 			rep = new StrengthResourcesReport(writer);
 			chdc = new CHDCReport(writer);
@@ -81,26 +92,40 @@ public class LongReport {
 			addHeading();
 			addAssessmentHeading();
 			cReport.generateLongClientInfo(1, document);
-		//	chdc.generateClientCaseHistory(1, document);
+			// chdc.generateClientCaseHistory(1, document);
 			int availableSpace = (int) (writer.getVerticalPosition(false) - document.bottomMargin() - 2);
-			if(availableSpace <100)
+			if (availableSpace < 100)
 				document.newPage();
 			FactorShortReport fReport = new FactorShortReport(writer);
 			FactorLongReport flreport = new FactorLongReport(writer);
-			flreport.setFactorInfo(1, 1, document);
-		//	fReport.setFactorInfo(1, 1, document);
-			flreport.createShortForFactor1(document);
+
+			FollowUpTableManipulation foll = new FollowUpTableManipulation();
+			for (int i : followUpIds) {
+				Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);
+				Paragraph heading = new Paragraph(
+						new Phrase(" Assessed " + " on :" + foll.getFollowUpInfo(clientID, i).get(0).getDate(), fontx));
+				heading.setAlignment(0);
+				document.add(heading);
+				flreport.setFactorInfo(clientID, i, document);
+				flreport.createShortForFactor1(document);
+				flreport.createShortForFactor2(document);
+				flreport.createShortForFactor3(document);
+				flreport.createShortForFactor4(document);
+			}
+
 			rep.generateStrengthAndResources(1, document);
 			chdc.generateClientCaseHistory(1, document);
 			document.close();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
 	public static void main(String[] args) {
 		LongReport report = new LongReport();
-		report.createShortAssessment();
+		// report.createShortAssessment();
 		NativeInterface.open();
 
 		NativeInterface.open(); // not sure what else may be needed for this
@@ -150,7 +175,6 @@ public class LongReport {
 					}
 
 				});
-			
 
 			}
 		});

@@ -1,24 +1,28 @@
 package pages;
 
-import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import dao.ClientTableManipulation;
 import daoBean.SearchBean;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class FindPatient extends JPanel {
@@ -34,6 +38,7 @@ public class FindPatient extends JPanel {
 	private int selectedId;
 	
 	Home pages;
+	private JButton btnNewButton_3;
 
 	public FindPatient(Home page) {
 		this.pages = page;
@@ -160,7 +165,10 @@ public class FindPatient extends JPanel {
 		JButton btnNewButton_1 = new JButton("Create Followup");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				pages.stage = 1;
+				pages.createFollowUp = true;
 				pages.pages_1 = new ClientInfo(getSelectedId());
+				pages.clientId = getSelectedId();
 				pages.pages_1.setBounds(0, 24, 982, 658);
 				pages.layeredPane.add(pages.pages_1);
 				pages.findCase.setVisible(false);
@@ -171,11 +179,33 @@ public class FindPatient extends JPanel {
 		});
 		btnNewButton_1.setBounds(787, 577, 151, 23);
 		add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = null;
+		try {
+			btnNewButton_3 = new JButton("Home", new ImageIcon(new File("images/home.png").toURI().toURL()));
+			btnNewButton_3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					pages.panel.setVisible(true);
+					pages.btnSave.setVisible(false);
+					pages.btnGoHome.setVisible(false);
+					pages.findCase.setVisible(false);
+				}
+			});
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
+		btnNewButton_3.setAlignmentX(SwingConstants.WEST);
+		btnNewButton_3.setIconTextGap(30);
+		btnNewButton_3.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 10));
+
+		btnNewButton_3.setBounds(796, 11, 117, 23);
+		add(btnNewButton_3);
 	}
 
 	private void addTableListener() {
 		setSelectedId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
-		System.out.println(getSelectedId());
 	}
 
 	public DefaultTableModel tablePopulate(boolean searched) {

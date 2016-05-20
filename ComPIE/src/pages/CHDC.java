@@ -27,7 +27,7 @@ import uiUtil.CheckboxListRenderer;
 
 public class CHDC extends JPanel {
 
-	private int clientId;
+	public int clientId;
 	private int caseHistoryId = -1;
 	private JScrollPane scrollPane_1;
 	private JScrollPane scrollPane;
