@@ -22,7 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class MSE extends JPanel {
 
 	private int id;
-	
+
 	private int current = 0;
 
 	private static final long serialVersionUID = 1L;
@@ -87,23 +87,25 @@ public class MSE extends JPanel {
 
 		MentalStatusExamManipulation mani = new MentalStatusExamManipulation();
 		MentalStatusExamBean bean = mani.getStrength(this.id);
-		this.current = bean.getId();
-		String test = bean.getProblemStr();
-		String[] sp = test.split("#");
-		for (String s : sp) {
-			String[] ss = s.split("_");
-			if (ss.length > 1) {
-				if (ss[0].contains("RISK OF")) {
-					String[] g = ss[1].split(":");
-					li.get(ss[0]).populatePage(g[0]);
-					li.get(ss[0]).getComboBox().setSelectedItem(g[1]);
-				} else {
-					li.get(ss[0]).populatePage(ss[1]);
+		if (bean != null) {
+			this.current = bean.getId();
+			String test = bean.getProblemStr();
+			String[] sp = test.split("#");
+			for (String s : sp) {
+				String[] ss = s.split("_");
+				if (ss.length > 1) {
+					if (ss[0].contains("RISK OF")) {
+						String[] g = ss[1].split(":");
+						li.get(ss[0]).populatePage(g[0]);
+						li.get(ss[0]).getComboBox().setSelectedItem(g[1]);
+					} else {
+						li.get(ss[0]).populatePage(ss[1]);
+					}
+					li.get(ss[0]).setHasToUpdate(false);
 				}
-				li.get(ss[0]).setHasToUpdate(false);
 			}
+			repaint();
 		}
-		repaint();
 	}
 
 	public boolean needsUpdate() {
