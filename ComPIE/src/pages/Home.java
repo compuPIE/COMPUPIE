@@ -26,6 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import dao.AdditionalNotesManipulation;
 import dao.CaseHistoryTableManipulation;
 import dao.ClientTableManipulation;
 import dao.Factor1TableManipulation;
@@ -33,7 +34,9 @@ import dao.Factor2TableManipulation;
 import dao.Factor3TableManipulation;
 import dao.Factor4TableManipulation;
 import dao.FollowUpTableManipulation;
+import dao.MentalStatusExamManipulation;
 import dao.StrengthResourceManipulation;
+import daoBean.AdditionalNotesBean;
 import daoBean.CaseHistoryBean;
 import daoBean.ClientBean;
 import daoBean.Factor1Bean;
@@ -41,6 +44,7 @@ import daoBean.Factor2Bean;
 import daoBean.Factor3Bean;
 import daoBean.Factor4Bean;
 import daoBean.FollowUpBean;
+import daoBean.MentalStatusExamBean;
 import daoBean.StrengthAndResourcesBean;
 import pages.helper.Validator;
 
@@ -51,7 +55,7 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 
 	public JPanel pages;
-	
+
 	public LogIn login;
 
 	public FindPatient findCase;
@@ -238,8 +242,8 @@ public class Home extends JFrame {
 		});
 		btnNewButton_5.setBounds(651, 447, 127, 23);
 		panel.add(btnNewButton_5);
-		
-		lblNewLabel = new JLabel("Welcome "+username);
+
+		lblNewLabel = new JLabel("Welcome " + username);
 		lblNewLabel.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 13));
 		lblNewLabel.setBounds(716, 50, 184, 14);
 		panel.add(lblNewLabel);
@@ -307,6 +311,8 @@ public class Home extends JFrame {
 					saveFactor3();
 					saveFactor4();
 					saveStrengthAndResources();
+					saveMSE();
+					saveAddnlNotes();
 					JOptionPane.showMessageDialog(getThisObject(), "Details saved Successfully.");
 				} else {
 					StringBuffer sb = new StringBuffer();
@@ -315,10 +321,8 @@ public class Home extends JFrame {
 						sb.append(msg + "\n");
 
 					}
-					JOptionPane.showMessageDialog(getThisObject(),
-						    sb.toString(),
-						    "Details not Saved",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(getThisObject(), sb.toString(), "Details not Saved",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 
@@ -472,11 +476,40 @@ public class Home extends JFrame {
 				if (pages_1.getPanel7().hastoUpdate()) {
 					StrengthAndResourcesBean bean = pages_1.getPanel7().getCurrentvalues();
 					StrengthResourceManipulation dao = new StrengthResourceManipulation();
+					bean.setClientid(clientId);
 					if (bean.getId() != 0) {
 						dao.updateNewStrength(bean);
 					} else if (bean.getId() == 0) {
 						dao.saveNewStrength(bean);
 					}
+				}
+			}
+
+			private void saveMSE() {
+				if (pages_1.getMse().needsUpdate()) {
+					MentalStatusExamBean bean = pages_1.getMse().getCurrentBean();
+					MentalStatusExamManipulation dao = new MentalStatusExamManipulation();
+					bean.setClientId(clientId);
+					if (bean.getId() != 0) {
+						dao.updateNewStrength(bean);
+					} else if (bean.getId() == 0) {
+						dao.saveNewStrength(bean);
+					}
+					pages_1.getMse().populateAllTabs();
+				}
+			}
+
+			private void saveAddnlNotes() {
+				if (pages_1.getAdd().isHastoUpdate()) {
+					AdditionalNotesBean bean = pages_1.getAdd().getCurrentBean();
+					AdditionalNotesManipulation dao = new AdditionalNotesManipulation();
+					bean.setClientId(clientId);
+					if (bean.getId() != 0) {
+						dao.updateNewStrength(bean);
+					} else if (bean.getId() == 0) {
+						dao.saveNewStrength(bean);
+					}
+					 pages_1.getAdd().populate();
 				}
 			}
 		});

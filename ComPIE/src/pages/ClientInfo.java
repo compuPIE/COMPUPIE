@@ -22,56 +22,70 @@ public class ClientInfo extends JPanel {
 	private FactorIV panel4;
 	private StrengthAndResources panel7;
 	private Report panel8;
+	private MSE mse;
+	private AdditionalNotes add;
+
 
 	/**
 	 * Create the panel.
 	 */
 	public ClientInfo(int id) {
 		setBounds(0, 11, 982, 671);
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+
+		panel = new ClientPage(id);
+		tabbedPane.addTab("Client Info", null, panel, null);
+
+		panel6 = new CHDC(id);
+		tabbedPane.addTab("Case History", null, panel6, null);
+
+		panel1 = new Factor1(id);
+		tabbedPane.addTab("Factor 1", null, panel1, null);
+
+		panel2 = new FactorII(id);
+		tabbedPane.addTab("Factor 2", null, panel2, null);
+
+		panel3 = new FactorIII(id);
+		tabbedPane.addTab("Factor 3", null, panel3, null);
+
+		panel4 = new FactorIV(id);
+		tabbedPane.addTab("Factor 4", null, panel4, null);
+
+		panel7 = new StrengthAndResources(id);
+		tabbedPane.addTab("Strength and Resources", null, panel7, null);
 		
-		 panel = new ClientPage(id);
-		 tabbedPane.addTab("Client Info", null, panel, null);
-		 
-		  panel6 = new CHDC(id);
-		  tabbedPane.addTab("Case History", null, panel6, null);
-		  
-		   panel1 = new Factor1(id);
-		   tabbedPane.addTab("Factor 1", null, panel1, null);
-		   
-		    panel2 = new FactorII(id);
-		    tabbedPane.addTab("Factor 2", null, panel2, null);
-		    
-		     panel3 = new FactorIII(id);
-		     tabbedPane.addTab("Factor 3", null, panel3, null);
-		     
-		      panel4 = new FactorIV(id);
-		      tabbedPane.addTab("Factor 4", null, panel4, null);
-		      
-		       
-		       
-		       
-		        panel7 = new StrengthAndResources(id);
-		        tabbedPane.addTab("Strength and Resources", null, panel7, null);
-		        
-		        panel8 = new Report(id);
-		        tabbedPane.addTab("Report", null, panel8, null);
-		        GroupLayout groupLayout = new GroupLayout(this);
-		        groupLayout.setHorizontalGroup(
-		        	groupLayout.createParallelGroup(Alignment.LEADING)
-		        		.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		        );
-		        groupLayout.setVerticalGroup(
-		        	groupLayout.createParallelGroup(Alignment.LEADING)
-		        		.addGroup(groupLayout.createSequentialGroup()
-		        			.addGap(26)
-		        			.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		        );
-		        setLayout(groupLayout);
+		mse = new MSE(id);
+		tabbedPane.addTab("MSE", null, mse, null);
+		
+		add = new AdditionalNotes(id);
+		tabbedPane.addTab("Addn'l Notes", null, add, null);
+
+		panel8 = new Report(id);
+		tabbedPane.addTab("Report", null, panel8, null);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(tabbedPane,
+				GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(26).addComponent(tabbedPane,
+						GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
+		setLayout(groupLayout);
 	}
 
-		
+	/**
+	 * @return the add
+	 */
+	public AdditionalNotes getAdd() {
+		return add;
+	}
+
+	/**
+	 * @param add the add to set
+	 */
+	public void setAdd(AdditionalNotes add) {
+		this.add = add;
+	}
+
 	/**
 	 * @return the panel
 	 */
@@ -80,7 +94,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel the panel to set
+	 * @param panel
+	 *            the panel to set
 	 */
 	public void setPanel(ClientPage panel) {
 		this.panel = panel;
@@ -94,7 +109,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel6 the panel6 to set
+	 * @param panel6
+	 *            the panel6 to set
 	 */
 	public void setPanel6(CHDC panel6) {
 		this.panel6 = panel6;
@@ -108,7 +124,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel1 the panel1 to set
+	 * @param panel1
+	 *            the panel1 to set
 	 */
 	public void setPanel1(Factor1 panel1) {
 		this.panel1 = panel1;
@@ -122,7 +139,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel2 the panel2 to set
+	 * @param panel2
+	 *            the panel2 to set
 	 */
 	public void setPanelII(FactorII panel2) {
 		this.panel2 = panel2;
@@ -136,7 +154,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel3 the panel3 to set
+	 * @param panel3
+	 *            the panel3 to set
 	 */
 	public void setPanel3(FactorIII panel3) {
 		this.panel3 = panel3;
@@ -150,7 +169,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel4 the panel4 to set
+	 * @param panel4
+	 *            the panel4 to set
 	 */
 	public void setPanel4(FactorIV panel4) {
 		this.panel4 = panel4;
@@ -164,7 +184,8 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel7 the panel7 to set
+	 * @param panel7
+	 *            the panel7 to set
 	 */
 	public void setPanel7(StrengthAndResources panel7) {
 		this.panel7 = panel7;
@@ -178,9 +199,25 @@ public class ClientInfo extends JPanel {
 	}
 
 	/**
-	 * @param panel8 the panel8 to set
+	 * @param panel8
+	 *            the panel8 to set
 	 */
 	public void setPanel8(Report panel8) {
 		this.panel8 = panel8;
 	}
+	
+	/**
+	 * @return the mse
+	 */
+	public MSE getMse() {
+		return mse;
+	}
+
+	/**
+	 * @param mse the mse to set
+	 */
+	public void setMse(MSE mse) {
+		this.mse = mse;
+	}
+
 }
