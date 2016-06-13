@@ -135,8 +135,7 @@ public class Report extends JPanel {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void populateitems(boolean allSelected) {
+	@SuppressWarnings({ "unchecked", "rawtypes" }) void populateitems(boolean allSelected) {
 
 		FollowUpTableManipulation followup = new FollowUpTableManipulation();
 		List<FollowUpBean> listval = followup.getFollowUpInfo(this.id );

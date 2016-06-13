@@ -25,10 +25,12 @@ import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import dao.ClientTableManipulation;
 import dao.FollowUpTableManipulation;
 import daoBean.ClientBean;
+import report.helper.AdditionalNotesReport;
 import report.helper.CHDCReport;
 import report.helper.ClientInfoReport;
 import report.helper.FactorLongReport;
 import report.helper.FactorShortReport;
+import report.helper.MSEReport;
 import report.helper.ReportFooter;
 import report.helper.StrengthResourcesReport;
 import uiUtil.FolderSelector;
@@ -91,7 +93,7 @@ public class LongReport {
 			document.newPage();
 			addHeading();
 			addAssessmentHeading();
-			cReport.generateLongClientInfo(1, document);
+			cReport.generateLongClientInfo(clientID, document);
 			// chdc.generateClientCaseHistory(1, document);
 			int availableSpace = (int) (writer.getVerticalPosition(false) - document.bottomMargin() - 2);
 			if (availableSpace < 100)
@@ -103,7 +105,7 @@ public class LongReport {
 			for (int i : followUpIds) {
 				Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);
 				Paragraph heading = new Paragraph(
-						new Phrase(" Assessed " + " on :" + foll.getFollowUpInfo(clientID, i).get(0).getDate(), fontx));
+						new Phrase(" Assessed " + " on :" + foll.getFollowUpInfo(i,clientID).get(0).getDate(), fontx));
 				heading.setAlignment(0);
 				document.add(heading);
 				flreport.setFactorInfo(clientID, i, document);
@@ -115,6 +117,13 @@ public class LongReport {
 
 			rep.generateStrengthAndResources(1, document);
 			chdc.generateClientCaseHistory(1, document);
+			
+			MSEReport mse = new MSEReport(writer);
+		    mse.createMSEReport(clientID, document);
+			
+		    AdditionalNotesReport addreport = new AdditionalNotesReport(writer);
+		    addreport.generateClientCaseHistory(clientID, document);
+			
 			document.close();
 			return true;
 		} catch (Exception e) {

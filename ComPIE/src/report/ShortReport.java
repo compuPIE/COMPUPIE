@@ -84,7 +84,7 @@ public class ShortReport {
 			for (int i : followUpIds) {
 				Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);
 				Paragraph heading = new Paragraph(new Phrase(" Assessed " + " on :"
-						+ foll.getFollowUpInfo(clientID, i).get(0).getDate() , fontx));
+						+ foll.getFollowUpInfo(i,clientID).get(0).getDate() , fontx));
 				heading.setAlignment(0);
 				document.add(heading);
 				fReport.setFactorInfo(clientID, i, document);

@@ -1,5 +1,6 @@
 package pages;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -23,6 +24,9 @@ import javax.swing.table.DefaultTableModel;
 
 import dao.ClientTableManipulation;
 import daoBean.SearchBean;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class FindPatient extends JPanel {
@@ -41,63 +45,39 @@ public class FindPatient extends JPanel {
 	private JButton btnNewButton_3;
 
 	public FindPatient(Home page) {
+		
 		this.pages = page;
-		setBounds(0, 11, 963, 609);
-		setLayout(null);
+		setBounds(page.getBounds());
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(21, 77, 266, 20);
-		add(textField);
 
 		JLabel label = new JLabel("Last Name");
-		label.setBounds(21, 57, 180, 14);
-		add(label);
 
 		JLabel label_1 = new JLabel("Middle Name");
-		label_1.setBounds(342, 57, 167, 14);
-		add(label_1);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(342, 77, 266, 20);
-		add(textField_1);
 
 		JLabel label_2 = new JLabel("First Name ");
-		label_2.setBounds(663, 57, 236, 14);
-		add(label_2);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(663, 77, 250, 20);
-		add(textField_2);
 
 		JLabel label_3 = new JLabel("Client ID #");
-		label_3.setBounds(603, 152, 203, 14);
-		add(label_3);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(596, 165, 317, 20);
-		add(textField_3);
 
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(21, 165, 226, 20);
-		add(textField_4);
 
 		JLabel label_4 = new JLabel("Postal Code");
-		label_4.setBounds(21, 152, 180, 14);
-		add(label_4);
 
 		JLabel label_5 = new JLabel("Phone");
-		label_5.setBounds(311, 152, 180, 14);
-		add(label_5);
 
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(306, 165, 256, 20);
-		add(textField_5);
 
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -107,8 +87,6 @@ public class FindPatient extends JPanel {
 				repaint();
 			}
 		});
-		btnNewButton.setBounds(616, 216, 146, 23);
-		add(btnNewButton);
 
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -124,8 +102,6 @@ public class FindPatient extends JPanel {
 				repaint();
 			}
 		});
-		btnClear.setBounds(772, 216, 146, 23);
-		add(btnClear);
 
 		DefaultTableModel model = tablePopulate(false);
 		table = new JTable(model) {
@@ -159,26 +135,21 @@ public class FindPatient extends JPanel {
 			}
 		});
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(26, 287, 912, 279);
-		add(scrollPane);
 
 		JButton btnNewButton_1 = new JButton("Create Followup");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pages.stage = 1;
 				pages.createFollowUp = true;
-				pages.pages_1 = new ClientInfo(getSelectedId());
+				pages.pages_1 = new ClientInfo(getSelectedId(),pages.getBounds());
 				pages.clientId = getSelectedId();
-				pages.pages_1.setBounds(0, 24, 982, 658);
 				pages.layeredPane.add(pages.pages_1);
 				pages.findCase.setVisible(false);
 				pages.setVisible(true);
-				pages.btnSave.setVisible(true);
-				pages.btnGoHome.setVisible(true);
+				pages.layeredPane.btnSave.setVisible(true);
+				pages.layeredPane.btnGoHome.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(787, 577, 151, 23);
-		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = null;
 		try {
@@ -186,8 +157,8 @@ public class FindPatient extends JPanel {
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					pages.panel.setVisible(true);
-					pages.btnSave.setVisible(false);
-					pages.btnGoHome.setVisible(false);
+					pages.layeredPane.btnSave.setVisible(false);
+					pages.layeredPane.btnGoHome.setVisible(false);
 					pages.findCase.setVisible(false);
 				}
 			});
@@ -195,13 +166,132 @@ public class FindPatient extends JPanel {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		btnNewButton_3.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton_3.setAlignmentX(SwingConstants.WEST);
 		btnNewButton_3.setIconTextGap(30);
 		btnNewButton_3.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 10));
-
-		btnNewButton_3.setBounds(796, 11, 117, 23);
-		add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Close Case");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pages.stage = 2;
+				pages.createFollowUp = true;
+				pages.pages_1 = new ClientInfo(getSelectedId(),pages.getBounds());
+				pages.clientId = getSelectedId();
+				pages.layeredPane.add(pages.pages_1);
+				pages.findCase.setVisible(false);
+				pages.setVisible(true);
+				pages.layeredPane.btnSave.setVisible(true);
+				pages.layeredPane.btnGoHome.setVisible(true);
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(796)
+					.addComponent(btnNewButton_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(50))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(21)
+					.addComponent(label, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+					.addGap(141)
+					.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+					.addGap(154)
+					.addComponent(label_2, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+					.addGap(64))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(21)
+					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+					.addGap(55)
+					.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+					.addGap(55)
+					.addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+					.addGap(50))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(21)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(label_4, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+							.addGap(46)))
+					.addGap(59)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(5)
+							.addComponent(label_5, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+							.addGap(71))
+						.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+					.addGap(34)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(7)
+							.addComponent(label_3, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+							.addGap(107)))
+					.addGap(50))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(616)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(btnClear, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+					.addGap(45))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(614)
+					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+					.addGap(36)
+					.addComponent(btnNewButton_4, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(34))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+					.addGap(25))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(11)
+					.addComponent(btnNewButton_3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(label, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(6)
+							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(6)
+							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(28)
+							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(28)
+							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(28)
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+						.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+					.addGap(16)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addGap(34)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton_4, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+					.addGap(44))
+		);
+		setLayout(groupLayout);
 	}
 
 	private void addTableListener() {
@@ -292,5 +382,4 @@ public class FindPatient extends JPanel {
 	public void setSelectedId(int selectedId) {
 		this.selectedId = selectedId;
 	}
-
 }

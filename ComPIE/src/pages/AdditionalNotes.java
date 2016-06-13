@@ -44,21 +44,28 @@ public class AdditionalNotes extends JPanel {
 		populate();
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(397).addComponent(lblAdditionalNotes,
-								GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(textArea,
-								GroupLayout.PREFERRED_SIZE, 954, Short.MAX_VALUE)))
-				.addGap(14)));
-		groupLayout
-				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(28)
-								.addComponent(lblAdditionalNotes, GroupLayout.PREFERRED_SIZE, 36,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(18).addComponent(textArea, GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
-								.addGap(17)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(397)
+							.addComponent(lblAdditionalNotes, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+							.addGap(387))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(10)
+							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addGap(14))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addComponent(lblAdditionalNotes, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+					.addGap(17))
+		);
 		setLayout(groupLayout);
 	}
 

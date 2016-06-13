@@ -12,7 +12,7 @@ import daoBean.StrengthAndResourcesBean;
 public class StrengthAndResources extends JPanel {
 
 	private int id;
-	private int currentId= 0;
+	private int currentId = 0;
 	private StrengthSmallPanel panel;
 	private StrengthSmallPanel panel_1;
 	private StrengthSmallPanel panel_2;
@@ -136,8 +136,24 @@ public class StrengthAndResources extends JPanel {
 
 	public boolean hastoUpdate() {
 		return (panel.isHasToUpdate() || panel_1.isHasToUpdate() || panel_2.isHasToUpdate() || panel_3.isHasToUpdate()
-				|| panel_4.isHasToUpdate() || panel_5.isHasToUpdate() || panel_6.isHasToUpdate() || panel_7.isHasToUpdate()
-				|| panel_10.isHasToUpdate() || panel_9.isHasToUpdate() || panel_8.isHasToUpdate()|| panel_11.isHasToUpdate());
+				|| panel_4.isHasToUpdate() || panel_5.isHasToUpdate() || panel_6.isHasToUpdate()
+				|| panel_7.isHasToUpdate() || panel_10.isHasToUpdate() || panel_9.isHasToUpdate()
+				|| panel_8.isHasToUpdate() || panel_11.isHasToUpdate());
+	}
+
+	public void settoUpdate(boolean flag) {
+		panel.setHasToUpdate(flag);
+		panel_1.setHasToUpdate(flag);
+		panel_2.setHasToUpdate(flag);
+		panel_3.setHasToUpdate(flag);
+		panel_4.setHasToUpdate(flag);
+		panel_5.setHasToUpdate(flag);
+		panel_6.setHasToUpdate(flag);
+		panel_7.setHasToUpdate(flag);
+		panel_10.setHasToUpdate(flag);
+		panel_9.setHasToUpdate(flag);
+		panel_8.setHasToUpdate(flag);
+		panel_11.setHasToUpdate(flag);
 	}
 
 	public StrengthAndResourcesBean getCurrentvalues() {
@@ -256,7 +272,8 @@ public class StrengthAndResources extends JPanel {
 	}
 
 	/**
-	 * @param currentId the currentId to set
+	 * @param currentId
+	 *            the currentId to set
 	 */
 	public void setCurrentId(int currentId) {
 		this.currentId = currentId;

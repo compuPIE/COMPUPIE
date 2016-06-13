@@ -113,7 +113,7 @@ public class Factor1 extends JPanel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Factor1(int clientID) {
 		clint = clientID;
-		setBounds(0, 11, 963, 609);
+		setBounds(0, 11, 1016, 609);
 
 		lblFactorISocial = new JLabel("Factor I: Social Role and Relationship Functioning", SwingConstants.CENTER);
 		lblFactorISocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -253,7 +253,7 @@ public class Factor1 extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(272)
-						.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE).addGap(241))
+						.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, Short.MAX_VALUE).addGap(241))
 				.addGroup(groupLayout.createSequentialGroup().addGap(24).addGroup(groupLayout
 						.createParallelGroup(
 								Alignment.LEADING)
@@ -264,24 +264,26 @@ public class Factor1 extends JPanel {
 										.addGap(282)
 										.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
 										.addGap(18)
-										.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+										.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addGap(27)
-										.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+										.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
 										.addGap(10))
-						.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)).addGap(27)));
+						.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)).addGap(27)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
 				.createSequentialGroup().addGap(24)
 				.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAddNewProblem)
 								.addComponent(btnEditProblem).addComponent(btnNewButton))
 						.addComponent(lblNewLabel))
 				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE).addGap(125)));
+				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE).addGap(125)));
 
 		JLabel lblSeverity = new JLabel("Severity(*)");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
@@ -418,19 +420,25 @@ public class Factor1 extends JPanel {
 		desktopPane.setVisible(true);
 		enableDisableValues(false);
 		Factor1TableManipulation fac1Dao = new Factor1TableManipulation();
-		List<Factor1Bean> list = fac1Dao.getFactorInfo(
-				Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()), clientID);
-		setCurrentId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
-		comboBox.setSelectedItem(list.get(0).getSocialRoleDescription());
-		comboBox_1.setSelectedItem(list.get(0).getProblemType());
-		comboBox_2.setSelectedItem(list.get(0).getServerity());
-		comboBox_3.setSelectedItem(list.get(0).getDuration());
-		comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
-		comboBox_5.setSelectedItem(list.get(0).getSocialRoleProblemType());
-		comboBox_6.setSelectedItem(list.get(0).getPriority());
-		textArea.setText(list.get(0).getGoal());
-		textArea_1.setText(list.get(0).getRecommendedInter());
-		textArea_2.setText(list.get(0).getExpectedOutcome());
+		if (table.getModel().getValueAt(table.getSelectedRow(), 0) != null && !table.getModel()
+				.getValueAt(table.getSelectedRow(), 0).toString().equalsIgnoreCase("No Problems.")) {
+			List<Factor1Bean> list = fac1Dao.getFactorInfo(
+					Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()), clientID);
+
+			if (list.size() != 0) {
+				setCurrentId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
+				comboBox.setSelectedItem(list.get(0).getSocialRoleDescription());
+				comboBox_1.setSelectedItem(list.get(0).getProblemType());
+				comboBox_2.setSelectedItem(list.get(0).getServerity());
+				comboBox_3.setSelectedItem(list.get(0).getDuration());
+				comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
+				comboBox_5.setSelectedItem(list.get(0).getSocialRoleProblemType());
+				comboBox_6.setSelectedItem(list.get(0).getPriority());
+				textArea.setText(list.get(0).getGoal());
+				textArea_1.setText(list.get(0).getRecommendedInter());
+				textArea_2.setText(list.get(0).getExpectedOutcome());
+			}
+		}
 	}
 
 	private void enableDisableValues(boolean value) {

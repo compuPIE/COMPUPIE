@@ -38,6 +38,7 @@ public class FollowUpTableManipulation {
 				info.setClientid(rs.getInt("clientid"));
 				info.setDate(rs.getString("dof"));
 				info.setAccessedBy(rs.getString("accessedBy"));
+				info.setStage(rs.getInt("stage"));
 				list.add(info);
 			}
 			rs.close();
@@ -62,6 +63,7 @@ public class FollowUpTableManipulation {
 				info.setId(rs.getInt("id"));
 				info.setClientid(rs.getInt("clientid"));
 				info.setDate(rs.getString("dof"));
+				info.setStage(rs.getInt("stage"));
 				info.setAccessedBy(rs.getString("accessedBy"));
 				list.add(info);
 			}

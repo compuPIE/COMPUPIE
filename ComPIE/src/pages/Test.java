@@ -2,6 +2,7 @@ package pages;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -16,7 +17,7 @@ import java.awt.event.ActionEvent;
 public class Test extends JFrame {
 	
 
-	MSE panel;
+	Menu panel;
 
 	/**
 	 * Launch the application.
@@ -50,18 +51,10 @@ public class Test extends JFrame {
 		UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
 		
 		
-		panel = new MSE(1);
+		panel = new Menu(new Home(), new Rectangle(1, 1, 300, 300)) ;
 		panel.setBorder(new CompoundBorder(new MatteBorder(10, 10, 10, 10, (Color) new Color(0, 0, 0)), null));
 		panel.setVisible(true);
 		getContentPane().add(panel);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//panel.getCurrentString();
-			}
-		});
-		getContentPane().add(btnNewButton, BorderLayout.NORTH);
 		
 		
 		

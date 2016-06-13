@@ -89,16 +89,15 @@ public class FactorIV extends JPanel {
 	private Component label_8;
 
 	private Component lblPriority;
-	
+
 	private boolean hasToUpdate;
-	
+
 	private int currentId;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
@@ -122,20 +121,20 @@ public class FactorIV extends JPanel {
 
 		comboBox = new JComboBox(new ComboBoxWithCategory());
 		comboBox_1 = new JComboBox();
-		
+
 		comboBox.addItem("");
 		for (PhysicalHealthProblems category : categ) {
-			comboBox.addItem("**"+category.getCategory());
-			for(PhysicalHealthItem item:category.getItems()){
-				comboBox.addItem(item.getItem());	
+			comboBox.addItem("**" + category.getCategory());
+			for (PhysicalHealthItem item : category.getItems()) {
+				comboBox.addItem(item.getItem());
 			}
-				
+
 		}
 
 		comboBox_1.addItem("Select");
 		comboBox_1.addItem("Professional DX");
 		comboBox_1.addItem("Client Report");
-		
+
 		Load_Severity severity = new Load_Severity();
 
 		comboBox_2 = new JComboBox();
@@ -161,8 +160,7 @@ public class FactorIV extends JPanel {
 		for (Coping_Ability sev : coping.getAllCoping_Ability()) {
 			comboBox_4.addItem(sev.getCategory());
 		}
-		
-		
+
 		textArea = new TextArea();
 
 		textArea_1 = new TextArea();
@@ -186,8 +184,8 @@ public class FactorIV extends JPanel {
 		}
 
 		btnAddNewProblem = new JButton("Add new Problem");
-		btnAddNewProblem.addActionListener(new java.awt.event.ActionListener() { 
-			
+		btnAddNewProblem.addActionListener(new java.awt.event.ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				setHasToUpdate(true);
 				resetValues();
@@ -219,9 +217,9 @@ public class FactorIV extends JPanel {
 				setHasToUpdate(true);
 			}
 		});
-		
+
 		AutoCompletion.enable(comboBox);
-		
+
 		JButton btnNewButton = new JButton("Remove Problem");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -229,152 +227,136 @@ public class FactorIV extends JPanel {
 				desktopPane.setVisible(false);
 			}
 		});
-		
-		lblNewLabel = new JLabel("Fields marked (*) are mandatory");
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(272)
-					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
-					.addGap(241))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addGap(458)
-							.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-							.addGap(27)
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-							.addGap(10))
-						.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE))
-					.addGap(27))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnAddNewProblem)
-							.addComponent(btnEditProblem)
-							.addComponent(btnNewButton))
-						.addComponent(lblNewLabel))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
-					.addGap(125))
-		);
-		
-		
+
 		JLabel lblSeverity = new JLabel("Severity(*)");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
-		gl_desktopPane.setHorizontalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.TRAILING)
+		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(23)
-					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-					.addGap(176)
-					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-					.addGap(145))
+						.addGap(23).addComponent(label_7, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(176)
+						.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE).addGap(145))
+				.addGroup(
+						gl_desktopPane.createSequentialGroup().addGap(23)
+								.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addGap(61)
+								.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addGap(30))
 				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(23)
-					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(61)
-					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(30))
-				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(23)
-							.addComponent(lblDsmAxisDiagnosis, GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-							.addGap(261))
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGap(24)
-							.addComponent(comboBox, 0, 432, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addComponent(comboBox_1, 0, 202, Short.MAX_VALUE)
-							.addGap(179))
-						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addComponent(lblDiagnosisSource, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-							.addContainerGap())))
-				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(23)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
+										.addComponent(lblDsmAxisDiagnosis, GroupLayout.DEFAULT_SIZE,
+												243, Short.MAX_VALUE)
+										.addGap(261))
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
+										.addComponent(comboBox, 0, 432, Short.MAX_VALUE)
+										.addPreferredGap(ComponentPlacement.RELATED)))
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+										.addComponent(comboBox_1, 0, 202, Short.MAX_VALUE).addGap(179))
+								.addGroup(gl_desktopPane.createSequentialGroup()
+										.addComponent(lblDiagnosisSource, GroupLayout.DEFAULT_SIZE, 235,
+												Short.MAX_VALUE)
+										.addContainerGap())))
+				.addGroup(gl_desktopPane.createSequentialGroup().addGap(23).addGroup(gl_desktopPane
+						.createParallelGroup(Alignment.LEADING)
 						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblSeverity))
-							.addGap(50)
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
-							.addGap(53)
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
-							.addGap(37)
-							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_6, 0, 158, Short.MAX_VALUE)))
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblSeverity))
+								.addGap(50)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144,
+												GroupLayout.PREFERRED_SIZE))
+								.addGap(53)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121,
+												GroupLayout.PREFERRED_SIZE))
+								.addGap(37)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(comboBox_6, 0, 158, Short.MAX_VALUE)))
 						.addGroup(gl_desktopPane.createSequentialGroup()
-							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-							.addGap(732)))
-					.addGap(30))
-		);
-		gl_desktopPane.setVerticalGroup(
-			gl_desktopPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_desktopPane.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDsmAxisDiagnosis)
-						.addComponent(lblDiagnosisSource))
-					.addGap(1)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(21)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCopingAbility)
-						.addComponent(lblPriority)
-						.addComponent(lblDuration)
-						.addComponent(lblSeverity))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE).addGap(732)))
+						.addGap(30)));
+		gl_desktopPane.setVerticalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup().addGap(11)
 						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(11)
-					.addComponent(label_6)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_7)
-						.addComponent(label_8))
-					.addGap(1)
-					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-					.addGap(106))
-		);
+								.addComponent(lblDsmAxisDiagnosis).addComponent(lblDiagnosisSource))
+						.addGap(1)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addGap(21)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(lblCopingAbility)
+								.addComponent(lblPriority).addComponent(lblDuration).addComponent(lblSeverity))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)))
+						.addGap(11).addComponent(label_6)
+						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(label_7)
+								.addComponent(label_8))
+						.addGap(1)
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
+						.addGap(106)));
 		desktopPane.setLayout(gl_desktopPane);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(272).addComponent(lblFactorISocial,
+						GroupLayout.PREFERRED_SIZE, 526, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup().addGap(24)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE).addGap(11))
+				.addGroup(groupLayout.createSequentialGroup().addGap(546)
+						.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addGap(36).addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+						.addGap(26).addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+						.addGap(36))
+				.addGroup(groupLayout.createSequentialGroup().addGap(24)
+						.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE).addGap(8)));
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(
+										groupLayout.createSequentialGroup().addGap(24)
+												.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35,
+														GroupLayout.PREFERRED_SIZE)
+												.addGap(6)
+												.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 164,
+														Short.MAX_VALUE)
+												.addGap(6)
+												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addComponent(btnAddNewProblem).addComponent(btnEditProblem)
+														.addComponent(btnNewButton))
+												.addGap(6).addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 341,
+														Short.MAX_VALUE)
+												.addGap(4)));
 		setLayout(groupLayout);
 		table.removeColumn(table.getColumnModel().getColumn(0));
 	}
-	
-	private void resetValues(){
+
+	private void resetValues() {
 		enableDisableValues(true);
 		comboBox.setSelectedItem("Select");
 		comboBox_1.setSelectedItem("");
@@ -405,21 +387,27 @@ public class FactorIV extends JPanel {
 		desktopPane.setVisible(true);
 		enableDisableValues(false);
 		Factor4TableManipulation fac1Dao = new Factor4TableManipulation();
-		List<Factor4Bean> list = fac1Dao
-				.getFactorInfo(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()), clientID);
-		setCurrentId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
-		comboBox.setSelectedItem(list.get(0).getDiagnosis());
-		comboBox_1.setSelectedItem(list.get(0).getdiagnosisSource());
-		comboBox_2.setSelectedItem(list.get(0).getServerity());
-		comboBox_3.setSelectedItem(list.get(0).getDuration());
-		comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
-		comboBox_6.setSelectedItem(list.get(0).getPriority());
-		textArea.setText(list.get(0).getGoal());
-		textArea_1.setText(list.get(0).getRecommendedInter());
-		textArea_2.setText(list.get(0).getExpectedOutcome());
+		List<Factor4Bean> list = null;
+		if (table.getModel().getValueAt(table.getSelectedRow(), 0) != null && !table.getModel()
+				.getValueAt(table.getSelectedRow(), 0).toString().equalsIgnoreCase("No Problems."))  {
+			list = fac1Dao.getFactorInfo(
+					Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()), clientID);
+			setCurrentId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
+		}
+		if (list != null && list.size() != 0) {
+			comboBox.setSelectedItem(list.get(0).getDiagnosis());
+			comboBox_1.setSelectedItem(list.get(0).getdiagnosisSource());
+			comboBox_2.setSelectedItem(list.get(0).getServerity());
+			comboBox_3.setSelectedItem(list.get(0).getDuration());
+			comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
+			comboBox_6.setSelectedItem(list.get(0).getPriority());
+			textArea.setText(list.get(0).getGoal());
+			textArea_1.setText(list.get(0).getRecommendedInter());
+			textArea_2.setText(list.get(0).getExpectedOutcome());
+		}
 	}
-	
-	private void enableDisableValues(boolean value){
+
+	private void enableDisableValues(boolean value) {
 		comboBox.setEnabled(value);
 		comboBox_1.setEnabled(value);
 		comboBox_2.setEnabled(value);
@@ -437,7 +425,7 @@ public class FactorIV extends JPanel {
 	 */
 	public DefaultTableModel tablePopulate(int clientID) {
 		enableDisableValues(false);
-		
+
 		setCurrentId(0);
 		String[] columns = new String[] { "Id", "Assessed Date", "DSM AXIS Diagnosis", "Diagnosis Source", "Severity",
 				"Duration", "Coping Ability", "Priority" };
@@ -469,8 +457,8 @@ public class FactorIV extends JPanel {
 			data[i][6] = "";
 		}
 
-		final Class[] columnClass = new Class[] { Integer.class, String.class, String.class,String.class, String.class, String.class,
-				String.class, String.class};
+		final Class[] columnClass = new Class[] { Integer.class, String.class, String.class, String.class, String.class,
+				String.class, String.class, String.class };
 
 		// create table model with data
 		DefaultTableModel model = new DefaultTableModel(data, columns) {
@@ -496,7 +484,8 @@ public class FactorIV extends JPanel {
 	}
 
 	/**
-	 * @param table the table to set
+	 * @param table
+	 *            the table to set
 	 */
 	public void setTable(JTable table) {
 		this.table = table;
@@ -525,7 +514,8 @@ public class FactorIV extends JPanel {
 	}
 
 	/**
-	 * @param hasToUpdate the hasToUpdate to set
+	 * @param hasToUpdate
+	 *            the hasToUpdate to set
 	 */
 	public void setHasToUpdate(boolean hasToUpdate) {
 		this.hasToUpdate = hasToUpdate;
@@ -539,7 +529,8 @@ public class FactorIV extends JPanel {
 	}
 
 	/**
-	 * @param currentId the currentId to set
+	 * @param currentId
+	 *            the currentId to set
 	 */
 	public void setCurrentId(int currentId) {
 		this.currentId = currentId;

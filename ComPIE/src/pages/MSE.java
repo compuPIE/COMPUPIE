@@ -39,21 +39,26 @@ public class MSE extends JPanel {
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(10)
-						.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE).addGap(10))
-				.addGroup(Alignment.TRAILING,
-						groupLayout
-								.createSequentialGroup().addGap(414).addComponent(lblMentalStatusExam,
-										GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(341, Short.MAX_VALUE)));
-		groupLayout
-				.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(16)
-								.addComponent(lblMentalStatusExam, GroupLayout.PREFERRED_SIZE, 41,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE).addGap(11)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+					.addGap(10))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(414)
+					.addComponent(lblMentalStatusExam, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+					.addGap(341))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(16)
+					.addComponent(lblMentalStatusExam, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+					.addGap(11))
+		);
 		setLayout(groupLayout);
 		Load_MentalStatus mentalstatus = new Load_MentalStatus();
 		List<MentalStatus_Category> list = mentalstatus.getAllMentalStatusProblemsByCategory();

@@ -17,10 +17,10 @@ public class Validator {
 
 	public Validator(Home pag) {
 		this.page = pag;
-		validateFactor1();
-		validateFactor2();
-		validateFactor3();
-		validateFactor4();
+		//validateFactor1();
+		//validateFactor2();
+		//validateFactor3();
+		//validateFactor4();
 	}
 
 	/**

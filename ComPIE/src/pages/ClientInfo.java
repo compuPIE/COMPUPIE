@@ -1,5 +1,7 @@
 package pages;
 
+import java.awt.Rectangle;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JMenu;
@@ -7,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import java.awt.Font;
 
 public class ClientInfo extends JPanel {
 
@@ -29,10 +32,10 @@ public class ClientInfo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ClientInfo(int id) {
-		setBounds(0, 11, 982, 671);
-
+	public ClientInfo(int id,Rectangle rect) {
+		setBounds(rect);
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		panel = new ClientPage(id);
 		tabbedPane.addTab("Client Info", null, panel, null);
@@ -64,11 +67,19 @@ public class ClientInfo extends JPanel {
 		panel8 = new Report(id);
 		tabbedPane.addTab("Report", null, panel8, null);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(tabbedPane,
-				GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(26).addComponent(tabbedPane,
-						GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 976, Short.MAX_VALUE)
+					.addGap(6))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addComponent(tabbedPane, GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+					.addContainerGap())
+		);
 		setLayout(groupLayout);
 	}
 

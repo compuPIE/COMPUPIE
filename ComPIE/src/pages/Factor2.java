@@ -7,6 +7,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class Factor2 extends JPanel {
 	private JTextField textField;
@@ -20,16 +22,11 @@ public class Factor2 extends JPanel {
 	 */
 	public Factor2() {
 		setBounds(0, 11, 963, 609);
-		setLayout(null);
 		
 		JLabel lblFactorIiEnvironmental = new JLabel("FACTOR II: Environmental Situations");
 		lblFactorIiEnvironmental.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblFactorIiEnvironmental.setBounds(271, 11, 394, 25);
-		add(lblFactorIiEnvironmental);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
-		tabbedPane.setBounds(10, 44, 943, 554);
-		add(tabbedPane);
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Food/Nutrition", null, panel, null);
@@ -536,6 +533,25 @@ public class Factor2 extends JPanel {
 		JComboBox comboBox_34 = new JComboBox();
 		comboBox_34.setBounds(25, 481, 141, 20);
 		panel_4.add(comboBox_34);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(271)
+					.addComponent(lblFactorIiEnvironmental, GroupLayout.PREFERRED_SIZE, 394, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(11)
+					.addComponent(lblFactorIiEnvironmental)
+					.addGap(8)
+					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		);
+		setLayout(groupLayout);
 		
 	}
 
