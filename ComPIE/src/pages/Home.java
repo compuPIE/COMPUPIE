@@ -1,32 +1,23 @@
 package pages;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 
 import dao.AdditionalNotesManipulation;
 import dao.CaseHistoryTableManipulation;
@@ -49,8 +40,6 @@ import daoBean.FollowUpBean;
 import daoBean.MentalStatusExamBean;
 import daoBean.StrengthAndResourcesBean;
 import pages.helper.Validator;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class Home extends JFrame {
 
@@ -223,7 +212,8 @@ public class Home extends JFrame {
 				if (createFollowUp && (pages_1.getPanel().isIstoUpdate() || pages_1.getPanel6().isHasToUpdate()
 						|| pages_1.getPanel1().isHasToUpdate() || pages_1.getPanel2().isHasToUpdate()
 						|| pages_1.getPanel3().isHasToUpdate() || pages_1.getPanel4().isHasToUpdate()
-						|| pages_1.getPanel7().hastoUpdate() || pages_1.getMse().needsUpdate())) {
+						|| pages_1.getPanel7().hastoUpdate() || pages_1.getMse().needsUpdate()
+						|| pages_1.getAdd().isHastoUpdate())) {
 					FollowUpTableManipulation follow = new FollowUpTableManipulation();
 					ClientTableManipulation cli = new ClientTableManipulation();
 					if (clientId == 0) {
