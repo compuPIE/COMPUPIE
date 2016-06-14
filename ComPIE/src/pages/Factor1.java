@@ -105,7 +105,6 @@ public class Factor1 extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
@@ -121,11 +120,11 @@ public class Factor1 extends JPanel {
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
-		lblSocialRoleDescription = new JLabel("Social Role Description(*)");
+		lblSocialRoleDescription = new JLabel("Social Role Description");
 
-		lblProblemType = new JLabel("Problem Type(*)");
+		lblProblemType = new JLabel("Problem Type");
 
-		lblProblem = new JLabel("Problem(*)");
+		lblProblem = new JLabel("Problem");
 
 		Load_SocialRoles roles = new Load_SocialRoles();
 		List<SocialRoleCategory> categ = roles.getAllProblemsByCategory();
@@ -159,9 +158,9 @@ public class Factor1 extends JPanel {
 			comboBox_2.addItem(sev.getCategory());
 		}
 
-		lblDuration = new JLabel("Duration(*)");
+		lblDuration = new JLabel("Duration");
 
-		lblCopingAbility = new JLabel("Coping Ability(*)");
+		lblCopingAbility = new JLabel("Coping Ability");
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
@@ -197,7 +196,7 @@ public class Factor1 extends JPanel {
 		label_8 = new JLabel("Expected Outcome");
 		desktopPane.setVisible(false);
 
-		lblPriority = new JLabel("Priority(*)");
+		lblPriority = new JLabel("Priority");
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
@@ -241,51 +240,53 @@ public class Factor1 extends JPanel {
 			}
 		});
 
-		JButton btnNewButton = new JButton("Remove Problem");
+		JButton btnNewButton = new JButton("Clear");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setHasToUpdate(false);
 				desktopPane.setVisible(false);
 			}
 		});
-
-		lblNewLabel = new JLabel("Fields marked (*) are mandatory");
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(272)
-						.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, Short.MAX_VALUE).addGap(241))
-				.addGroup(groupLayout.createSequentialGroup().addGap(24).addGroup(groupLayout
-						.createParallelGroup(
-								Alignment.LEADING)
-						.addGroup(
-								groupLayout.createSequentialGroup()
-										.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 332,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(282)
-										.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-										.addGap(18)
-										.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGap(27)
-										.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGap(10))
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(272)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, Short.MAX_VALUE)
+					.addGap(241))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)).addGap(27)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(24)
-				.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnAddNewProblem)
-								.addComponent(btnEditProblem).addComponent(btnNewButton))
-						.addComponent(lblNewLabel))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE).addGap(125)));
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(614)
+							.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+							.addGap(27)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+							.addGap(10)))
+					.addGap(27))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAddNewProblem)
+						.addComponent(btnEditProblem)
+						.addComponent(btnNewButton))
+					.addGap(37)
+					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
+					.addGap(0))
+		);
 
-		JLabel lblSeverity = new JLabel("Severity(*)");
+		JLabel lblSeverity = new JLabel("Severity");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
 		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
@@ -473,7 +474,7 @@ public class Factor1 extends JPanel {
 		int i = 0;
 		for (Factor1Bean bean : list) {
 			data[i][0] = bean.getId();
-			data[i][1] = follow.getFollowUpInfo(clientID, bean.getFollowup()).get(0).getDate();
+			data[i][1] = follow.getFollowUpInfo( bean.getFollowup(),clientID).get(0).getDate();
 			data[i][2] = bean.getSocialRoleDescription();
 			data[i][3] = bean.getProblemType();
 			data[i][4] = bean.getSocialRoleProblemType();

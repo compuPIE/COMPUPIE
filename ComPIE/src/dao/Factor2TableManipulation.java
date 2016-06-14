@@ -122,6 +122,38 @@ public class Factor2TableManipulation {
 		return list;
 	}
 
+	public List<Factor2Bean> getFactorInfoByFollowUp(int followup, int clientId) {
+		List<Factor2Bean> list = new ArrayList<Factor2Bean>();
+		Factor2TableManipulationcreate();
+		Statement stmt = null;
+		ResultSet rs;
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM FACTOR2 where clientId =" + clientId + " and followUp =" + followup + ";");
+			while (rs.next()) {
+				Factor2Bean info = new Factor2Bean();
+				info.setId(rs.getInt("id"));
+				info.setproblemCategory(rs.getString("problemCategory"));
+				info.setProblemType(rs.getString("problemType"));
+				info.setServerity(rs.getString("serverity"));
+				info.setDuration(rs.getString("duration"));
+				info.setCopingAbitity(rs.getString("copingAbitity"));
+				info.setPriority(rs.getString("priority"));
+				info.setGoal(rs.getString("goal"));
+				info.setRecommendedInter(rs.getString("recommendedInter"));
+				info.setExpectedOutcome(rs.getString("expectedOutcome"));
+				info.setClientId(rs.getInt("clientId"));
+				info.setFollowup(rs.getInt("followUp"));
+				list.add(info);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	public int getmaxId(int clientID) {
 		Factor2TableManipulationcreate();
 		int id = 0;

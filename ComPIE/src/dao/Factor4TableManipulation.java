@@ -121,6 +121,39 @@ public class Factor4TableManipulation {
 		}
 		return list;
 	}
+	
+	public List<Factor4Bean> getFactorInfoByFollowUp(int followUp,int clientId) {
+		List<Factor4Bean> list = new ArrayList<Factor4Bean>();
+		Factor4TableManipulationcreate();
+		Statement stmt = null;
+		ResultSet rs;
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM FACTOR4 where clientId =" + clientId + " and followUp ="+followUp+";");
+			while (rs.next()) {
+				Factor4Bean info = new Factor4Bean();
+				info.setId(rs.getInt("id"));
+				info.setDiagnosis(rs.getString("problem"));
+				info.setdiagnosisSource(rs.getString("source"));
+				info.setServerity(rs.getString("serverity"));
+				info.setDuration(rs.getString("duration"));
+				info.setCopingAbitity(rs.getString("copingAbitity"));
+				info.setPriority(rs.getString("priority"));
+				info.setGoal(rs.getString("goal"));
+				info.setRecommendedInter(rs.getString("recommendedInter"));
+				info.setExpectedOutcome(rs.getString("expectedOutcome"));
+				info.setClientId(rs.getInt("clientId"));
+				info.setFollowup(rs.getInt("followUp"));
+				list.add(info);
+			}
+			rs.close();
+			stmt.close();
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	public int getmaxId(int clientID) {
 		Factor4TableManipulationcreate();

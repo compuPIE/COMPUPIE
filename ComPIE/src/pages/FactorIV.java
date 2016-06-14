@@ -112,9 +112,9 @@ public class FactorIV extends JPanel {
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
-		lblDsmAxisDiagnosis = new JLabel("Physical Health Problem(*)");
+		lblDsmAxisDiagnosis = new JLabel("Physical Health Problem");
 
-		lblDiagnosisSource = new JLabel("Diagnosis Source(*)");
+		lblDiagnosisSource = new JLabel("Diagnosis Source");
 
 		LoadPhysicalHealth roles = new LoadPhysicalHealth();
 		List<PhysicalHealthProblems> categ = roles.getAllProblemsByCategory();
@@ -143,9 +143,9 @@ public class FactorIV extends JPanel {
 			comboBox_2.addItem(sev.getCategory());
 		}
 
-		lblDuration = new JLabel("Duration(*)");
+		lblDuration = new JLabel("Duration");
 
-		lblCopingAbility = new JLabel("Coping Ability(*)");
+		lblCopingAbility = new JLabel("Coping Ability");
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
@@ -174,7 +174,7 @@ public class FactorIV extends JPanel {
 		label_8 = new JLabel("Expected Outcome");
 		desktopPane.setVisible(false);
 
-		lblPriority = new JLabel("Priority(*)");
+		lblPriority = new JLabel("Priority");
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
@@ -220,7 +220,7 @@ public class FactorIV extends JPanel {
 
 		AutoCompletion.enable(comboBox);
 
-		JButton btnNewButton = new JButton("Remove Problem");
+		JButton btnNewButton = new JButton("Clear");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setHasToUpdate(false);
@@ -228,7 +228,7 @@ public class FactorIV extends JPanel {
 			}
 		});
 
-		JLabel lblSeverity = new JLabel("Severity(*)");
+		JLabel lblSeverity = new JLabel("Severity");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
 		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
@@ -322,36 +322,44 @@ public class FactorIV extends JPanel {
 						.addGap(106)));
 		desktopPane.setLayout(gl_desktopPane);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(272).addComponent(lblFactorISocial,
-						GroupLayout.PREFERRED_SIZE, 526, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup().addGap(24)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE).addGap(11))
-				.addGroup(groupLayout.createSequentialGroup().addGap(546)
-						.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addGap(36).addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-						.addGap(26).addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-						.addGap(36))
-				.addGroup(groupLayout.createSequentialGroup().addGap(24)
-						.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE).addGap(8)));
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(
-										groupLayout.createSequentialGroup().addGap(24)
-												.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35,
-														GroupLayout.PREFERRED_SIZE)
-												.addGap(6)
-												.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 164,
-														Short.MAX_VALUE)
-												.addGap(6)
-												.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(btnAddNewProblem).addComponent(btnEditProblem)
-														.addComponent(btnNewButton))
-												.addGap(6).addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 341,
-														Short.MAX_VALUE)
-												.addGap(4)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(272)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE)
+					.addGap(8))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
+					.addGap(11))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(540)
+					.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(36)
+					.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(26)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+					.addGap(42))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnAddNewProblem)
+						.addComponent(btnEditProblem)
+						.addComponent(btnNewButton))
+					.addGap(31)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+					.addGap(4))
+		);
 		setLayout(groupLayout);
 		table.removeColumn(table.getColumnModel().getColumn(0));
 	}
@@ -438,7 +446,7 @@ public class FactorIV extends JPanel {
 		int i = 0;
 		for (Factor4Bean bean : list) {
 			data[i][0] = bean.getId();
-			data[i][1] = follow.getFollowUpInfo(clientID, bean.getFollowup()).get(0).getDate();
+			data[i][1] = follow.getFollowUpInfo( bean.getFollowup(),clientID).get(0).getDate();
 			data[i][2] = bean.getDiagnosis();
 			data[i][3] = bean.getdiagnosisSource();
 			data[i][4] = bean.getServerity();

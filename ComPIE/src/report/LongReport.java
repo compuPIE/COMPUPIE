@@ -115,8 +115,8 @@ public class LongReport {
 				flreport.createShortForFactor4(document);
 			}
 
-			rep.generateStrengthAndResources(1, document);
-			chdc.generateClientCaseHistory(1, document);
+			rep.generateStrengthAndResources(clientID, document);
+			chdc.generateClientCaseHistory(clientID, document);
 			
 			MSEReport mse = new MSEReport(writer);
 		    mse.createMSEReport(clientID, document);

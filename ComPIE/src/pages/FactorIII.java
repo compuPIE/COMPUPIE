@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -92,12 +93,13 @@ public class FactorIII extends JPanel {
 	private boolean hasToUpdate;
 
 	private int currentId;
+	
+	private JTextField comboBox_5;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel lblNewLabel;
 
 	public int clientId;
 
@@ -114,19 +116,27 @@ public class FactorIII extends JPanel {
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
-		lblDsmAxisDiagnosis = new JLabel("DSM Axis Diagnosis(*)");
+		lblDsmAxisDiagnosis = new JLabel("DSM Axis Diagnosis");
 
-		lblDiagnosisSource = new JLabel("Diagnosis Source(*)");
+		lblDiagnosisSource = new JLabel("Diagnosis Source");
 
 		Load_DSM_AXIS_5 roles = new Load_DSM_AXIS_5();
 		List<DSM_AXIS_5> categ = roles.getAllDSM_AXIS_5();
 
 		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboBox.getSelectedItem().toString().split("--").length > 1){
+					comboBox_5.setText(comboBox.getSelectedItem().toString().split("--")[1]);
+				}
+			}
+		});
 		comboBox_1 = new JComboBox();
 
 		comboBox.addItem("");
 		for (DSM_AXIS_5 category : categ) {
-			comboBox.addItem(category.getCategory());
+			
+			comboBox.addItem(category.getCategory() +""+((!category.getId().equalsIgnoreCase(""))?"   -- "+category.getId():""));
 		}
 
 		comboBox_1.addItem("Select");
@@ -141,9 +151,9 @@ public class FactorIII extends JPanel {
 			comboBox_2.addItem(sev.getCategory());
 		}
 
-		lblDuration = new JLabel("Duration(*)");
+		lblDuration = new JLabel("Duration");
 
-		lblCopingAbility = new JLabel("Coping Ability(*)");
+		lblCopingAbility = new JLabel("Coping Ability");
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
@@ -172,7 +182,7 @@ public class FactorIII extends JPanel {
 		label_8 = new JLabel("Expected Outcome");
 		desktopPane.setVisible(false);
 
-		lblPriority = new JLabel("Priority(*)");
+		lblPriority = new JLabel("Priority");
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
@@ -218,7 +228,7 @@ public class FactorIII extends JPanel {
 
 		AutoCompletion.enable(comboBox);
 
-		JButton btnNewButton = new JButton("Remove Problem");
+		JButton btnNewButton = new JButton("Clear");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setHasToUpdate(false);
@@ -226,131 +236,150 @@ public class FactorIII extends JPanel {
 			}
 		});
 
-		lblNewLabel = new JLabel("Fields marked (*) are mandatory");
-
-		JLabel lblSeverity = new JLabel("Severity(*)");
+		JLabel lblSeverity = new JLabel("Severity");
+		
+		comboBox_5 = new JTextField();
+		comboBox_5.setEnabled(false);
+		JLabel lblDsmCode = new JLabel("DSM Code");
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
-		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
+		gl_desktopPane.setHorizontalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
-						.addGap(23).addComponent(label_7, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE).addGap(176)
-						.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE).addGap(145))
-				.addGroup(
-						gl_desktopPane.createSequentialGroup().addGap(23)
-								.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGap(61)
-								.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGap(30))
+					.addGap(23)
+					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+					.addGap(176)
+					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+					.addGap(145))
 				.addGroup(gl_desktopPane.createSequentialGroup()
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
-										.addComponent(lblDsmAxisDiagnosis, GroupLayout.DEFAULT_SIZE,
-												252, Short.MAX_VALUE)
-										.addGap(261))
-								.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
-										.addComponent(comboBox, 0, 506, Short.MAX_VALUE)
-										.addPreferredGap(ComponentPlacement.RELATED)))
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_desktopPane.createSequentialGroup()
-										.addComponent(comboBox_1, 0, 212, Short.MAX_VALUE).addGap(179))
-								.addGroup(gl_desktopPane.createSequentialGroup()
-										.addComponent(lblDiagnosisSource, GroupLayout.DEFAULT_SIZE, 381,
-												Short.MAX_VALUE)
-										.addContainerGap())))
-				.addGroup(gl_desktopPane.createSequentialGroup().addGap(23).addGroup(gl_desktopPane
-						.createParallelGroup(Alignment.LEADING)
+					.addGap(23)
+					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(61)
+					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(30))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(23)
+							.addComponent(lblDsmAxisDiagnosis, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+							.addGap(261))
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(24)
+							.addComponent(comboBox, 0, 424, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox_1, 0, 298, Short.MAX_VALUE)
+						.addComponent(lblDiagnosisSource, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox_5, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addComponent(lblDsmCode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(79)))
+					.addGap(41))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_desktopPane.createSequentialGroup()
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblSeverity))
-								.addGap(50)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144,
-												GroupLayout.PREFERRED_SIZE))
-								.addGap(53)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121,
-												GroupLayout.PREFERRED_SIZE))
-								.addGap(37)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_6, 0, 173, Short.MAX_VALUE)))
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSeverity))
+							.addGap(50)
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+							.addGap(53)
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
+							.addGap(37)
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox_6, 0, 173, Short.MAX_VALUE)))
 						.addGroup(gl_desktopPane.createSequentialGroup()
-								.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE).addGap(732)))
-						.addGap(30)));
-		gl_desktopPane.setVerticalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_desktopPane.createSequentialGroup().addGap(11)
+							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+							.addGap(732)))
+					.addGap(30))
+		);
+		gl_desktopPane.setVerticalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDsmAxisDiagnosis)
+						.addComponent(lblDiagnosisSource)
+						.addComponent(lblDsmCode))
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(21)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCopingAbility)
+						.addComponent(lblPriority)
+						.addComponent(lblDuration)
+						.addComponent(lblSeverity))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblDsmAxisDiagnosis).addComponent(lblDiagnosisSource))
-						.addGap(1)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(21)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(lblCopingAbility)
-								.addComponent(lblPriority).addComponent(lblDuration).addComponent(lblSeverity))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)))
-						.addGap(11).addComponent(label_6)
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE).addGap(10)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(label_7)
-								.addComponent(label_8))
-						.addGap(1)
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-						.addGap(106)));
+							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(11)
+					.addComponent(label_6)
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 74, Short.MAX_VALUE)
+					.addGap(10)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_7)
+						.addComponent(label_8))
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
+					.addGap(106))
+		);
 		desktopPane.setLayout(gl_desktopPane);
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(272).addComponent(lblFactorISocial,
-						GroupLayout.PREFERRED_SIZE, 526, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup().addGap(24)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE).addGap(10))
-				.addGroup(groupLayout.createSequentialGroup().addGap(24).addComponent(lblNewLabel).addGap(360)
-						.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addGap(18).addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-						.addGap(18).addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-						.addGap(68))
-				.addGroup(groupLayout.createSequentialGroup().addGap(24)
-						.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE).addGap(12)));
-		groupLayout
-				.setVerticalGroup(
-						groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGap(24)
-										.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(6)
-										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup().addGap(18)
-														.addComponent(lblNewLabel))
-												.addComponent(btnAddNewProblem).addComponent(btnEditProblem)
-												.addComponent(btnNewButton))
-										.addGap(6)
-										.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-										.addGap(1)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(272)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+					.addGap(12))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(539)
+					.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+					.addGap(18)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+					.addGap(69))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnAddNewProblem)
+						.addComponent(btnEditProblem)
+						.addComponent(btnNewButton))
+					.addGap(26)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+					.addGap(1))
+		);
 		setLayout(groupLayout);
 		table.removeColumn(table.getColumnModel().getColumn(0));
 	}
@@ -393,7 +422,12 @@ public class FactorIII extends JPanel {
 			if (list.size() != 0) {
 				setCurrentId(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
 				comboBox.setSelectedItem(list.get(0).getdsmDiagnosis());
-				comboBox_1.setSelectedItem(list.get(0).getdiagnosisSource());
+				if(list.get(0).getdiagnosisSource().split("--").length>1){
+					comboBox_1.setSelectedItem(list.get(0).getdiagnosisSource());	
+					comboBox_5.setText(list.get(0).getdiagnosisSource().split("--")[1]);
+				}else{
+					comboBox_1.setSelectedItem(list.get(0).getdiagnosisSource());	
+				}
 				comboBox_2.setSelectedItem(list.get(0).getServerity());
 				comboBox_3.setSelectedItem(list.get(0).getDuration());
 				comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
@@ -436,7 +470,7 @@ public class FactorIII extends JPanel {
 		int i = 0;
 		for (Factor3Bean bean : list) {
 			data[i][0] = bean.getId();
-			data[i][1] = follow.getFollowUpInfo(clientID, bean.getFollowup()).get(0).getDate();
+			data[i][1] = follow.getFollowUpInfo( bean.getFollowup(),clientID).get(0).getDate();
 			data[i][2] = bean.getdsmDiagnosis();
 			data[i][3] = bean.getdiagnosisSource();
 			data[i][4] = bean.getServerity();

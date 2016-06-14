@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 public class LogIn extends JPanel{
 	private JTextField textField;
@@ -24,14 +25,17 @@ public class LogIn extends JPanel{
 	public LogIn(Home home){
 		this.home = home;
 		setBounds(0, 11, 982, 671);
-		
+		ImageIcon icon = new ImageIcon("images/officialLogo1.png");
 		JLabel lblNewLabel = new JLabel("CompuPIE");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Javanese Text", Font.BOLD, 86));
 		
 		JLabel lblNewLabel_1 = new JLabel("Enter your Name");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("LogIn");
@@ -45,6 +49,7 @@ public class LogIn extends JPanel{
 					}
 				}
 				getThisObject().setVisible(false);
+				home.layeredPane.lblNewLabel.setVisible(true);
 				home.panel.setVisible(true);
 				
 				repaint();
@@ -64,47 +69,51 @@ public class LogIn extends JPanel{
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		
+		JLabel lblNewLabel_2 = new JLabel(icon);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(327)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(243)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-									.addGap(173))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(152)
-									.addComponent(textField, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
-							.addGap(14)))
-					.addGap(68))
+					.addGap(10)
+					.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+					.addGap(29))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnNewButton_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-					.addGap(82))
+					.addGap(32)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
+					.addGap(29))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(232)
+					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(textField, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+					.addGap(98))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(734)
+					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addGap(98))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(168)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-					.addGap(54)
+					.addGap(21)
+					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(43)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(37)
+							.addGap(11)
+							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(1)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+					.addGap(32)
 					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(86, Short.MAX_VALUE))
+					.addContainerGap(114, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 	}

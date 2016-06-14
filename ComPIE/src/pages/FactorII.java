@@ -25,6 +25,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import dao.Factor2TableManipulation;
+import dao.FollowUpTableManipulation;
 import dao.Load_Coping_Ability;
 import dao.Load_Duration;
 import dao.Load_Factor2MetaInfo;
@@ -99,8 +100,8 @@ public class FactorII extends JPanel {
 	private int currentProbId = 0;
 
 	private String currentMenu = "";
-	
-	private boolean hasRecords =false;
+
+	private boolean hasRecords = false;
 
 	/**
 	 * 
@@ -108,7 +109,6 @@ public class FactorII extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTree tree;
 	private JTree tr;
-	private JLabel lblNewLabel_1;
 
 	/**
 	 * Create the panel.
@@ -126,7 +126,7 @@ public class FactorII extends JPanel {
 
 		label = new JLabel("");
 
-		lblSeverity = new JLabel("Severity(*)");
+		lblSeverity = new JLabel("Severity");
 
 		comboBox = new JComboBox<String>();
 		comboBox.addItem("Select");
@@ -134,9 +134,9 @@ public class FactorII extends JPanel {
 		comboBox_2 = new JComboBox<String>();
 		comboBox_2.addItem("Select");
 
-		lblDuration = new JLabel("Duration(*)");
+		lblDuration = new JLabel("Duration");
 
-		lblCopingAbility = new JLabel("Coping Ability(*)");
+		lblCopingAbility = new JLabel("Coping Ability");
 
 		comboBox_3 = new JComboBox<String>();
 
@@ -155,7 +155,7 @@ public class FactorII extends JPanel {
 		label_8 = new JLabel("Expected Outcome");
 		desktopPane.setVisible(false);
 
-		lblPriority = new JLabel("Priority(*)");
+		lblPriority = new JLabel("Priority");
 
 		comboBox_6 = new JComboBox<String>();
 		comboBox_6.addItem("Select");
@@ -163,7 +163,13 @@ public class FactorII extends JPanel {
 
 		btnAddNewProblem = new JButton("Add new Problem");
 
-		btnDeleteProblem = new JButton("Delete Problem");
+		btnDeleteProblem = new JButton("Clear");
+		btnDeleteProblem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setHasToUpdate(false);
+				desktopPane.setVisible(false);
+			}
+		});
 
 		DefaultTableModel model = tablePopulate(clientID, "Food/Nutrition");
 		table = new JTable(model);
@@ -196,142 +202,122 @@ public class FactorII extends JPanel {
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.expandRow(i);
 		}
-		
-		lblNewLabel_1 = new JLabel("Fields marked (*) are mandatory");
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(396)
-					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-					.addGap(348))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(tr, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		groupLayout
+				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup().addGap(396)
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE).addGap(348))
+						.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+								.addComponent(tr, GroupLayout.PREFERRED_SIZE, 191,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addGroup(groupLayout.createSequentialGroup().addGap(378)
+												.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115,
+														Short.MAX_VALUE)
+												.addGap(18)
+												.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91,
+														Short.MAX_VALUE)
+												.addGap(18)
+												.addComponent(btnDeleteProblem, GroupLayout.PREFERRED_SIZE, 126,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED))
+										.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746,
+												Short.MAX_VALUE)
+										.addComponent(desktopPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746,
+												Short.MAX_VALUE))
+								.addGap(10))
+						.addGroup(groupLayout
+								.createSequentialGroup().addGap(373).addComponent(lblFactorISocial,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGap(263)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addContainerGap()
+				.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+				.addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE).addGap(10)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_1)
-							.addGap(222)
-							.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(btnDeleteProblem, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED))
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
-						.addComponent(desktopPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
-					.addGap(10))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(373)
-					.addComponent(lblFactorISocial, GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
-					.addGap(263))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(tr, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE).addGap(111))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(tr, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
-							.addGap(111))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-							.addGap(7)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnAddNewProblem)
-										.addComponent(btnEditProblem)
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE).addGap(7)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnAddNewProblem).addComponent(btnEditProblem)
 										.addComponent(btnDeleteProblem))
-									.addGap(11))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel_1)
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(11))
-		);
+								.addGap(11).addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED)))
+				.addGap(11)));
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
-		gl_desktopPane
-				.setHorizontalGroup(
-						gl_desktopPane
-								.createParallelGroup(
-										Alignment.LEADING)
+		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
+						.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE).addGap(104)
+						.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE).addGap(60))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
+										.addComponent(comboBox_3, 0, 254, Short.MAX_VALUE).addGap(39))
+								.addGroup(
+										gl_desktopPane.createSequentialGroup().addGap(33)
+												.addComponent(lblDuration, GroupLayout.DEFAULT_SIZE, 278,
+														Short.MAX_VALUE)
+												.addPreferredGap(ComponentPlacement.RELATED)))
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+										.addComponent(comboBox_4, 0, 216, Short.MAX_VALUE).addGap(18))
+								.addGroup(
+										gl_desktopPane.createSequentialGroup()
+												.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 0,
+														Short.MAX_VALUE)
+												.addGap(161)))
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+										.addComponent(comboBox_6, 0, 137, Short.MAX_VALUE).addGap(50))
+								.addGroup(
+										gl_desktopPane.createSequentialGroup()
+												.addComponent(lblPriority, GroupLayout.DEFAULT_SIZE, 62,
+														Short.MAX_VALUE)
+												.addContainerGap())))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
+										.addComponent(comboBox, 0, 261, Short.MAX_VALUE).addGap(25))
 								.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
-										.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-										.addGap(104)
-										.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-										.addGap(60))
-								.addGroup(gl_desktopPane.createSequentialGroup()
-										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
-														.addComponent(comboBox_3, 0, 254, Short.MAX_VALUE).addGap(39))
-												.addGroup(gl_desktopPane.createSequentialGroup().addGap(33)
-														.addComponent(lblDuration, GroupLayout.DEFAULT_SIZE, 278,
-																Short.MAX_VALUE)
-														.addPreferredGap(ComponentPlacement.RELATED)))
-										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_desktopPane.createSequentialGroup()
-														.addComponent(comboBox_4, 0, 216, Short.MAX_VALUE).addGap(18))
-												.addGroup(gl_desktopPane.createSequentialGroup()
-														.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 0,
-																Short.MAX_VALUE)
-														.addGap(161)))
-										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_desktopPane.createSequentialGroup()
-														.addComponent(comboBox_6, 0, 137, Short.MAX_VALUE).addGap(50))
-												.addGroup(gl_desktopPane.createSequentialGroup()
-														.addComponent(lblPriority, GroupLayout.DEFAULT_SIZE, 62,
-																Short.MAX_VALUE)
-														.addContainerGap())))
-								.addGroup(gl_desktopPane.createSequentialGroup()
-										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
-														.addComponent(comboBox, 0, 261, Short.MAX_VALUE).addGap(25))
-												.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
-														.addComponent(label, GroupLayout.DEFAULT_SIZE, 246,
-																Short.MAX_VALUE)
-														.addGap(41)))
-										.addGap(10)
-										.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(comboBox_2, 0, 254, Short.MAX_VALUE)
-												.addGroup(gl_desktopPane.createSequentialGroup()
+										.addComponent(label, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+										.addGap(41)))
+						.addGap(10)
+						.addGroup(
+								gl_desktopPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBox_2, 0, 254, Short.MAX_VALUE).addGroup(
+												gl_desktopPane.createSequentialGroup()
 														.addComponent(lblSeverity, GroupLayout.DEFAULT_SIZE, 55,
 																Short.MAX_VALUE)
 														.addGap(199)))
-										.addGap(164))
+						.addGap(164))
+				.addGroup(
+						gl_desktopPane.createSequentialGroup().addGap(23)
 								.addGroup(
-										gl_desktopPane.createSequentialGroup().addGap(23)
-												.addGroup(gl_desktopPane
-														.createParallelGroup(Alignment.TRAILING)
-														.addGroup(
-																gl_desktopPane
-																		.createSequentialGroup().addGroup(gl_desktopPane
-																				.createParallelGroup(Alignment.LEADING)
-																				.addComponent(
-																						textArea,
-																						GroupLayout.DEFAULT_SIZE, 680,
+										gl_desktopPane
+												.createParallelGroup(Alignment.TRAILING)
+												.addGroup(
+														gl_desktopPane
+																.createSequentialGroup()
+																.addGroup(gl_desktopPane
+																		.createParallelGroup(Alignment.LEADING)
+																		.addComponent(
+																				textArea, GroupLayout.DEFAULT_SIZE, 680,
+																				Short.MAX_VALUE)
+																		.addGroup(gl_desktopPane.createSequentialGroup()
+																				.addComponent(textArea_1,
+																						GroupLayout.DEFAULT_SIZE, 307,
 																						Short.MAX_VALUE)
-																				.addGroup(gl_desktopPane
-																						.createSequentialGroup()
-																						.addComponent(textArea_1,
-																								GroupLayout.DEFAULT_SIZE,
-																								307, Short.MAX_VALUE)
-																						.addGap(63)
-																						.addComponent(textArea_2,
-																								GroupLayout.DEFAULT_SIZE,
-																								310, Short.MAX_VALUE)))
-																		.addGap(35))
-														.addGroup(gl_desktopPane
-																.createSequentialGroup().addComponent(label_6,
-																		GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-																.addGap(605)))));
+																				.addGap(63).addComponent(textArea_2,
+																						GroupLayout.DEFAULT_SIZE, 310,
+																						Short.MAX_VALUE)))
+																.addGap(35))
+												.addGroup(gl_desktopPane
+														.createSequentialGroup().addComponent(label_6,
+																GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+														.addGap(605)))));
 		gl_desktopPane.setVerticalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_desktopPane.createSequentialGroup().addGap(11)
 						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(label)
@@ -366,7 +352,7 @@ public class FactorII extends JPanel {
 						.addGap(13)));
 		desktopPane.setLayout(gl_desktopPane);
 		setLayout(groupLayout);
-
+		table.removeColumn(table.getColumnModel().getColumn(0));
 	}
 
 	/**
@@ -423,44 +409,44 @@ public class FactorII extends JPanel {
 	private void changeMenuWhenClicked(String menu) {
 		switch (menu) {
 		case "Food/Nutrition":
-			lblNewLabel.setText("Economic/Basic Needs Problems(*)");
+			lblNewLabel.setText("Economic/Basic Needs Problems");
 			repaint();
 			break;
 		case "Shelter":
-			lblNewLabel.setText("Economic/Basic Needs Problems(*)");
+			lblNewLabel.setText("Economic/Basic Needs Problems");
 			break;
 		case "Employment":
-			lblNewLabel.setText("Economic/Basic Needs Problems(*)");
+			lblNewLabel.setText("Economic/Basic Needs Problems");
 			break;
 		case "Economic Resources":
-			lblNewLabel.setText("Economic/Basic Needs Problems(*)");
+			lblNewLabel.setText("Economic/Basic Needs Problems");
 			break;
 		case "Transportation":
-			lblNewLabel.setText("Economic/Basic Needs Problems(*)");
+			lblNewLabel.setText("Economic/Basic Needs Problems");
 			break;
 		case "Health Problems":
-			lblNewLabel.setText("Health and Safety Problems(*)");
+			lblNewLabel.setText("Health and Safety Problems");
 			break;
 		case "Safety Problems":
-			lblNewLabel.setText("Health and Safety Problems(*)");
+			lblNewLabel.setText("Health and Safety Problems");
 			break;
 		case "Social Service Problems":
-			lblNewLabel.setText("Health and Safety Problems(*)");
+			lblNewLabel.setText("Health and Safety Problems");
 			break;
 		case "Religious Group Problems":
-			lblNewLabel.setText("Religious and community Group Problems(*)");
+			lblNewLabel.setText("Religious and community Group Problems");
 			break;
 		case "Community Group Problems":
-			lblNewLabel.setText("Religious and community Group Problems(*)");
+			lblNewLabel.setText("Religious and community Group Problems");
 			break;
 		case "Education and Training":
-			lblNewLabel.setText("Education/Training Problems(*)");
+			lblNewLabel.setText("Education/Training Problems");
 			break;
 		case "Judicial and Legal":
-			lblNewLabel.setText("Criminal Justice Problems(*)");
+			lblNewLabel.setText("Criminal Justice Problems");
 			break;
 		case "Affectional Support":
-			lblNewLabel.setText("Affectional Support Problems(*)");
+			lblNewLabel.setText("Affectional Support Problems");
 			break;
 
 		}
@@ -572,21 +558,26 @@ public class FactorII extends JPanel {
 	 */
 	private void addTableListener(int clientID) {
 		setHasToUpdate(false);
-		if(isHasRecords()){
-		desktopPane.setVisible(true);
-		enableDisableValues(false);
-		Factor2TableManipulation fac1Dao = new Factor2TableManipulation();
-		List<Factor2Bean> list = fac1Dao
-				.getFactorInfo(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()), clientID);
-		setCurrentProbId(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
-		comboBox.setSelectedItem(list.get(0).getProblemType());
-		comboBox_2.setSelectedItem(list.get(0).getServerity());
-		comboBox_3.setSelectedItem(list.get(0).getDuration());
-		comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
-		comboBox_6.setSelectedItem(list.get(0).getPriority());
-		textArea.setText(list.get(0).getGoal());
-		textArea_1.setText(list.get(0).getRecommendedInter());
-		textArea_2.setText(list.get(0).getExpectedOutcome());
+		if (isHasRecords()) {
+			desktopPane.setVisible(true);
+			enableDisableValues(false);
+			Factor2TableManipulation fac1Dao = new Factor2TableManipulation();
+			if (table.getModel().getValueAt(table.getSelectedRow(), 0) != null && !table.getModel()
+					.getValueAt(table.getSelectedRow(), 0).toString().equalsIgnoreCase("No Problems.")) {
+				List<Factor2Bean> list = fac1Dao.getFactorInfo(
+						Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()), clientID);
+				setCurrentProbId(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
+				if (list != null && list.size() != 0) {
+					comboBox.setSelectedItem(list.get(0).getProblemType());
+					comboBox_2.setSelectedItem(list.get(0).getServerity());
+					comboBox_3.setSelectedItem(list.get(0).getDuration());
+					comboBox_4.setSelectedItem(list.get(0).getCopingAbitity());
+					comboBox_6.setSelectedItem(list.get(0).getPriority());
+					textArea.setText(list.get(0).getGoal());
+					textArea_1.setText(list.get(0).getRecommendedInter());
+					textArea_2.setText(list.get(0).getExpectedOutcome());
+				}
+			}
 		}
 	}
 
@@ -609,7 +600,7 @@ public class FactorII extends JPanel {
 		enableDisableValues(false);
 		String[] columns = new String[] { "Id", "Assessed Date", "Problem", "Severity", "Duration", "Coping Ability",
 				"Priority" };
-
+		FollowUpTableManipulation follow = new FollowUpTableManipulation();
 		Factor2TableManipulation fac1Dao = new Factor2TableManipulation();
 		List<Factor2Bean> list = fac1Dao.getFactorInfo(clientID, problem);
 
@@ -618,7 +609,7 @@ public class FactorII extends JPanel {
 		int i = 0;
 		for (Factor2Bean bean : list) {
 			data[i][0] = bean.getId();
-			data[i][1] = bean.getId();
+			data[i][1] = follow.getFollowUpInfo(bean.getFollowup(), clientID).get(0).getDate();
 			data[i][2] = bean.getProblemType();
 			data[i][3] = bean.getServerity();
 			data[i][4] = bean.getDuration();
@@ -635,10 +626,10 @@ public class FactorII extends JPanel {
 			data[i][4] = "";
 			data[i][5] = "";
 			data[i][6] = "";
-		}else{
+		} else {
 			setHasRecords(true);
 		}
-		final Class[] columnClass = new Class[] { Integer.class, Date.class, String.class, String.class, String.class,
+		final Class[] columnClass = new Class[] { Integer.class, String.class, String.class, String.class, String.class,
 				String.class, String.class };
 
 		// create table model with data
@@ -755,7 +746,8 @@ public class FactorII extends JPanel {
 	}
 
 	/**
-	 * @param hasRecords the hasRecords to set
+	 * @param hasRecords
+	 *            the hasRecords to set
 	 */
 	public void setHasRecords(boolean hasRecords) {
 		this.hasRecords = hasRecords;

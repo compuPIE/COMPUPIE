@@ -108,7 +108,7 @@ public class FactorShortReport extends BaseReport {
 
 	public void createShortForFactor2(Document doc) throws DocumentException {
 		Factor2TableManipulation mani = new Factor2TableManipulation();
-		List<Factor2Bean> list = mani.getFactorInfo(this.clientId, this.followup);
+		List<Factor2Bean> list = mani.getFactorInfoByFollowUp( this.followup,this.clientId);
 
 		if (!list.isEmpty()) {
 			Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);
@@ -132,7 +132,7 @@ public class FactorShortReport extends BaseReport {
 	public void createShortForFactor3(Document doc) throws DocumentException {
 
 		Factor3TableManipulation mani = new Factor3TableManipulation();
-		List<Factor3Bean> list = mani.getFactorInfo(this.clientId, this.followup);
+		List<Factor3Bean> list = mani.getFactorInfoByFollowUp( this.followup,this.clientId);
 
 		if (!list.isEmpty()) {
 			Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);
@@ -155,7 +155,7 @@ public class FactorShortReport extends BaseReport {
 
 	public void createShortForFactor4(Document doc) throws DocumentException {
 		Factor4TableManipulation mani = new Factor4TableManipulation();
-		List<Factor4Bean> list = mani.getFactorInfo(this.clientId, this.followup);
+		List<Factor4Bean> list = mani.getFactorInfoByFollowUp( this.followup,this.clientId);
 
 		if (!list.isEmpty()) {
 			Font fontx = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD | Font.UNDERLINE);

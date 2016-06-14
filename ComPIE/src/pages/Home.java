@@ -106,6 +106,7 @@ public class Home extends JFrame {
 		panel.setVisible(false);
 		layeredPane.add(login);
 		layeredPane.add(panel);
+		layeredPane.lblNewLabel.setVisible(false);
 		saveListener();
 		layeredPane.btnGoHome.setVisible(false);
 		layeredPane.btnSave.setVisible(false);
@@ -195,7 +196,10 @@ public class Home extends JFrame {
 					saveMSE();
 					saveAddnlNotes();
 					JOptionPane.showMessageDialog(getThisObject(), "Details saved Successfully.");
-					pages_1.getPanel8().populateitems(false);
+					//pages_1.getPanel8().populateitems(false);
+					pages_1.setPanel8(new Report(clientId));
+					revalidate();
+					repaint();
 				} else {
 					StringBuffer sb = new StringBuffer();
 					for (String msg : valid.getMsgs()) {
@@ -242,7 +246,6 @@ public class Home extends JFrame {
 					}
 				}
 				pages_1.getPanel().setIstoUpdate(false);
-				;
 			}
 
 			private void saveCaseHistory() {

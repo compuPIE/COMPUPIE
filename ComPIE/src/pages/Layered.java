@@ -30,7 +30,7 @@ public class Layered extends JLayeredPane {
 			e1.printStackTrace();
 		}
 		setBounds(rect);
-		JLabel lblNewLabel = new JLabel("Welcome " + home.username);
+		lblNewLabel = new JLabel("Welcome " + home.username);
 		lblNewLabel.setFont(new Font("Helvetica", Font.PLAIN, 16));
 		//add(home.login);
 		//add(home.panel);
