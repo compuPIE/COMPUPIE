@@ -25,7 +25,7 @@ public class LogIn extends JPanel{
 	public LogIn(Home home){
 		this.home = home;
 		setBounds(0, 11, 982, 671);
-		ImageIcon icon = new ImageIcon("images/officialLogo1.png");
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("officialLogo1.png"));
 		JLabel lblNewLabel = new JLabel("CompuPIE");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Javanese Text", Font.BOLD, 86));

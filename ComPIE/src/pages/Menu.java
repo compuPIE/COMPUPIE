@@ -40,7 +40,7 @@ public class Menu extends JPanel {
 		btnHistoryOfPie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-				new Browser(System.getProperty("user.dir")+"/resources/History_of_PIE_System.pdf","History of PIE System");
+				new Browser(getClass().getClassLoader().getResource("History_of_PIE_System.pdf").toString(),"History of PIE System");
 				}catch(Exception e){}
 			}
 		});
@@ -50,7 +50,7 @@ public class Menu extends JPanel {
 		btnDedication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-				new Browser(System.getProperty("user.dir")+"/resources/Dedication.pdf","Dedication");
+				new Browser(getClass().getClassLoader().getResource("Dedication.pdf").toString(),"Dedication");
 				}catch(Exception e1){}
 			}
 		});
@@ -82,7 +82,7 @@ public class Menu extends JPanel {
 		txtrCompupieIsAn.setWrapStyleWord(true);
 		txtrCompupieIsAn.setLineWrap(true);
 		txtrCompupieIsAn.setText("CompuPIE is an assessment tool that helps its users formulate a holistic assessment of clients\u2019 biopsychosocial functioning using the PIE System .A four factor classification system which includes the following dimensions: Social Role, Social Environmental Needs/Problems, Mental Health and Physical Health. The PIE system enables both practitioner and client to have a clear and comprehensive understanding of what is needed to enable clients to reach their goals. ");
-		ImageIcon icon = new ImageIcon("images/officiallogoSmall.png");
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("officiallogoSmall.png"));
 		JLabel lblNewLabel_3 = new JLabel(icon);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

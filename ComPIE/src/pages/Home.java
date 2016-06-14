@@ -77,7 +77,7 @@ public class Home extends JFrame {
 			public void run() {
 				try {
 
-					UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+					UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
 					Home frame = new Home();
 					frame.setTitle("CompuPIE");
 					frame.setVisible(true);
