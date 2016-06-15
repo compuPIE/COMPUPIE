@@ -17,7 +17,7 @@ public class Load_Strength_Factor4 {
 	public Load_Strength_Factor4(){	
 		try	{
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
+			c = DriverManager.getConnection("jdbc:sqlite::resource:compuPIEMetaInfo.db");
 			c.setAutoCommit(false);
 			}
 		

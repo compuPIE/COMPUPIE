@@ -15,7 +15,7 @@ public class AdditionalNotesManipulation {
 	public void additionalNotesManipulationConn() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
+			c = DriverManager.getConnection("jdbc:sqlite::resource:compuPIEMetaInfo.db");
 			c.setAutoCommit(true);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

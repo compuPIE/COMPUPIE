@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -153,7 +154,12 @@ public class FindPatient extends JPanel {
 		
 		JButton btnNewButton_2 = null;
 		try {
-			btnNewButton_3 = new JButton("Home", new ImageIcon(new File("images/home.png").toURI().toURL()));
+			try {
+				btnNewButton_3 = new JButton("Home", new ImageIcon(getClass().getClassLoader().getResource("home.png").toURI().toURL()));
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					pages.panel.setVisible(true);

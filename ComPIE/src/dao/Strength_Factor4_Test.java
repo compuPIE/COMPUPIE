@@ -11,7 +11,7 @@ public class Strength_Factor4_Test {
 	    Statement stmt = null;
 	    try {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
+	      c = DriverManager.getConnection("jdbc:sqlite::resource:compuPIEMetaInfo.db");
 	      c.setAutoCommit(false);
 	      System.out.println("Opened database successfully\n");
 

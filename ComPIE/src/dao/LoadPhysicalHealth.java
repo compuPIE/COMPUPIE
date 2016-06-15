@@ -18,7 +18,7 @@ public class LoadPhysicalHealth {
 	public LoadPhysicalHealth() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
+			c = DriverManager.getConnection("jdbc:sqlite::resource:compuPIEMetaInfo.db");
 			c.setAutoCommit(false);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

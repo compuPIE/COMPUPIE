@@ -18,7 +18,7 @@ public class LoadLivingArrangement {
 	public LoadLivingArrangement() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:compuPIEMetaInfo.db");
+			c = DriverManager.getConnection("jdbc:sqlite::resource:compuPIEMetaInfo.db");
 			c.setAutoCommit(false);
 		}
 

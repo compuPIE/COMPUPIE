@@ -41,9 +41,10 @@ public class Menu extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Browser b = new Browser(
-							getClass().getClassLoader().getResource("History_of_PIE_System.pdf").toString(),
+							"History_of_PIE_System.pdf",
 							"History of PIE System");
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		});
@@ -53,7 +54,7 @@ public class Menu extends JPanel {
 		btnDedication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Browser b = new Browser(getClass().getClassLoader().getResource("Dedication.pdf").toString(),
+					Browser b = new Browser("Dedication.pdf",
 							"Dedication");
 				} catch (Exception e1) {
 				}
