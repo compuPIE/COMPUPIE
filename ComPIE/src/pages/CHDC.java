@@ -85,6 +85,7 @@ public class CHDC extends JPanel {
 		lblTraumaHistory.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblReasonForReferral = new JLabel("Relevant History");
+		lblReasonForReferral.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textArea_2 = new TextArea();
 		textArea_2.setForeground(Color.BLACK); 

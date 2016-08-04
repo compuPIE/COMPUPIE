@@ -118,7 +118,7 @@ public class Factor1 extends JPanel {
 		lblFactorISocial.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Color.LIGHT_GRAY);
+		//desktopPane.setBackground(Color.);
 
 		lblSocialRoleDescription = new JLabel("Social Role Category");
 		lblSocialRoleDescription.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
@@ -290,9 +290,9 @@ public class Factor1 extends JPanel {
 						.addComponent(btnAddNewProblem)
 						.addComponent(btnEditProblem)
 						.addComponent(btnNewButton))
-					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+					.addGap(18)
 					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 
 		JLabel lblSeverity = new JLabel("Severity");

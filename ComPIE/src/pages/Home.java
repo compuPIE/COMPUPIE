@@ -78,7 +78,7 @@ public class Home extends JFrame {
 				try {
 
 					if(!System.getProperty("os.name").contains("MAC")){
-						UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");	
+						UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");	
 					}
 					
 					Home frame = new Home();

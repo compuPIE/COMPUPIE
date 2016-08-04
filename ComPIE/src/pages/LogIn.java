@@ -60,12 +60,13 @@ public class LogIn extends JPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		JButton btnNewButton_1 = new JButton("Change Theme");
+		btnNewButton_1.setVisible(false);
 		try {
 			if (!System.getProperty("os.name").contains("MAC")) {
 				
 				btnNewButton_1 = new JButton("Change Background",
 						new ImageIcon(new File("images/setting.png").toURI().toURL()));
-				btnNewButton_1.setVisible(false);
+				
 			}
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
