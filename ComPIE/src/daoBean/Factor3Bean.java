@@ -14,12 +14,58 @@ public class Factor3Bean {
 	private String expectedOutcome;
 	private int clientId;
 	private int followup;
+	private String MHP;
+	private String noDx;
+	private String denies;
+	
 
 	/**
 	 * @return the followup
 	 */
 	public int getFollowup() {
 		return followup;
+	}
+
+	/**
+	 * @return the mHP
+	 */
+	public String getMHP() {
+		return MHP;
+	}
+
+	/**
+	 * @param mHP the mHP to set
+	 */
+	public void setMHP(String mHP) {
+		MHP = mHP;
+	}
+
+	/**
+	 * @return the noDx
+	 */
+	public String getNoDx() {
+		return noDx;
+	}
+
+	/**
+	 * @param noDx the noDx to set
+	 */
+	public void setNoDx(String noDx) {
+		this.noDx = noDx;
+	}
+
+	/**
+	 * @return the denies
+	 */
+	public String getDenies() {
+		return denies;
+	}
+
+	/**
+	 * @param denies the denies to set
+	 */
+	public void setDenies(String denies) {
+		this.denies = denies;
 	}
 
 	/**

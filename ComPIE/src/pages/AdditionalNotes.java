@@ -32,7 +32,7 @@ public class AdditionalNotes extends JPanel {
 		setBounds(0, 11, 982, 671);
 
 		JLabel lblAdditionalNotes = new JLabel("Additional Notes");
-		lblAdditionalNotes.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblAdditionalNotes.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textArea = new TextArea();
 		textArea.addTextListener(new TextListener() {

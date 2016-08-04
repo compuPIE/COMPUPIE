@@ -78,6 +78,10 @@ public class Factor3TableManipulation {
 				info.setExpectedOutcome(rs.getString("expectedOutcome"));
 				info.setClientId(rs.getInt("clientId"));
 				info.setFollowup(rs.getInt("followUp"));
+				info.setMHP(rs.getString("MHP"));
+				info.setNoDx(rs.getString("PossibleDx"));
+				info.setDenies(rs.getString("DeniesMH"));
+				
 				list.add(info);
 			}
 			rs.close();
@@ -111,6 +115,9 @@ public class Factor3TableManipulation {
 				info.setExpectedOutcome(rs.getString("expectedOutcome"));
 				info.setClientId(rs.getInt("clientId"));
 				info.setFollowup(rs.getInt("followUp"));
+				info.setMHP(rs.getString("MHP"));
+				info.setNoDx(rs.getString("PossibleDx"));
+				info.setDenies(rs.getString("DeniesMH"));
 				list.add(info);
 			}
 			rs.close();
@@ -144,6 +151,9 @@ public class Factor3TableManipulation {
 				info.setExpectedOutcome(rs.getString("expectedOutcome"));
 				info.setClientId(rs.getInt("clientId"));
 				info.setFollowup(rs.getInt("followUp"));
+				info.setMHP(rs.getString("MHP"));
+				info.setNoDx(rs.getString("PossibleDx"));
+				info.setDenies(rs.getString("DeniesMH"));
 				list.add(info);
 			}
 			rs.close();
@@ -209,7 +219,7 @@ public class Factor3TableManipulation {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(
 				"insert into FACTOR3 (id,problem,source,serverity,duration,copingAbitity,"
-				+ "priority,goal,recommendedInter,expectedOutcome,clientId,followUp) values");
+				+ "priority,goal,recommendedInter,expectedOutcome,clientId,followUp,MHP,PossibleDx,DeniesMH) values");
 		buffer.append("(" + (getmaxId(info.getClientId()) + 1));
 		buffer.append(",\"" + info.getdsmDiagnosis() + "\"");
 		buffer.append(",\"" + info.getdiagnosisSource() + "\"");
@@ -221,7 +231,10 @@ public class Factor3TableManipulation {
 		buffer.append(",\"" + info.getRecommendedInter() + "\"");
 		buffer.append(",\"" + info.getExpectedOutcome() + "\"");
 		buffer.append("," + info.getClientId());
-		buffer.append("," + info.getFollowup()+");");
+		buffer.append("," + info.getFollowup());
+		buffer.append(",\"" + info.getMHP() + "\"");
+		buffer.append(",\"" + info.getNoDx() + "\"");
+		buffer.append(",\"" + info.getDenies() + "\" );");
 		return buffer.toString();
 	}
 
@@ -234,7 +247,9 @@ public class Factor3TableManipulation {
 		buffer.append(",duration=\"" + info.getDuration() + "\"");
 		buffer.append(",copingAbitity=\"" + info.getCopingAbitity() + "\"");
 		buffer.append(",priority=\"" + info.getPriority() + "\"");
-		buffer.append(",goal=\"" + info.getGoal() + "\"");
+		buffer.append(",MHP=\"" + info.getMHP() + "\"");
+		buffer.append(",PossibleDx=\"" + info.getNoDx() + "\"");
+		buffer.append(",DeniesMH=\"" + info.getDenies() + "\"");
 		buffer.append(",recommendedInter=\"" + info.getRecommendedInter() + "\"");
 		buffer.append(",expectedOutcome=\"" + info.getExpectedOutcome() + "\"");
 		buffer.append(",clientId=" + info.getClientId());

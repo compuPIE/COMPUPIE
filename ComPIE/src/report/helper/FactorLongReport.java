@@ -17,7 +17,6 @@ import daoBean.Factor1Bean;
 import daoBean.Factor2Bean;
 import daoBean.Factor3Bean;
 import daoBean.Factor4Bean;
-import pages.Factor4;
 
 public class FactorLongReport extends BaseReport {
 	public FactorLongReport(PdfWriter writer) {

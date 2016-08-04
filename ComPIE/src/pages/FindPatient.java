@@ -1,5 +1,6 @@
 package pages;
 
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,18 +55,22 @@ public class FindPatient extends JPanel {
 		textField.setColumns(10);
 
 		JLabel label = new JLabel("Last Name");
+		label.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		JLabel label_1 = new JLabel("Middle Name");
+		label_1.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 
 		JLabel label_2 = new JLabel("First Name ");
+		label_2.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 
 		JLabel label_3 = new JLabel("Client ID #");
+		label_3.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
@@ -74,8 +79,10 @@ public class FindPatient extends JPanel {
 		textField_4.setColumns(10);
 
 		JLabel label_4 = new JLabel("Postal Code");
+		label_4.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		JLabel label_5 = new JLabel("Phone");
+		label_5.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);

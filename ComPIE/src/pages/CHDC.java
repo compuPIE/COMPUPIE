@@ -54,7 +54,7 @@ public class CHDC extends JPanel {
 		this.clientId = clientId;
 		setBounds(0, 11, 963, 609);
 		lblFactorIiEnvironmental = new JLabel("Case History");
-		lblFactorIiEnvironmental.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFactorIiEnvironmental.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		textArea = new TextArea();
 		textArea.setForeground(Color.BLACK); 
@@ -76,11 +76,13 @@ public class CHDC extends JPanel {
 		});
 
 		lblNewLabel = new JLabel("Reason for Referral");
+		lblNewLabel.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblNewLabel_1 = new JLabel("Current Situation");
+		lblNewLabel_1.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblTraumaHistory = new JLabel("Trauma History");
-		lblTraumaHistory.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblTraumaHistory.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblReasonForReferral = new JLabel("Relevant History");
 
@@ -94,8 +96,10 @@ public class CHDC extends JPanel {
 		});
 
 		lblChildhood = new JLabel("Childhood");
+		lblChildhood.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblAdulthood = new JLabel("Adulthood");
+		lblAdulthood.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		populateTraumaHistory();
 		populatePage();
@@ -133,9 +137,10 @@ public class CHDC extends JPanel {
 										.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblAdulthood, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-										.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
-									.addGap(82))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+											.addGap(82))
+										.addComponent(lblAdulthood, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))
 								.addComponent(lblTraumaHistory, GroupLayout.PREFERRED_SIZE, 856, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
@@ -172,8 +177,8 @@ public class CHDC extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(1)
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
-						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
 					.addGap(18))
 		);
 		setLayout(groupLayout);

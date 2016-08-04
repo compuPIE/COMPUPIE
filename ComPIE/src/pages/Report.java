@@ -47,7 +47,7 @@ public class Report extends JPanel {
 		setLayout(null);
 
 		JLabel lblReport = new JLabel("Report Generation", SwingConstants.CENTER);
-		lblReport.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblReport.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 		lblReport.setBounds(362, 32, 280, 40);
 		add(lblReport);
 
@@ -59,7 +59,8 @@ public class Report extends JPanel {
 		add(comboBox);
 
 		JLabel lblTypeOfReport = new JLabel("Type of Report");
-		lblTypeOfReport.setBounds(94, 152, 158, 14);
+		lblTypeOfReport.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
+		lblTypeOfReport.setBounds(96, 135, 158, 31);
 		add(lblTypeOfReport);
 
 		scrollPane = new JScrollPane((Component) null);
@@ -71,7 +72,8 @@ public class Report extends JPanel {
 		scrollPane.setViewportView(list);
 
 		JLabel lblChooseFollowups = new JLabel("Choose Follow-ups");
-		lblChooseFollowups.setBounds(471, 152, 171, 14);
+		lblChooseFollowups.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
+		lblChooseFollowups.setBounds(471, 135, 171, 31);
 		add(lblChooseFollowups);
 
 		btnNewButton = new JButton("Select All");

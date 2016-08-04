@@ -115,16 +115,19 @@ public class Factor1 extends JPanel {
 		setBounds(0, 11, 1016, 609);
 
 		lblFactorISocial = new JLabel("Factor I: Social Role and Relationship Functioning", SwingConstants.CENTER);
-		lblFactorISocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFactorISocial.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
-		lblSocialRoleDescription = new JLabel("Social Role Description");
+		lblSocialRoleDescription = new JLabel("Social Role Category");
+		lblSocialRoleDescription.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
-		lblProblemType = new JLabel("Problem Type");
+		lblProblemType = new JLabel("Social Role");
+		lblProblemType.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblProblem = new JLabel("Problem");
+		lblProblem.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		Load_SocialRoles roles = new Load_SocialRoles();
 		List<SocialRoleCategory> categ = roles.getAllProblemsByCategory();
@@ -159,8 +162,10 @@ public class Factor1 extends JPanel {
 		}
 
 		lblDuration = new JLabel("Duration");
+		lblDuration.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblCopingAbility = new JLabel("Coping Ability");
+		lblCopingAbility.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
@@ -190,13 +195,17 @@ public class Factor1 extends JPanel {
 		textArea_2 = new TextArea();
 
 		label_6 = new JLabel("Goal");
+		label_6.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		label_7 = new JLabel("Recommended Intervention");
+		label_7.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		label_8 = new JLabel("Expected Outcome");
+		label_8.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 		desktopPane.setVisible(false);
 
 		lblPriority = new JLabel("Priority");
+		lblPriority.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
@@ -249,12 +258,12 @@ public class Factor1 extends JPanel {
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(272)
 					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, Short.MAX_VALUE)
 					.addGap(241))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(desktopPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
@@ -275,116 +284,127 @@ public class Factor1 extends JPanel {
 					.addGap(24)
 					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAddNewProblem)
 						.addComponent(btnEditProblem)
 						.addComponent(btnNewButton))
-					.addGap(37)
-					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 371, GroupLayout.PREFERRED_SIZE)
-					.addGap(0))
+					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 
 		JLabel lblSeverity = new JLabel("Severity");
+		lblSeverity.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
-		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.TRAILING)
+		gl_desktopPane.setHorizontalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_desktopPane.createSequentialGroup()
-						.addGap(23).addComponent(label_7, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE).addGap(176)
-						.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE).addGap(145))
-				.addGroup(
-						gl_desktopPane.createSequentialGroup().addGap(23)
-								.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGap(61)
-								.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGap(30))
+					.addGap(23)
+					.addComponent(label_7, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+					.addGap(176)
+					.addComponent(label_8, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+					.addGap(145))
 				.addGroup(gl_desktopPane.createSequentialGroup()
-						.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)
-										.addComponent(lblSocialRoleDescription, GroupLayout.DEFAULT_SIZE, 285,
-												Short.MAX_VALUE)
-										.addGap(26)
-										.addComponent(lblProblemType, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-								.addGroup(gl_desktopPane.createSequentialGroup().addGap(24)
-										.addComponent(comboBox, 0, 285, Short.MAX_VALUE).addGap(27)
-										.addComponent(comboBox_1, 0, 276, Short.MAX_VALUE)))
-						.addGap(24).addGroup(
-								gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_desktopPane.createSequentialGroup()
-												.addComponent(lblProblem, GroupLayout.DEFAULT_SIZE, 274,
-														Short.MAX_VALUE)
-												.addGap(100))
-										.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 296,
-												GroupLayout.PREFERRED_SIZE)))
-				.addGroup(gl_desktopPane.createSequentialGroup().addGap(23).addGroup(gl_desktopPane
-						.createParallelGroup(Alignment.TRAILING)
-						.addComponent(textArea, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-								Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_desktopPane.createSequentialGroup()
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblSeverity))
-								.addGap(50)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144,
-												GroupLayout.PREFERRED_SIZE))
-								.addGap(53)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121,
-												GroupLayout.PREFERRED_SIZE))
-								.addGap(37)
-								.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(comboBox_6, 0, 256, Short.MAX_VALUE)))
-						.addGroup(Alignment.LEADING, gl_desktopPane.createSequentialGroup()
-								.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE).addGap(732)))
-						.addGap(30)));
-		gl_desktopPane.setVerticalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addGroup(gl_desktopPane
-				.createSequentialGroup().addGap(11)
-				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(lblSocialRoleDescription)
-						.addComponent(lblProblemType).addComponent(lblProblem))
-				.addGap(1)
-				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+					.addGap(23)
+					.addComponent(textArea_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(61)
+					.addComponent(textArea_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(30))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(23)
+							.addComponent(lblSocialRoleDescription, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+							.addGap(26)
+							.addComponent(lblProblemType, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGap(24)
+							.addComponent(comboBox, 0, 279, Short.MAX_VALUE)
+							.addGap(27)
+							.addComponent(comboBox_1, 0, 271, Short.MAX_VALUE)))
+					.addGap(24)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addComponent(lblProblem, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+							.addGap(100))
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addComponent(comboBox_5, 0, 296, Short.MAX_VALUE)
+							.addGap(67))))
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(23)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_2, 0, 197, Short.MAX_VALUE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblSeverity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGap(132)))
+							.addGap(50)
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_3, 0, 186, Short.MAX_VALUE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblDuration, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+									.addGap(42)))
+							.addGap(53)
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblCopingAbility, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+									.addGap(57)))
+							.addGap(37)
+							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblPriority, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+									.addGap(113))
+								.addComponent(comboBox_6, 0, 234, Short.MAX_VALUE)))
+						.addGroup(gl_desktopPane.createSequentialGroup()
+							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+							.addGap(732)))
+					.addGap(30))
+		);
+		gl_desktopPane.setVerticalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblSocialRoleDescription)
+						.addComponent(lblProblemType)
+						.addComponent(lblProblem))
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)))
-				.addGap(21)
-				.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE).addComponent(lblCopingAbility)
-						.addComponent(lblPriority).addComponent(lblDuration).addComponent(lblSeverity))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(21)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblCopingAbility)
+						.addComponent(lblPriority)
+						.addComponent(lblDuration)
+						.addComponent(lblSeverity))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_desktopPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)))
-				.addGap(11).addComponent(label_6)
-				.addGroup(gl_desktopPane.createSequentialGroup()
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED))
-				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING).addComponent(label_7)
+							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(11)
+					.addComponent(label_6)
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_7)
 						.addComponent(label_8))
-				.addGap(1)
-				.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
+					.addGap(1)
+					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(textArea_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textArea_2, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-				.addGap(106)));
+					.addGap(106))
+		);
 		desktopPane.setLayout(gl_desktopPane);
 		setLayout(groupLayout);
 		table.removeColumn(table.getColumnModel().getColumn(0));

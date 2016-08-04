@@ -51,6 +51,10 @@ public class ClientInfo extends JPanel {
 
 		panel3 = new FactorIII(id);
 		tabbedPane.addTab("Factor 3", null, panel3, null);
+		
+		mse = new MSE(id);
+		tabbedPane.addTab("MSE", null, mse, null);
+		
 
 		panel4 = new FactorIV(id);
 		tabbedPane.addTab("Factor 4", null, panel4, null);
@@ -58,8 +62,6 @@ public class ClientInfo extends JPanel {
 		panel7 = new StrengthAndResources(id);
 		tabbedPane.addTab("Strength and Resources", null, panel7, null);
 		
-		mse = new MSE(id);
-		tabbedPane.addTab("MSE", null, mse, null);
 		
 		add = new AdditionalNotes(id);
 		tabbedPane.addTab("Addn'l Notes", null, add, null);

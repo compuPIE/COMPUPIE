@@ -77,11 +77,15 @@ public class Home extends JFrame {
 			public void run() {
 				try {
 
-					UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+					if(!System.getProperty("os.name").contains("MAC")){
+						UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");	
+					}
+					
 					Home frame = new Home();
 					frame.setTitle("CompuPIE");
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					//frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

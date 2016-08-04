@@ -119,14 +119,16 @@ public class FactorII extends JPanel {
 		setBounds(0, 11, 963, 609);
 
 		lblFactorISocial = new JLabel("FACTOR II: Environmental Situations");
-		lblFactorISocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFactorISocial.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
 		label = new JLabel("");
+		label.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblSeverity = new JLabel("Severity");
+		lblSeverity.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		comboBox = new JComboBox<String>();
 		comboBox.addItem("Select");
@@ -135,8 +137,10 @@ public class FactorII extends JPanel {
 		comboBox_2.addItem("Select");
 
 		lblDuration = new JLabel("Duration");
+		lblDuration.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblCopingAbility = new JLabel("Coping Ability");
+		lblCopingAbility.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		comboBox_3 = new JComboBox<String>();
 
@@ -149,19 +153,25 @@ public class FactorII extends JPanel {
 		textArea_2 = new JTextArea();
 
 		label_6 = new JLabel("Goal");
+		label_6.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		label_7 = new JLabel("Recommended Intervention");
+		label_7.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		label_8 = new JLabel("Expected Outcome");
+		label_8.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 		desktopPane.setVisible(false);
 
 		lblPriority = new JLabel("Priority");
+		lblPriority.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		comboBox_6 = new JComboBox<String>();
 		comboBox_6.addItem("Select");
 		lblNewLabel = new JLabel("");
+		lblNewLabel.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		btnAddNewProblem = new JButton("Add new Problem");
+		
 
 		btnDeleteProblem = new JButton("Clear");
 		btnDeleteProblem.addActionListener(new ActionListener() {
@@ -203,50 +213,57 @@ public class FactorII extends JPanel {
 			tree.expandRow(i);
 		}
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout
-				.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(396)
-								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE).addGap(348))
-						.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-								.addComponent(tr, GroupLayout.PREFERRED_SIZE, 191,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addGroup(groupLayout.createSequentialGroup().addGap(378)
-												.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115,
-														Short.MAX_VALUE)
-												.addGap(18)
-												.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91,
-														Short.MAX_VALUE)
-												.addGap(18)
-												.addComponent(btnDeleteProblem, GroupLayout.PREFERRED_SIZE, 126,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED))
-										.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746,
-												Short.MAX_VALUE)
-										.addComponent(desktopPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746,
-												Short.MAX_VALUE))
-								.addGap(10))
-						.addGroup(groupLayout
-								.createSequentialGroup().addGap(373).addComponent(lblFactorISocial,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGap(263)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap()
-				.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE).addGap(10)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(396)
+					.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+					.addGap(348))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tr, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(tr, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE).addGap(111))
+							.addGap(378)
+							.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(btnEditProblem, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(btnDeleteProblem, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
+						.addComponent(desktopPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE))
+					.addGap(10))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(373)
+					.addComponent(lblFactorISocial, GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+					.addGap(263))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE).addGap(7)
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnAddNewProblem).addComponent(btnEditProblem)
-										.addComponent(btnDeleteProblem))
-								.addGap(11).addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)))
-				.addGap(11)));
+							.addComponent(tr, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+							.addGap(111))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+							.addGap(7)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnAddNewProblem)
+								.addComponent(btnEditProblem)
+								.addComponent(btnDeleteProblem))
+							.addGap(11)
+							.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(11))
+		);
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
 		gl_desktopPane.setHorizontalGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_desktopPane.createSequentialGroup().addGap(23)

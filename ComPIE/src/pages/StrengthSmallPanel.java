@@ -13,11 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import dao.Load_SocialRoles;
 import dao.Load_Strength_Factor2;
 import dao.Load_Strength_Factor3;
 import dao.Load_Strength_Factor4;
+import dao.Load_strength_facor1;
 import daoBean.SocialRoleProblems;
+import daoBean.StrengthFactor1;
 import daoBean.Strength_Factor2_Category;
 import daoBean.Strength_Factor2_Problems;
 import daoBean.Strength_Factor3;
@@ -64,36 +65,21 @@ public class StrengthSmallPanel extends JPanel {
 
 	private void populateTab(String panelName) {
 
-		String factor1 = "Family,Occupational,Other,Special";
+		String factor1 = "Strengths";
 		String factor2 = "Basic,Health,Education,Volunteer,Judicial,Affectional";
 
 		List<String> list = new ArrayList<String>();
 
 		if (factor1.contains(panelName)) {
-			Load_SocialRoles roles = new Load_SocialRoles();
-			List<SocialRoleProblems> problems = null;
-			try {
-				switch (panelName) {
-				case "Family":
-					problems = roles.getAllProblems(1);
-					break;
-				case "Occupational":
-					problems = roles.getAllProblems(2);
-					break;
-				case "Other":
-					problems = roles.getAllProblems(3);
-					break;
-				case "Special":
-					problems = roles.getAllProblems(4);
-					break;
-				}
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			Load_strength_facor1 roles = new Load_strength_facor1();
+			List<StrengthFactor1> problems = null;
+			switch (panelName) {
+			case "Strengths":
+				problems = roles.getAllStrength_Factor_1();
+				break;
 			}
-			for (SocialRoleProblems prob : problems) {
-				list.add(prob.getItem());
+			for (StrengthFactor1 prob : problems) {
+				list.add(prob.getCategory());
 			}
 		} else if (factor2.contains(panelName)) {
 

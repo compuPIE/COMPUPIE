@@ -35,17 +35,14 @@ public class StrengthAndResources extends JPanel {
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		panel = new StrengthSmallPanel("Family");
-		tabbedPane.addTab("Family", null, panel, null);
+		panel = new StrengthSmallPanel("Strengths");
+		tabbedPane.addTab("Strengths", null, panel, null);
 
 		panel_1 = new StrengthSmallPanel("Occupational");
-		tabbedPane.addTab("Occupational", null, panel_1, null);
 
 		panel_2 = new StrengthSmallPanel("Other");
-		tabbedPane.addTab("Other Interpersonal", null, panel_2, null);
 
 		panel_3 = new StrengthSmallPanel("Special");
-		tabbedPane.addTab("Special Life Situation", null, panel_3, null);
 
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 
@@ -67,13 +64,13 @@ public class StrengthAndResources extends JPanel {
 		panel_9 = new StrengthSmallPanel("Affectional");
 		tabbedPane_1.addTab("Affectional Support", null, panel_9, null);
 
-		JLabel lblFactorI = new JLabel("Factor I - Social Relationships");
+		JLabel lblFactorI = new JLabel("Factor I - Social Relationships Strengths");
 
-		JLabel lblFactorIi = new JLabel("Factor II - Environmental");
+		JLabel lblFactorIi = new JLabel("Factor II - Environmental Resources");
 
-		JLabel lblFactorIii = new JLabel("Factor III - Mental Health Functioning");
+		JLabel lblFactorIii = new JLabel("Factor III - Mental Health Strengths");
 
-		JLabel lblFactorIv = new JLabel("Factor IV - Physical Health Functioning ");
+		JLabel lblFactorIv = new JLabel("Factor IV - Physical Health Strengths");
 
 		panel_10 = new StrengthSmallPanel("factor3");
 
@@ -135,8 +132,7 @@ public class StrengthAndResources extends JPanel {
 	}
 
 	public boolean hastoUpdate() {
-		return (panel.isHasToUpdate() || panel_1.isHasToUpdate() || panel_2.isHasToUpdate() || panel_3.isHasToUpdate()
-				|| panel_4.isHasToUpdate() || panel_5.isHasToUpdate() || panel_6.isHasToUpdate()
+		return (panel.isHasToUpdate() || panel_4.isHasToUpdate() || panel_5.isHasToUpdate() || panel_6.isHasToUpdate()
 				|| panel_7.isHasToUpdate() || panel_10.isHasToUpdate() || panel_9.isHasToUpdate()
 				|| panel_8.isHasToUpdate() || panel_11.isHasToUpdate());
 	}
@@ -198,17 +194,8 @@ public class StrengthAndResources extends JPanel {
 			String[] s = split.split("-");
 			if (s.length > 1) {
 				switch (s[0]) {
-				case "Family":
+				case "Strengths":
 					panel.populatePage(s[1]);
-					break;
-				case "Occupational":
-					panel_1.populatePage(s[1]);
-					break;
-				case "Other":
-					panel_2.populatePage(s[1]);
-					break;
-				case "Special":
-					panel_3.populatePage(s[1]);
 					break;
 				}
 			}
@@ -246,10 +233,7 @@ public class StrengthAndResources extends JPanel {
 
 	private String getCurrentValuesFactor1() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("Family-" + panel.generateCurrentString() + ":");
-		sb.append("Occupational-" + panel_1.generateCurrentString() + ":");
-		sb.append("Other-" + panel_2.generateCurrentString() + ":");
-		sb.append("Special-" + panel_3.generateCurrentString() + "");
+		sb.append("Strengths-" + panel.generateCurrentString() + ":");
 		return sb.toString();
 	}
 

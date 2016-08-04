@@ -41,6 +41,7 @@ import daoBean.Factor3Bean;
 import daoBean.Priority;
 import daoBean.Severity;
 import pages.helper.AutoCompletion;
+import javax.swing.JCheckBox;
 
 public class FactorIII extends JPanel {
 
@@ -103,22 +104,30 @@ public class FactorIII extends JPanel {
 
 	public int clientId;
 
+	private JCheckBox chckbxNoMentalHealth;
+
+	private JCheckBox chckbxPossibleMhProblem;
+
+	private JCheckBox chckbxClientDeniedMh;
+
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public FactorIII(int clientID) {
 		setBounds(0, 11, 963, 609);
-
+		comboBox_5 = new JTextField();
 		lblFactorISocial = new JLabel("Factor III: Mental Health Functioning", SwingConstants.CENTER);
-		lblFactorISocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFactorISocial.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Color.LIGHT_GRAY);
 
-		lblDsmAxisDiagnosis = new JLabel("DSM Axis Diagnosis");
+		lblDsmAxisDiagnosis = new JLabel("DSM 5 DX");
+		lblDsmAxisDiagnosis.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblDiagnosisSource = new JLabel("Diagnosis Source");
+		lblDiagnosisSource.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		Load_DSM_AXIS_5 roles = new Load_DSM_AXIS_5();
 		List<DSM_AXIS_5> categ = roles.getAllDSM_AXIS_5();
@@ -128,6 +137,9 @@ public class FactorIII extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getSelectedItem().toString().split("--").length > 1){
 					comboBox_5.setText(comboBox.getSelectedItem().toString().split("--")[1]);
+				}else{
+					System.out.println();
+					comboBox_5.setText("");
 				}
 			}
 		});
@@ -152,8 +164,10 @@ public class FactorIII extends JPanel {
 		}
 
 		lblDuration = new JLabel("Duration");
+		lblDuration.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		lblCopingAbility = new JLabel("Coping Ability");
+		lblCopingAbility.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		Load_Duration duration = new Load_Duration();
 		comboBox_3 = new JComboBox();
@@ -176,13 +190,17 @@ public class FactorIII extends JPanel {
 		textArea_2 = new TextArea();
 
 		label_6 = new JLabel("Goal");
+		label_6.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		label_7 = new JLabel("Recommended Intervention");
+		label_7.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		label_8 = new JLabel("Expected Outcome");
+		label_8.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 		desktopPane.setVisible(false);
 
 		lblPriority = new JLabel("Priority");
+		lblPriority.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 
 		Load_Priority priority = new Load_Priority();
 		comboBox_6 = new JComboBox();
@@ -237,10 +255,12 @@ public class FactorIII extends JPanel {
 		});
 
 		JLabel lblSeverity = new JLabel("Severity");
+		lblSeverity.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
 		
-		comboBox_5 = new JTextField();
 		comboBox_5.setEnabled(false);
 		JLabel lblDsmCode = new JLabel("DSM Code");
+		lblDsmCode.setFont(new Font(CustomFontSize.FONT_TYPE, Font.PLAIN, CustomFontSize.FONT_SIZE));
+		
 		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
 		gl_desktopPane.setHorizontalGroup(
 			gl_desktopPane.createParallelGroup(Alignment.TRAILING)
@@ -260,18 +280,18 @@ public class FactorIII extends JPanel {
 					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_desktopPane.createSequentialGroup()
 							.addGap(23)
-							.addComponent(lblDsmAxisDiagnosis, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+							.addComponent(lblDsmAxisDiagnosis, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(261))
 						.addGroup(gl_desktopPane.createSequentialGroup()
 							.addGap(24)
-							.addComponent(comboBox, 0, 424, Short.MAX_VALUE)
+							.addComponent(comboBox, 0, 415, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_1, 0, 298, Short.MAX_VALUE)
-						.addComponent(lblDiagnosisSource, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+						.addComponent(comboBox_1, 0, 268, Short.MAX_VALUE)
+						.addComponent(lblDiagnosisSource, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_5, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+						.addComponent(comboBox_5, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
 						.addGroup(gl_desktopPane.createSequentialGroup()
 							.addComponent(lblDsmCode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(79)))
@@ -282,19 +302,27 @@ public class FactorIII extends JPanel {
 						.addComponent(textArea, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(gl_desktopPane.createSequentialGroup()
 							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblSeverity))
+								.addComponent(comboBox_2, 0, 197, Short.MAX_VALUE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblSeverity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGap(132)))
 							.addGap(50)
 							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDuration, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+								.addComponent(comboBox_3, 0, 186, Short.MAX_VALUE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblDuration, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+									.addGap(42)))
 							.addGap(53)
 							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblCopingAbility, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
+								.addComponent(comboBox_4, 0, 178, Short.MAX_VALUE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblCopingAbility, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+									.addGap(57)))
 							.addGap(37)
 							.addGroup(gl_desktopPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblPriority, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_desktopPane.createSequentialGroup()
+									.addComponent(lblPriority, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+									.addGap(52))
 								.addComponent(comboBox_6, 0, 173, Short.MAX_VALUE)))
 						.addGroup(gl_desktopPane.createSequentialGroup()
 							.addComponent(label_6, GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
@@ -341,21 +369,16 @@ public class FactorIII extends JPanel {
 					.addGap(106))
 		);
 		desktopPane.setLayout(gl_desktopPane);
+		
+		chckbxNoMentalHealth = new JCheckBox("No Mental Health Problem");
+		
+		chckbxPossibleMhProblem = new JCheckBox("Possible MH problem, no professional dx");
+		
+		chckbxClientDeniedMh = new JCheckBox("Client denies MH problem");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(272)
-					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 526, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
-					.addGap(12))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addGap(539)
 					.addComponent(btnAddNewProblem, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGap(18)
@@ -363,22 +386,47 @@ public class FactorIII extends JPanel {
 					.addGap(18)
 					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
 					.addGap(69))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(24)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(209)
+					.addComponent(lblFactorISocial, GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+					.addGap(228))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(192)
+					.addComponent(chckbxNoMentalHealth, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+					.addGap(43)
+					.addComponent(chckbxPossibleMhProblem, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+					.addGap(51)
+					.addComponent(chckbxClientDeniedMh, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(166))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
+					.addContainerGap()
 					.addComponent(lblFactorISocial, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxNoMentalHealth)
+						.addComponent(chckbxPossibleMhProblem)
+						.addComponent(chckbxClientDeniedMh))
+					.addGap(18)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(btnAddNewProblem)
 						.addComponent(btnEditProblem)
 						.addComponent(btnNewButton))
-					.addGap(26)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-					.addGap(1))
+					.addGap(16))
 		);
 		setLayout(groupLayout);
 		table.removeColumn(table.getColumnModel().getColumn(0));
@@ -456,6 +504,7 @@ public class FactorIII extends JPanel {
 	 * @return
 	 */
 	public DefaultTableModel tablePopulate(int clientID) {
+		
 		enableDisableValues(false);
 
 		setCurrentId(0);
@@ -469,6 +518,17 @@ public class FactorIII extends JPanel {
 		Object[][] data = new Object[list.size()][8];
 		int i = 0;
 		for (Factor3Bean bean : list) {
+			if(bean.getMHP().equalsIgnoreCase("true")){
+				chckbxNoMentalHealth.setSelected(true);
+			}
+			
+			if(bean.getNoDx().equalsIgnoreCase("true")){
+				chckbxPossibleMhProblem.setSelected(true);			
+			}
+			if(bean.getDenies().equalsIgnoreCase("true")){
+				chckbxClientDeniedMh.setSelected(true);
+			}
+			
 			data[i][0] = bean.getId();
 			data[i][1] = follow.getFollowUpInfo( bean.getFollowup(),clientID).get(0).getDate();
 			data[i][2] = bean.getdsmDiagnosis();
@@ -534,6 +594,9 @@ public class FactorIII extends JPanel {
 		bean.setGoal(textArea.getText());
 		bean.setRecommendedInter(textArea_1.getText());
 		bean.setExpectedOutcome(textArea_2.getText());
+		bean.setMHP(chckbxNoMentalHealth.isSelected()+"");
+		bean.setNoDx(chckbxPossibleMhProblem.isSelected()+"");
+		bean.setDenies(chckbxClientDeniedMh.isSelected()+"");
 		bean.setId(currentId);
 		return bean;
 	}
